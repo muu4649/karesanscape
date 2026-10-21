@@ -238,8 +238,12 @@ function applyParams(p) {
   const m = p.get("m");
   const after = () => {
     refreshOverlay(); renderAll();
+    // 例: ?panel=bridges（異用途の類似技術の一覧）、?cmp=D0001,D0002（2 件の比較）、?rtab=near（右の欄のタブ）
+    if (p.get("cmp")) { const [a, b] = p.get("cmp").split(",").map(id2i); if (a >= 0 && b >= 0) { S.sel = a; S.nbSel = b; S.rmode = "compare"; renderNeighborsLines(); renderSel(); renderSide(); return; } }
+    if (p.get("panel") === "bridges") { S.rmode = "bridges"; renderSide(); return; }
+    if (p.get("rtab")) S.rtab = p.get("rtab");
     const i = p.get("sel") ? id2i(p.get("sel")) : -1, j = p.get("nb") ? id2i(p.get("nb")) : -1;
-    if (i >= 0) { if (p.get("tab")) S.tab = p.get("tab"); select(i, p.get("zoom") === "1", j >= 0 ? j : undefined); if (p.get("tab")) { S.tab = p.get("tab"); renderSide(); } }
+    if (i >= 0) { if (p.get("tab")) S.tab = p.get("tab"); select(i, p.get("zoom") === "1", j >= 0 ? j : undefined); if (p.get("tab") || p.get("rtab")) { if (p.get("tab")) S.tab = p.get("tab"); if (p.get("rtab")) S.rtab = p.get("rtab"); renderSide(); } }
     else renderSide();
   };
   if (m && m !== S.method && S.map.methods[m]) { S.method = m; updateMethodUI(m); }
