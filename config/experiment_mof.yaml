@@ -1,0 +1,82 @@
+# MOF/PCP 特許での比較（段落ごとのベクトル方式 vs 課題・解決手段・用途のオントロジー関係方式）。
+# 実行: python -m ontomap.patents.run --config config/experiment_mof.yaml
+run_name: mof_v1
+seed: 42
+ontology: config/ontology_mof_v0_1.yaml   # プロジェクト直下からの相対パス
+
+data:
+  documents_csv: datasets/mof/documents_sections.csv
+  normalize: NFKC                # 全角英数・記号の表記ゆれをそろえる（ＭＯＦ → MOF）
+  sections:                      # 連結本文に入れる段落（この順）。column = CSV の列、heading = 見出し
+    abstract: {column: abstract, heading: 要約}
+    problem: {column: problem, heading: 課題}
+    solution: {column: solution, heading: 解決手段}
+    use: {column: use_text, heading: 用途}
+
+vectors:
+  model: cl-nagoya/ruri-v3-30m
+  prefix: ""
+  device: cpu
+  batch_size: 8
+  max_seq_length: null           # null = モデルの既定（ruri-v3 は 8192）。超えた件数は eval/embedding_truncation.json に残る
+  tfidf_ngram_range: [2, 3]      # V-tfidf（参考）
+  section_weights: {problem: 1.0, solution: 1.0, use: 1.0}   # V-section の重み（既定は等重み）
+
+extraction:                      # 段落の構造を役割の手がかりにする辞書抽出（ontomap/patents/extract.py）
+  sections: {problem: P, solution: M, use: U}   # 段落 → 想定する上位型
+  role_types: {P: 課題, M: 手段, U: 用途}
+  mismatch_policy: type          # 段落と上位型が食い違うとき: type = 上位型の役割（信頼度×cross_type_factor）/ section / drop
+  cross_type_factor: 0.8
+  relations:                     # 述語 ID はオントロジーの predicates と一致させる
+    addresses: {subject: 手段, object: 課題}
+    used_for: {subject: 手段, object: 用途}
+    arises_in: {subject: 課題, object: 用途}
+  confidence: {sentence: 0.9, section: 0.7, cross_section: 0.5}
+  max_triples_per_doc: 30        # 三つ組 × 三つ組の行列が大きくなりすぎないための上限（信頼度の高い順に残す）
+  case_insensitive: true
+  negation:
+    cues: [できない, できず, 得ない, 困難, 不可能, 至らない]
+    exclude: [ないよう, ことなく]
+
+relation_similarity:             # P2 / A1 / A2（既存 graph_sim の設定と同じ意味）
+  weights: {subject: 1.0, predicate: 1.0, object: 1.0}
+  epsilon: 0.01
+  min_endpoint_sim: 0.3
+  role_mismatch: 0.3
+  negation_mismatch: 0.2
+  speculation_mismatch: 0.8
+  missing_penalty: 0.7
+  aggregation: assignment
+  predicate_weights: {addresses: 1.0, used_for: 0.8, arises_in: 0.6}
+  shuffle_seed: 7
+
+hybrid:                          # P3 = α P1 + β P2 + γ V-concat
+  alpha: 0.3
+  beta: 0.5
+  gamma: 0.2
+  normalization: rank
+  embedding_method: V-concat
+
+reduce:
+  reference: V-concat            # Procrustes で重ねる基準の配置
+  mds: {n_init: 4, max_iter: 300, init: classical_mds}
+  umap: {n_neighbors: 15, min_dist: 0.1}
+
+movement_pairs:                  # maps/movement.csv に出す手法の組（A → B）
+  - [V-concat, P2@dict]
+  - [V-concat, P1@dict]
+  - [V-concat, P3@dict]
+  - [V-section, P2@dict]
+  - [V-tfidf, P2@dict]
+  - [V-concat, V-section]
+
+evaluation:
+  k_values: [5, 10, 20]          # 2D 忠実度
+  agreement_k: 10                # 手法間の高次元 k 近傍の重なり
+  proxy_k: 10                    # 代理指標 nDCG@k
+  proxy_random_repeats: 50
+  sample_pairs: {similar: 100, confusing: 100, random: 100}
+
+viewer:
+  default_a: V-concat
+  default_b: P2@dict

@@ -1,0 +1,178 @@
+# 上層の別名のうち、使う分野（部品）を限るもの。部品の照合で、ここに無い分野の文書ではこの別名を使わない。
+# 2026-10-20、半導体の開発用 300 件で上層の表記の当たり方を読み、意味が違うものを選んだ（scripts/build_module.py の判定記録）。
+alias_scopes:
+- concept: P_capacity
+  label: 放電容量
+  alias: 容量
+  modules:
+  - inorganic
+  - battery
+  reason: 半導体の開発用の文書では 静電容量（容量結合型のプラズマ） の意味で当たる
+- concept: P_conductivity
+  label: イオン伝導度
+  alias: 導電性
+  modules:
+  - inorganic
+  - battery
+  reason: 半導体の開発用の文書では 電子伝導（配線・電極） の意味で当たる
+- concept: P_structural_stability
+  label: 構造安定性
+  alias: 変形
+  modules:
+  - inorganic
+  - battery
+  reason: 半導体の開発用の文書では 「変形例」 の意味で当たる
+- concept: P_strength
+  label: 機械的強度
+  alias: 強度
+  modules:
+  - inorganic
+  - battery
+  reason: 半導体の開発用の文書では 磁界・光の強度 の意味で当たる
+- concept: P_structure_target
+  label: 高比表面積
+  alias: 微細化
+  modules:
+  - inorganic
+  - battery
+  reason: 半導体の開発用の文書では 回路パターンの微細化 の意味で当たる
+- concept: P_complexity
+  label: 煩雑
+  alias: 簡単
+  modules:
+  - inorganic
+  - battery
+  reason: 半導体の開発用の文書では 「簡単に言えば」 の意味で当たる
+- concept: P_electrical_property
+  label: 絶縁性
+  alias: 電気特性
+  modules:
+  - inorganic
+  - battery
+  reason: 半導体の開発用の文書では 素子の電気特性（絶縁性ではない） の意味で当たる
+- concept: P_electrical_property
+  label: 絶縁性
+  alias: 電気的特性
+  modules:
+  - inorganic
+  - battery
+  reason: 半導体の開発用の文書では 素子の電気特性（絶縁性ではない） の意味で当たる
+- concept: M_salt_compound
+  label: リン酸カルシウム
+  alias: 窒化物
+  modules:
+  - inorganic
+  - battery
+  reason: 半導体の開発用の文書では 窒化シリコンなど膜の材料 の意味で当たる
+- concept: M_metal_particle
+  label: 金属微粒子
+  alias: 合金
+  modules:
+  - inorganic
+  - battery
+  reason: 半導体の開発用の文書では 配線などの金属合金（金属微粒子ではない） の意味で当たる
+- concept: M_silicon_anode
+  label: シリコン系
+  alias: シリコン
+  modules:
+  - inorganic
+  - battery
+  reason: 半導体の開発用の文書では 基板・膜の材料（電池のシリコン系負極ではない） の意味で当たる
+- concept: M_cell_component
+  label: 集電体
+  alias: 導電材
+  modules:
+  - inorganic
+  - battery
+  reason: 半導体の開発用の文書では 配線・電極の材料 の意味で当たる
+- concept: M_cell_component
+  label: 集電体
+  alias: 電極層
+  modules:
+  - inorganic
+  - battery
+  reason: 半導体の開発用の文書では 素子の電極 の意味で当たる
+- concept: M_particle_morphology
+  label: 粒子径
+  alias: 板状
+  modules:
+  - inorganic
+  - battery
+  reason: 半導体の開発用の文書では 板状の部材（粒子の形ではない） の意味で当たる
+- concept: M_density
+  label: 嵩密度
+  alias: 密度
+  modules:
+  - inorganic
+  - battery
+  reason: 半導体の開発用の文書では プラズマ密度・配線密度 の意味で当たる
+- concept: M_vapor_phase
+  label: 化学気相成長
+  alias: スパッタリング
+  modules:
+  - inorganic
+  - battery
+  reason: 半導体の開発用の文書では 物理蒸着（化学気相成長ではない） の意味で当たる
+- concept: M_vapor_phase
+  label: 化学気相成長
+  alias: プラズマ処理
+  modules:
+  - inorganic
+  - battery
+  reason: 半導体の開発用の文書では エッチング・表面処理のプラズマ（気相成長ではない） の意味で当たる
+- concept: M_seed
+  label: 種結晶
+  alias: 結晶化
+  modules:
+  - inorganic
+  - battery
+  reason: 半導体の開発用の文書では 膜の結晶化（種結晶ではない） の意味で当たる
+- concept: U_stationary
+  label: 定置用
+  alias: 電源
+  modules:
+  - inorganic
+  - battery
+  reason: 半導体の開発用の文書では 装置の電源（高周波電源） の意味で当たる
+- concept: U_electronics
+  label: 半導体
+  alias: 誘電体
+  modules:
+  - inorganic
+  - battery
+  reason: 半導体の開発用の文書では 誘電体の膜・窓（半導体ではない） の意味で当たる
+- concept: M_particle_morphology
+  label: 粒子径
+  alias: アスペクト比
+  modules:
+  - inorganic
+  - battery
+  reason: 半導体の開発用の文書では 溝・穴の縦横比（粒子の形ではない） の意味で使う（半導体の部品を作るときに見つけた）
+- concept: M_vapor_phase
+  label: 化学気相成長
+  alias: スパッタ
+  modules:
+  - inorganic
+  - battery
+  reason: 半導体の開発用の文書では 物理蒸着（化学気相成長ではない） の意味で使う（半導体の部品を作るときに見つけた）
+- concept: M_calcination
+  label: 焼成
+  alias: アニール
+  modules:
+  - inorganic
+  - battery
+  reason: 半導体の開発用の文書では 膜・基板の熱処理（焼成ではない） の意味で使う（半導体の部品を作るときに見つけた）
+- concept: U_capacitor
+  label: 電気二重層キャパシタ
+  alias: キャパシタ
+  modules:
+  - inorganic
+  - battery
+  reason: 半導体の開発用の文書では メモリ・回路の容量素子（蓄電デバイスの用途ではない） の意味で使う（半導体の部品を作るときに見つけた）
+- concept: P_capacity
+  label: 放電容量
+  alias: 静電容量
+  modules:
+  - inorganic
+  - battery
+  reason: 半導体の開発用の文書では 素子の静電容量（放電容量ではない） の意味で使う（半導体の部品を作るときに見つけた）

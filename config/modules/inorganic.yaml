@@ -1,0 +1,1121 @@
+# 部品「inorganic」= inorg-1.0 のうち上層に移さなかった概念。scripts/build_module.py split_inorganic
+module: inorganic
+concepts:
+- id: P_sorption
+  label: 吸着・分離性能の課題
+  parents:
+  - P
+- id: P_adsorption_capacity
+  label: 吸着性能
+  aliases:
+  - 吸着能
+  - 吸着能力
+  - 吸着容量
+  - 吸着量
+  - 吸着特性
+  - 吸着効率
+  - 吸着力
+  - 吸着性
+  - 吸着除去性能
+  - 吸着した量
+  - 吸着しやす
+  - 吸着しにく
+  parents:
+  - P_sorption
+- id: P_removal
+  label: 除去性能
+  aliases:
+  - 除去率
+  - 除去効率
+  - 除去能力
+  - 浄化能力
+  - 消臭性能
+  - 脱臭性能
+  - 消臭効果
+  - 脱臭効果
+  - 捕捉性能
+  - 吸着除去能
+  - 捕集能
+  - 捕集性能
+  - 捕集効率
+  parents:
+  - P_sorption
+- id: P_selectivity
+  label: 選択性
+  aliases:
+  - 分離性能
+  - 分離係数
+  - 分離比
+  - 分離能
+  - 分離効率
+  - 選択吸着性
+  - 選択的吸着
+  - 選択的に吸着
+  - 透過分離性能
+  - 分離特性
+  - 分離精度
+  - 選択透過性
+  parents:
+  - P_sorption
+- id: P_permeance
+  label: 透過性能
+  aliases:
+  - 透過速度
+  - 透過量
+  - 透過流束
+  - 透過度
+  - パーミアンス
+  - 透過係数
+  - 透過率
+  - 透過性
+  - 透水性
+  - 通液性
+  parents:
+  - P_sorption
+- id: P_regeneration
+  label: 再生性
+  aliases:
+  - 再生効率
+  - 脱着性
+  - 脱離性
+  - 再生温度
+  - 再生処理
+  - 繰り返し使用
+  - 繰返し使用
+  - 再利用性
+  - 脱着性能
+  parents:
+  - P_sorption
+- id: P_sorption_kinetics
+  label: 吸着速度
+  aliases:
+  - 拡散速度
+  - 物質移動
+  - 拡散抵抗
+  - 吸着平衡
+  - 拡散性
+  parents:
+  - P_sorption
+- id: P_catalysis
+  label: 触媒性能の課題
+  parents:
+  - P
+- id: P_catalytic_activity
+  label: 触媒活性
+  aliases:
+  - 触媒性能
+  - 触媒特性
+  - 触媒能
+  - 光触媒活性
+  - 浄化性能
+  - 浄化率
+  - 浄化効率
+  - 反応活性
+  - 低温活性
+  - 活性の向上
+  - 高活性
+  - 触媒効率
+  - 転化率
+  - 反応速度
+  - 反応効率
+  - NOx浄化率
+  - 浄化活性
+  - 比活性
+  - 光触媒機能
+  - 触媒機能
+  parents:
+  - P_catalysis
+- id: P_yield_selectivity
+  label: 収率
+  aliases:
+  - 選択率
+  - 生成効率
+  - 目的生成物
+  - 副生成物
+  - 副生物
+  - 反応選択性
+  - 生成量
+  - 転化効率
+  parents:
+  - P_catalysis
+- id: P_deactivation
+  label: 失活
+  aliases:
+  - 被毒
+  - 触媒劣化
+  - 活性低下
+  - 活性の低下
+  - 活性が低下
+  - シンタリング
+  - コーキング
+  - 炭素析出
+  - コーク
+  - 硫黄被毒
+  - 熱劣化
+  - 触媒寿命
+  parents:
+  - P_catalysis
+- id: P_pollutant
+  label: 除去対象の物質
+  parents:
+  - P
+- id: P_nox
+  label: 窒素酸化物
+  aliases:
+  - NOx
+  - 亜酸化窒素
+  - N2O
+  - 一酸化窒素
+  - 二酸化窒素
+  - 二酸化窒素ガス
+  parents:
+  - P_pollutant
+- id: P_sox
+  label: 硫黄酸化物
+  aliases:
+  - SOx
+  - 硫化水素
+  - 硫黄化合物
+  - メルカプタン
+  - 二酸化硫黄
+  - 硫黄分
+  parents:
+  - P_pollutant
+- id: P_odor_voc
+  label: 揮発性有機化合物
+  aliases:
+  - VOC
+  - ホルムアルデヒド
+  - アセトアルデヒド
+  - 臭気
+  - 悪臭
+  - 臭い
+  - 臭気成分
+  - ニオイ
+  - 有機溶剤蒸気
+  parents:
+  - P_pollutant
+- id: P_particulate
+  label: 粒子状物質
+  aliases:
+  - PM2.5
+  - パティキュレート
+  - 微粒子状物質
+  parents:
+  - P_pollutant
+- id: P_radioactive
+  label: 放射性セシウム
+  aliases:
+  - 放射性物質
+  - セシウム
+  - 放射性ストロンチウム
+  - 放射性ヨウ素
+  - 放射性核種
+  - 放射性元素
+  - 放射能
+  - ウラン
+  - アクチノイド
+  - 放射性
+  parents:
+  - P_pollutant
+- id: P_heavy_metal
+  label: 重金属
+  aliases:
+  - ヒ素
+  - 砒素
+  - 水銀
+  - 鉛イオン
+  - 六価クロム
+  - カドミウム
+  - 重金属イオン
+  - フッ素イオン
+  parents:
+  - P_pollutant
+- id: P_organic_pollutant
+  label: 有機フッ素化合物
+  aliases:
+  - PFAS
+  - PFOS
+  - PFOA
+  - トリハロメタン
+  - ダイオキシン
+  - 有機塩素化合物
+  - 残留塩素
+  - 遊離塩素
+  - 有機塩化物
+  parents:
+  - P_pollutant
+- id: P_carbon_monoxide
+  label: 一酸化炭素
+  aliases:
+  - CO中毒
+  parents:
+  - P_pollutant
+- id: P_hazard_general
+  label: 有害物質
+  aliases:
+  - 汚染物質
+  - 有害成分
+  - 有害ガス
+  - 有害な
+  - 汚染
+  - 不要成分
+  - 有害
+  parents:
+  - P_pollutant
+- id: M_porous_material
+  label: 多孔質骨格材料
+  parents:
+  - M
+- id: M_zeolite_general
+  label: ゼオライト
+  aliases:
+  - ゼオライト系
+  - 合成ゼオライト
+  - 分子篩
+  - 分子ふるい
+  - モレキュラーシーブ
+  - モレキュラシーブ
+  - アルミノシリケート
+  - アルミノケイ酸塩
+  - 結晶性アルミノシリケート
+  - 小細孔ゼオライト
+  - 8員環
+  parents:
+  - M_porous_material
+- id: M_zeolite_cha
+  label: CHA型
+  aliases:
+  - チャバザイト
+  - SSZ-13
+  - SSZ−13
+  - SSZ‐13
+  - SSZ13
+  - SAPO-34
+  - SAPO−34
+  - SAPO‐34
+  - SAPO34
+  - CHA型ゼオライト
+  parents:
+  - M_porous_material
+- id: M_zeolite_aei
+  label: AEI型
+  aliases:
+  - SSZ-39
+  - SSZ−39
+  - SSZ‐39
+  - SSZ39
+  - AEI型ゼオライト
+  parents:
+  - M_porous_material
+- id: M_zeolite_mfi
+  label: MFI型
+  aliases:
+  - ZSM-5
+  - ZSM−5
+  - ZSM‐5
+  - ZSM5
+  - シリカライト
+  - MFI型ゼオライト
+  parents:
+  - M_porous_material
+- id: M_zeolite_beta
+  label: ベータ型
+  aliases:
+  - ベータ型ゼオライト
+  - β型ゼオライト
+  - BEA型
+  - '*BEA'
+  parents:
+  - M_porous_material
+- id: M_zeolite_fau
+  label: FAU型
+  aliases:
+  - フォージャサイト
+  - ホージャサイト
+  - Y型ゼオライト
+  - X型ゼオライト
+  - USY
+  - 13X
+  - ゼオライトY
+  - ゼオライトX
+  parents:
+  - M_porous_material
+- id: M_zeolite_mor
+  label: モルデナイト
+  aliases:
+  - MOR型
+  - モルデナイト型
+  parents:
+  - M_porous_material
+- id: M_zeolite_lta
+  label: LTA型
+  aliases:
+  - A型ゼオライト
+  - ゼオライトA
+  - LTA型ゼオライト
+  parents:
+  - M_porous_material
+- id: M_zeolite_other
+  label: FER型
+  aliases:
+  - フェリエライト
+  - DDR型
+  - STT型
+  - AFX型
+  - ERI型
+  - LEV型
+  - MWW型
+  - MCM-22
+  - MCM−22
+  - MCM‐22
+  - MCM22
+  - RHO型
+  - MTW型
+  - TON型
+  - AFI型
+  - CON型
+  - GIS型
+  parents:
+  - M_porous_material
+- id: M_natural_zeolite
+  label: 天然ゼオライト
+  aliases:
+  - クリノプチロライト
+  - モルデナイト系天然
+  parents:
+  - M_porous_material
+- id: M_aluminophosphate
+  label: アルミノリン酸塩
+  aliases:
+  - SAPO
+  - AlPO
+  - シリコアルミノリン酸塩
+  - アルミノフォスフェート
+  - シリコアルミノフォスフェート
+  - リン酸アルミニウム系
+  parents:
+  - M_porous_material
+- id: M_titanosilicate
+  label: チタノシリケート
+  aliases:
+  - TS-1
+  - TS−1
+  - TS‐1
+  - TS1
+  - ETS-10
+  - ETS−10
+  - ETS‐10
+  - ETS10
+  - チタノケイ酸
+  - チタノケイ酸塩
+  - 結晶性チタノシリケート
+  parents:
+  - M_porous_material
+- id: M_coordination_framework
+  label: 金属有機構造体
+  aliases:
+  - 多孔性金属有機構造体
+  - MOF
+  - ZIF-8
+  - metal organic framework
+  - metal−organic framework
+  parents:
+  - M_porous_material
+- id: M_silica_clay
+  label: シリカ・ケイ酸塩・粘土
+  parents:
+  - M
+- id: M_mesoporous_silica
+  label: メソポーラスシリカ
+  aliases:
+  - MCM-41
+  - MCM−41
+  - MCM‐41
+  - MCM41
+  - SBA-15
+  - SBA−15
+  - SBA‐15
+  - SBA15
+  - メソ多孔体
+  - メソ多孔質シリカ
+  - 規則性メソ多孔
+  parents:
+  - M_silica_clay
+- id: M_silica_gel
+  label: シリカゲル
+  aliases:
+  - 球状シリカゲル
+  - 多孔質シリカ
+  - 多孔性シリカ
+  - シリカ多孔体
+  - 非晶質シリカ
+  - 沈降シリカ
+  - 沈殿シリカ
+  - ヒュームドシリカ
+  - シリカ粒子
+  - シリカ
+  parents:
+  - M_silica_clay
+- id: M_aerogel
+  label: エアロゲル
+  aliases:
+  - シリカエアロゲル
+  - エアロジェル
+  - キセロゲル
+  parents:
+  - M_silica_clay
+- id: M_hollow_silica
+  label: 中空シリカ
+  aliases:
+  - 中空シリカ粒子
+  - 中空粒子
+  - 中空構造
+  parents:
+  - M_silica_clay
+- id: M_colloidal_silica
+  label: コロイダルシリカ
+  aliases:
+  - シリカゾル
+  - 水ガラス
+  - ケイ酸ナトリウム
+  - ケイ酸ソーダ
+  - 珪酸ソーダ
+  parents:
+  - M_silica_clay
+- id: M_clay
+  label: 粘土鉱物
+  aliases:
+  - モンモリロナイト
+  - ベントナイト
+  - セピオライト
+  - カオリン
+  - スメクタイト
+  - ハイドロタルサイト
+  - 層状複水酸化物
+  - 層状ケイ酸塩
+  - 珪藻土
+  - ケイ藻土
+  - 活性白土
+  - パリゴルスカイト
+  - イモゴライト
+  - アロフェン
+  - 粘土
+  parents:
+  - M_silica_clay
+- id: M_glass
+  label: 多孔質ガラス
+  aliases:
+  - ガラス
+  - ガラス繊維
+  - ガラスフリット
+  - 結晶化ガラス
+  parents:
+  - M_silica_clay
+- id: M_carbon_precursor
+  label: 炭素原料
+  parents:
+  - M
+- id: M_biomass_precursor
+  label: ヤシ殻
+  aliases:
+  - 椰子殻
+  - やし殻
+  - ココナッツ
+  - 木質
+  - 木材
+  - おが屑
+  - おがくず
+  - もみ殻
+  - 籾殻
+  - バイオマス
+  - 植物由来
+  - 果実殻
+  - コーヒー
+  - セルロース
+  - リグニン
+  - 木粉
+  - 竹材
+  parents:
+  - M_carbon_precursor
+- id: M_fossil_precursor
+  label: 石炭
+  aliases:
+  - 石油ピッチ
+  - ピッチ
+  - コールタール
+  - コークス
+  - 石油コークス
+  - 褐炭
+  - 亜炭
+  - 瀝青炭
+  - 重質油
+  - メソフェーズ
+  parents:
+  - M_carbon_precursor
+- id: M_resin_precursor
+  label: フェノール樹脂
+  aliases:
+  - 合成樹脂
+  - 樹脂原料
+  - ポリアクリロニトリル
+  - PAN系
+  - ポリ塩化ビニリデン
+  - ポリイミド
+  - 熱硬化性樹脂
+  - 糖類
+  - スクロース
+  - 有機高分子
+  parents:
+  - M_carbon_precursor
+- id: M_ceramic
+  label: セラミックス材料
+  parents:
+  - M
+- id: M_nonoxide_ceramic
+  label: 炭化ケイ素
+  aliases:
+  - 炭化珪素
+  - SiC
+  - 窒化ケイ素
+  - 窒化珪素
+  - 窒化アルミニウム
+  - 窒化ホウ素
+  - 六方晶窒化ホウ素
+  - 炭化ホウ素
+  - 炭化チタン
+  - 窒化チタン
+  - サイアロン
+  - 炭化タングステン
+  parents:
+  - M_ceramic
+- id: M_oxide_ceramic
+  label: コーディエライト
+  aliases:
+  - ムライト
+  - チタン酸アルミニウム
+  - チタン酸バリウム
+  - ステアタイト
+  - フォルステライト
+  - 酸化物セラミックス
+  parents:
+  - M_ceramic
+- id: M_sintered_body
+  label: 焼結体
+  aliases:
+  - セラミックス焼結体
+  - セラミック焼結体
+  - 緻密体
+  - 多結晶体
+  - セラミックス
+  - セラミック
+  - 焼成体
+  parents:
+  - M_ceramic
+- id: M_honeycomb
+  label: ハニカム構造体
+  aliases:
+  - ハニカム
+  - ハニカムフィルタ
+  - ハニカム基材
+  - ハニカム成形体
+  - 目封止
+  - セル隔壁
+  - 隔壁
+  - ウォールフロー
+  - モノリス
+  - ハニカム状
+  parents:
+  - M_ceramic
+- id: M_porous_body
+  label: 多孔質体
+  aliases:
+  - 多孔体
+  - 多孔質セラミックス
+  - 多孔質セラミック
+  - 発泡体
+  - 多孔質構造体
+  - 多孔質基材
+  - 多孔質焼結体
+  - 多孔質材
+  - 多孔質材料
+  - 多孔性材料
+  - 多孔質粒子
+  - 多孔性
+  parents:
+  - M_ceramic
+- id: M_membrane
+  label: 分離膜
+  parents:
+  - M
+- id: M_zeolite_membrane
+  label: ゼオライト膜
+  aliases:
+  - ゼオライト分離膜
+  - ゼオライト膜複合体
+  - ゼオライト膜構造体
+  - 膜複合体
+  parents:
+  - M_membrane
+- id: M_membrane_general
+  label: 分離膜
+  aliases:
+  - ガス分離膜
+  - 無機膜
+  - 無機分離膜
+  - 選択透過膜
+  - シリカ膜
+  - 炭素膜
+  - セラミック膜
+  - セラミックス膜
+  - 中空糸膜
+  - 中空糸
+  - 管状膜
+  - 緻密膜
+  - 分離層
+  - 透過膜
+  - 精密ろ過膜
+  - 限外ろ過膜
+  - 逆浸透膜
+  - 水素分離膜
+  - 膜モジュール
+  parents:
+  - M_membrane
+- id: M_support
+  label: 多孔質支持体
+  aliases:
+  - 支持体
+  - 基材
+  - 多孔質基体
+  - 多孔質支持層
+  - 支持層
+  - 基体
+  parents:
+  - M_membrane
+- id: M_activation
+  label: 賦活
+  parents:
+  - M
+- id: M_activation_general
+  label: 賦活処理
+  aliases:
+  - 賦活工程
+  - 賦活化
+  - 賦活剤
+  - 賦活
+  parents:
+  - M_activation
+- id: M_gas_activation
+  label: 水蒸気賦活
+  aliases:
+  - ガス賦活
+  - 二酸化炭素賦活
+  - 炭酸ガス賦活
+  - 物理賦活
+  - 空気賦活
+  - 水蒸気を含むガス
+  parents:
+  - M_activation
+- id: M_chemical_activation
+  label: 薬品賦活
+  aliases:
+  - 薬剤賦活
+  - アルカリ賦活
+  - 化学賦活
+  - 水酸化カリウム
+  - 塩化亜鉛
+  - リン酸賦活
+  - 水酸化ナトリウム
+  - アルカリ金属水酸化物
+  - KOH
+  parents:
+  - M_activation
+- id: M_operation
+  label: 運転・プロセス条件
+  parents:
+  - M
+- id: M_swing_adsorption
+  label: 圧力スイング吸着
+  aliases:
+  - 圧力スイング
+  - PSA
+  - 温度スイング
+  - TSA
+  - 圧力変動吸着
+  - 減圧再生
+  - 加熱再生
+  - 再生工程
+  - 脱着工程
+  - 吸着工程
+  parents:
+  - M_operation
+- id: M_reactor
+  label: 固定床
+  aliases:
+  - 流動床
+  - 反応器
+  - 反応塔
+  - 吸着塔
+  - 充填塔
+  - カラム
+  - 充填層
+  - 流通式
+  - 反応管
+  - 吸着槽
+  - 吸着装置
+  parents:
+  - M_operation
+- id: M_reaction_condition
+  label: 反応温度
+  aliases:
+  - 反応圧力
+  - 空間速度
+  - 接触時間
+  - 反応条件
+  - 処理温度
+  - 運転温度
+  - 接触させる
+  - 接触させ
+  parents:
+  - M_operation
+- id: M_membrane_process
+  label: 膜分離
+  aliases:
+  - 膜分離法
+  - 浸透気化
+  - パーベーパレーション
+  - 蒸気透過
+  - 透過側
+  - 供給側
+  parents:
+  - M_operation
+- id: U_environment
+  label: 環境浄化
+  parents:
+  - U
+- id: U_vehicle_exhaust
+  label: 排ガス浄化
+  aliases:
+  - 排気ガス浄化
+  - 排ガス処理
+  - 排ガス浄化用
+  - 三元触媒
+  - 自動車排ガス
+  - 自動車用排ガス
+  - 内燃機関
+  - ディーゼルエンジン
+  - ガソリンエンジン
+  - ディーゼル
+  - DPF
+  - パティキュレートフィルタ
+  - 尿素SCR
+  - SCR触媒
+  - 選択還元型
+  - 選択的還元
+  - 排気浄化
+  - 排ガス
+  - 排気ガス
+  - エンジン
+  - 電気加熱式
+  - EHC
+  parents:
+  - U_environment
+- id: U_industrial_exhaust
+  label: 燃焼排ガス
+  aliases:
+  - 工場排ガス
+  - 煙道ガス
+  - 排煙
+  - 脱硝
+  - 排煙脱硫
+  - ボイラ
+  - 焼却炉
+  - 焼却
+  - 発電所
+  - 火力発電
+  - ガス処理
+  - オフガス
+  parents:
+  - U_environment
+- id: U_water_treatment
+  label: 水処理
+  aliases:
+  - 浄水
+  - 排水処理
+  - 廃水処理
+  - 浄水器
+  - 水道水
+  - 上水
+  - 下水
+  - 飲料水
+  - 地下水
+  - 海水淡水化
+  - 水質浄化
+  - 浄水処理
+  - 廃水
+  - 汚水
+  - 純水製造
+  - 超純水
+  - 油水分離処理
+  parents:
+  - U_environment
+- id: U_air_purification
+  label: 脱臭
+  aliases:
+  - 消臭
+  - 空気清浄
+  - 空気清浄機
+  - 室内空気
+  - 防臭
+  - 消臭剤
+  - 脱臭剤
+  - 換気
+  - 空気浄化
+  - 脱臭フィルタ
+  parents:
+  - U_environment
+- id: U_decontamination
+  label: 除染
+  aliases:
+  - 汚染水
+  - 原子力
+  - 原子力発電所
+  - 原発
+  - 放射性廃棄物
+  - 汚染土壌
+  - 土壌浄化
+  - 土壌汚染
+  parents:
+  - U_environment
+- id: U_agriculture
+  label: 土壌改良
+  aliases:
+  - 土壌
+  - 肥料
+  - 農業
+  - 園芸
+  - 堆肥
+  - 家畜
+  - 飼料
+  - 植物栽培
+  - 農薬
+  - 防除剤
+  - 有害生物
+  parents:
+  - U_environment
+- id: U_recycling
+  label: リサイクル
+  aliases:
+  - 再資源化
+  - 廃プラスチック
+  - 廃棄物処理
+  - 再生利用
+  - 有価金属
+  - 金属回収
+  - 貴金属回収
+  - 回収金属
+  - 湿式製錬
+  - 精錬
+  - 製錬
+  parents:
+  - U_environment
+- id: U_gas_handling
+  label: ガスの分離・回収・貯蔵
+  parents:
+  - U
+- id: U_co2_capture
+  label: 二酸化炭素回収
+  aliases:
+  - CO2回収
+  - 二酸化炭素の回収
+  - 二酸化炭素を回収
+  - 二酸化炭素分離
+  - 二酸化炭素の分離
+  - CO2分離
+  - CO2の分離
+  - 二酸化炭素吸着
+  - CO2吸着
+  - CCS
+  - CCUS
+  - 直接空気回収
+  - 二酸化炭素除去
+  - 二酸化炭素の除去
+  - 炭素回収
+  - 二酸化炭素の固定
+  parents:
+  - U_gas_handling
+- id: U_gas_separation
+  label: ガス分離
+  aliases:
+  - 気体分離
+  - 空気分離
+  - 酸素濃縮
+  - 窒素製造
+  - 水素精製
+  - 水素分離
+  - 天然ガス
+  - バイオガス
+  - メタン分離
+  - オレフィン分離
+  - 炭化水素分離
+  - 希ガス
+  - ガス精製
+  - 混合ガス
+  - 混合気体
+  - プロピレン分離
+  - 酸素製造
+  - 酸素分離
+  - 酸素を分離
+  - 高純度ガス
+  - ガスの精製
+  parents:
+  - U_gas_handling
+- id: U_gas_storage
+  label: 水素貯蔵
+  aliases:
+  - ガス貯蔵
+  - 吸蔵
+  - メタン貯蔵
+  - 天然ガス貯蔵
+  - 吸着貯蔵
+  - 水素吸蔵
+  parents:
+  - U_gas_handling
+- id: U_dehumidification
+  label: 除湿
+  aliases:
+  - 乾燥剤
+  - 調湿
+  - 吸湿剤
+  - デシカント
+  - 除湿剤
+  - 湿度調整
+  parents:
+  - U_gas_handling
+- id: U_liquid_separation
+  label: 脱水分離
+  aliases:
+  - アルコール脱水
+  - 溶剤回収
+  - 液体分離
+  - 脱水膜
+  - 水とアルコール
+  - アルコールの脱水
+  - エタノールの脱水
+  - 油水分離
+  parents:
+  - U_gas_handling
+- id: U_canister
+  label: キャニスタ
+  aliases:
+  - キャニスター
+  - 蒸散燃料
+  - 燃料蒸発ガス
+  - ガソリン蒸気
+  parents:
+  - U_gas_handling
+- id: U_chemical_process
+  label: 化学プロセス
+  parents:
+  - U
+- id: U_petrochemical
+  label: 石油精製
+  aliases:
+  - 水素化分解
+  - 水素化精製
+  - 脱硫
+  - 接触分解
+  - クラッキング
+  - 異性化
+  - 芳香族化
+  - 軽質オレフィン
+  - オレフィン製造
+  - プロピレン製造
+  - ブタジエン
+  - 石油化学
+  - ナフサ
+  - 重質油の分解
+  - 水素化処理
+  - エチレン製造
+  - エチレンの製造
+  - プロピレンの製造
+  - 炭化水素
+  parents:
+  - U_chemical_process
+- id: U_fine_chemical
+  label: 化学品
+  aliases:
+  - ファインケミカル
+  - 有機合成
+  - 医薬中間体
+  - 酸化反応
+  - 水素化反応
+  - エポキシ化
+  - 不飽和アルデヒド
+  - 不飽和カルボン酸
+  - アクリル酸
+  - メタクリル酸
+  - 化学品製造
+  - 化成品
+  - 化学工業
+  - 合成反応
+  - アミノ化
+  - アミン合成
+  - 重水素
+  - 有機化合物の製造
+  - グリコール製造
+  - ニトリル製造
+  parents:
+  - U_chemical_process
+- id: U_c1_chemistry
+  label: メタノール合成
+  aliases:
+  - メタン化
+  - メタネーション
+  - フィッシャー・トロプシュ
+  - FT合成
+  - 合成ガス
+  - 水性ガスシフト
+  - シフト反応
+  - 二酸化炭素の水素化
+  - CO2の水素化
+  - ドライリフォーミング
+  - 水蒸気改質
+  - 改質反応
+  - 改質器
+  - ジメチルエーテル
+  - 燃料合成
+  - 合成燃料
+  - メタノール製造
+  - CO2還元
+  - 二酸化炭素の還元
+  - CO2の還元
+  - 二酸化炭素還元
+  parents:
+  - U_chemical_process
+- id: U_hydrogen_energy
+  label: 水素製造
+  aliases:
+  - 水素生成
+  - 水分解
+  - 光触媒による水分解
+  - アンモニア合成
+  - アンモニア分解
+  - 人工光合成
+  - 水素発生
+  - 水電解
+  - 水素ステーション
+  parents:
+  - U_chemical_process
+- id: U_photocatalysis
+  label: 抗菌
+  aliases:
+  - 抗ウイルス
+  - 防汚
+  - セルフクリーニング
+  - 殺菌
+  - 防カビ
+  - 抗菌剤
+  - 光触媒用途
+  parents:
+  - U_chemical_process

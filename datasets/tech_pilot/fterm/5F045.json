@@ -1,0 +1,3619 @@
+{
+ "theme": "5F045",
+ "theme_label": "気相成長",
+ "retrieved": "2026-10-20",
+ "source": "Summaria-MCP(Model Context Protocol)",
+ "jppm_release_date": "2026-06-26",
+ "aspects": [
+  {
+   "aspect": "AA",
+   "code": "5F045AA00",
+   "label": "成長法",
+   "codes": [
+    {
+     "code": "5F045AA01",
+     "label": "・水素還元法",
+     "parents": [
+      "5F045AA00"
+     ]
+    },
+    {
+     "code": "5F045AA02",
+     "label": "・不均化法",
+     "parents": [
+      "5F045AA00"
+     ]
+    },
+    {
+     "code": "5F045AA03",
+     "label": "・熱分解法",
+     "parents": [
+      "5F045AA00"
+     ]
+    },
+    {
+     "code": "5F045AA04",
+     "label": "・・MOCVD",
+     "parents": [
+      "5F045AA03",
+      "5F045AA00"
+     ]
+    },
+    {
+     "code": "5F045AA05",
+     "label": "・・・MOMBE",
+     "parents": [
+      "5F045AA04",
+      "5F045AA03",
+      "5F045AA00"
+     ]
+    },
+    {
+     "code": "5F045AA06",
+     "label": "・減圧CVD",
+     "parents": [
+      "5F045AA00"
+     ]
+    },
+    {
+     "code": "5F045AA07",
+     "label": "・・真空CVD",
+     "parents": [
+      "5F045AA06",
+      "5F045AA00"
+     ]
+    },
+    {
+     "code": "5F045AA08",
+     "label": "・プラズマCVD",
+     "parents": [
+      "5F045AA00"
+     ]
+    },
+    {
+     "code": "5F045AA09",
+     "label": "・・マイクロ波プラズマ",
+     "parents": [
+      "5F045AA08",
+      "5F045AA00"
+     ]
+    },
+    {
+     "code": "5F045AA10",
+     "label": "・・・ECRプラズマ",
+     "parents": [
+      "5F045AA09",
+      "5F045AA08",
+      "5F045AA00"
+     ]
+    },
+    {
+     "code": "5F045AA11",
+     "label": "・光CVD",
+     "parents": [
+      "5F045AA00"
+     ]
+    },
+    {
+     "code": "5F045AA12",
+     "label": "・・レーザCVD",
+     "parents": [
+      "5F045AA11",
+      "5F045AA00"
+     ]
+    },
+    {
+     "code": "5F045AA13",
+     "label": "・・光プラズマCVD",
+     "parents": [
+      "5F045AA11",
+      "5F045AA00"
+     ]
+    },
+    {
+     "code": "5F045AA14",
+     "label": "・電子ビームCVD",
+     "parents": [
+      "5F045AA00"
+     ]
+    },
+    {
+     "code": "5F045AA15",
+     "label": "・原子層エピタキシー",
+     "parents": [
+      "5F045AA00"
+     ]
+    },
+    {
+     "code": "5F045AA16",
+     "label": "・ラジカル利用のCVD",
+     "parents": [
+      "5F045AA00"
+     ]
+    },
+    {
+     "code": "5F045AA17",
+     "label": "・HOMOCVD",
+     "parents": [
+      "5F045AA00"
+     ]
+    },
+    {
+     "code": "5F045AA18",
+     "label": "・真空蒸着法",
+     "parents": [
+      "5F045AA00"
+     ]
+    },
+    {
+     "code": "5F045AA19",
+     "label": "・スパッタリング法",
+     "parents": [
+      "5F045AA00"
+     ]
+    },
+    {
+     "code": "5F045AA20",
+     "label": "・拡散的成膜法",
+     "parents": [
+      "5F045AA00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "AB",
+   "code": "5F045AB00",
+   "label": "成長層の組成",
+   "codes": [
+    {
+     "code": "5F045AB01",
+     "label": "・IV族  *",
+     "parents": [
+      "5F045AB00"
+     ]
+    },
+    {
+     "code": "5F045AB02",
+     "label": "・・Si",
+     "parents": [
+      "5F045AB01",
+      "5F045AB00"
+     ]
+    },
+    {
+     "code": "5F045AB03",
+     "label": "・・・ポリSi",
+     "parents": [
+      "5F045AB02",
+      "5F045AB01",
+      "5F045AB00"
+     ]
+    },
+    {
+     "code": "5F045AB04",
+     "label": "・・・アモルファスSi",
+     "parents": [
+      "5F045AB02",
+      "5F045AB01",
+      "5F045AB00"
+     ]
+    },
+    {
+     "code": "5F045AB05",
+     "label": "・・Ge",
+     "parents": [
+      "5F045AB01",
+      "5F045AB00"
+     ]
+    },
+    {
+     "code": "5F045AB06",
+     "label": "・・SiC",
+     "parents": [
+      "5F045AB01",
+      "5F045AB00"
+     ]
+    },
+    {
+     "code": "5F045AB07",
+     "label": "・・C",
+     "parents": [
+      "5F045AB01",
+      "5F045AB00"
+     ]
+    },
+    {
+     "code": "5F045AB08",
+     "label": "・・Sn",
+     "parents": [
+      "5F045AB01",
+      "5F045AB00"
+     ]
+    },
+    {
+     "code": "5F045AB09",
+     "label": "・III-V族  *",
+     "parents": [
+      "5F045AB00"
+     ]
+    },
+    {
+     "code": "5F045AB10",
+     "label": "・・GaAs",
+     "parents": [
+      "5F045AB09",
+      "5F045AB00"
+     ]
+    },
+    {
+     "code": "5F045AB11",
+     "label": "・・GaP",
+     "parents": [
+      "5F045AB09",
+      "5F045AB00"
+     ]
+    },
+    {
+     "code": "5F045AB12",
+     "label": "・・InP",
+     "parents": [
+      "5F045AB09",
+      "5F045AB00"
+     ]
+    },
+    {
+     "code": "5F045AB13",
+     "label": "・・InSb",
+     "parents": [
+      "5F045AB09",
+      "5F045AB00"
+     ]
+    },
+    {
+     "code": "5F045AB14",
+     "label": "・・GaN",
+     "parents": [
+      "5F045AB09",
+      "5F045AB00"
+     ]
+    },
+    {
+     "code": "5F045AB15",
+     "label": "・・ホウ素化合物  *",
+     "parents": [
+      "5F045AB09",
+      "5F045AB00"
+     ]
+    },
+    {
+     "code": "5F045AB17",
+     "label": "・・3元混晶  *",
+     "parents": [
+      "5F045AB09",
+      "5F045AB00"
+     ]
+    },
+    {
+     "code": "5F045AB18",
+     "label": "・・4元混晶  *",
+     "parents": [
+      "5F045AB09",
+      "5F045AB00"
+     ]
+    },
+    {
+     "code": "5F045AB19",
+     "label": "・・5元以上の混晶  *",
+     "parents": [
+      "5F045AB09",
+      "5F045AB00"
+     ]
+    },
+    {
+     "code": "5F045AB21",
+     "label": "・II-VI族  *",
+     "parents": [
+      "5F045AB00"
+     ]
+    },
+    {
+     "code": "5F045AB22",
+     "label": "・・Zn系  *",
+     "parents": [
+      "5F045AB21",
+      "5F045AB00"
+     ]
+    },
+    {
+     "code": "5F045AB23",
+     "label": "・・Cd系  *",
+     "parents": [
+      "5F045AB21",
+      "5F045AB00"
+     ]
+    },
+    {
+     "code": "5F045AB24",
+     "label": "・・Hg系  *",
+     "parents": [
+      "5F045AB21",
+      "5F045AB00"
+     ]
+    },
+    {
+     "code": "5F045AB26",
+     "label": "・IV-VI族  *",
+     "parents": [
+      "5F045AB00"
+     ]
+    },
+    {
+     "code": "5F045AB27",
+     "label": "・・Pb系  *",
+     "parents": [
+      "5F045AB26",
+      "5F045AB00"
+     ]
+    },
+    {
+     "code": "5F045AB28",
+     "label": "・カルコパイライト  *",
+     "parents": [
+      "5F045AB00"
+     ]
+    },
+    {
+     "code": "5F045AB30",
+     "label": "・シリサイド  *",
+     "parents": [
+      "5F045AB00"
+     ]
+    },
+    {
+     "code": "5F045AB31",
+     "label": "・無機絶縁層  *",
+     "parents": [
+      "5F045AB00"
+     ]
+    },
+    {
+     "code": "5F045AB32",
+     "label": "・・シリコン酸化膜",
+     "parents": [
+      "5F045AB31",
+      "5F045AB00"
+     ]
+    },
+    {
+     "code": "5F045AB33",
+     "label": "・・窒化シリコン膜",
+     "parents": [
+      "5F045AB31",
+      "5F045AB00"
+     ]
+    },
+    {
+     "code": "5F045AB34",
+     "label": "・・酸化窒化膜",
+     "parents": [
+      "5F045AB31",
+      "5F045AB00"
+     ]
+    },
+    {
+     "code": "5F045AB35",
+     "label": "・・PSG",
+     "parents": [
+      "5F045AB31",
+      "5F045AB00"
+     ]
+    },
+    {
+     "code": "5F045AB36",
+     "label": "・・BSG",
+     "parents": [
+      "5F045AB31",
+      "5F045AB00"
+     ]
+    },
+    {
+     "code": "5F045AB37",
+     "label": "・・サファイア",
+     "parents": [
+      "5F045AB31",
+      "5F045AB00"
+     ]
+    },
+    {
+     "code": "5F045AB38",
+     "label": "・・スピネル",
+     "parents": [
+      "5F045AB31",
+      "5F045AB00"
+     ]
+    },
+    {
+     "code": "5F045AB39",
+     "label": "・有機絶縁体層  *",
+     "parents": [
+      "5F045AB00"
+     ]
+    },
+    {
+     "code": "5F045AB40",
+     "label": "・その他  *",
+     "parents": [
+      "5F045AB00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "AC",
+   "code": "5F045AC00",
+   "label": "導入ガス",
+   "codes": [
+    {
+     "code": "5F045AC01",
+     "label": "・SiH4などの水素化合物",
+     "parents": [
+      "5F045AC00"
+     ]
+    },
+    {
+     "code": "5F045AC02",
+     "label": "・ハライド化物  *",
+     "parents": [
+      "5F045AC00"
+     ]
+    },
+    {
+     "code": "5F045AC03",
+     "label": "・・塩化物",
+     "parents": [
+      "5F045AC02",
+      "5F045AC00"
+     ]
+    },
+    {
+     "code": "5F045AC04",
+     "label": "・・ヨウ化物",
+     "parents": [
+      "5F045AC02",
+      "5F045AC00"
+     ]
+    },
+    {
+     "code": "5F045AC05",
+     "label": "・ハロゲン化水素化物*",
+     "parents": [
+      "5F045AC00"
+     ]
+    },
+    {
+     "code": "5F045AC07",
+     "label": "・有機化合物ガス*",
+     "parents": [
+      "5F045AC00"
+     ]
+    },
+    {
+     "code": "5F045AC08",
+     "label": "・・メチル化合物",
+     "parents": [
+      "5F045AC07",
+      "5F045AC00"
+     ]
+    },
+    {
+     "code": "5F045AC09",
+     "label": "・・エチル化合物",
+     "parents": [
+      "5F045AC07",
+      "5F045AC00"
+     ]
+    },
+    {
+     "code": "5F045AC11",
+     "label": "・O2",
+     "parents": [
+      "5F045AC00"
+     ]
+    },
+    {
+     "code": "5F045AC12",
+     "label": "・NH3",
+     "parents": [
+      "5F045AC00"
+     ]
+    },
+    {
+     "code": "5F045AC13",
+     "label": "・HCl",
+     "parents": [
+      "5F045AC00"
+     ]
+    },
+    {
+     "code": "5F045AC14",
+     "label": "・水素以外のキャリアガスを使用",
+     "parents": [
+      "5F045AC00"
+     ]
+    },
+    {
+     "code": "5F045AC15",
+     "label": "・・N2",
+     "parents": [
+      "5F045AC14",
+      "5F045AC00"
+     ]
+    },
+    {
+     "code": "5F045AC16",
+     "label": "・・Ar",
+     "parents": [
+      "5F045AC14",
+      "5F045AC00"
+     ]
+    },
+    {
+     "code": "5F045AC17",
+     "label": "・・He",
+     "parents": [
+      "5F045AC14",
+      "5F045AC00"
+     ]
+    },
+    {
+     "code": "5F045AC18",
+     "label": "・・2種以上の混合",
+     "parents": [
+      "5F045AC14",
+      "5F045AC00"
+     ]
+    },
+    {
+     "code": "5F045AC19",
+     "label": "・ドーパントガス*",
+     "parents": [
+      "5F045AC00"
+     ]
+    },
+    {
+     "code": "5F045AC20",
+     "label": "・・深い準位形成用*",
+     "parents": [
+      "5F045AC19",
+      "5F045AC00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "AD",
+   "code": "5F045AD00",
+   "label": "成長条件成膜温度T",
+   "codes": [
+    {
+     "code": "5F045AD01",
+     "label": "・ガスの露点・分解温度に関連した温度",
+     "parents": [
+      "5F045AD00"
+     ]
+    },
+    {
+     "code": "5F045AD03",
+     "label": "・T<0°C",
+     "parents": [
+      "5F045AD00"
+     ]
+    },
+    {
+     "code": "5F045AD04",
+     "label": "・0≦T<100°C",
+     "parents": [
+      "5F045AD00"
+     ]
+    },
+    {
+     "code": "5F045AD05",
+     "label": "・100≦T<200°C",
+     "parents": [
+      "5F045AD00"
+     ]
+    },
+    {
+     "code": "5F045AD06",
+     "label": "・200≦T<300°C",
+     "parents": [
+      "5F045AD00"
+     ]
+    },
+    {
+     "code": "5F045AD07",
+     "label": "・300≦T<400°C",
+     "parents": [
+      "5F045AD00"
+     ]
+    },
+    {
+     "code": "5F045AD08",
+     "label": "・400≦T<500°C",
+     "parents": [
+      "5F045AD00"
+     ]
+    },
+    {
+     "code": "5F045AD09",
+     "label": "・500≦T<600°C",
+     "parents": [
+      "5F045AD00"
+     ]
+    },
+    {
+     "code": "5F045AD10",
+     "label": "・600≦T<700°C",
+     "parents": [
+      "5F045AD00"
+     ]
+    },
+    {
+     "code": "5F045AD11",
+     "label": "・700≦T<800°C",
+     "parents": [
+      "5F045AD00"
+     ]
+    },
+    {
+     "code": "5F045AD12",
+     "label": "・800≦T<900°C",
+     "parents": [
+      "5F045AD00"
+     ]
+    },
+    {
+     "code": "5F045AD13",
+     "label": "・900≦T<1000°C",
+     "parents": [
+      "5F045AD00"
+     ]
+    },
+    {
+     "code": "5F045AD14",
+     "label": "・1000≦T<1100°C",
+     "parents": [
+      "5F045AD00"
+     ]
+    },
+    {
+     "code": "5F045AD15",
+     "label": "・1100≦T<1200°C",
+     "parents": [
+      "5F045AD00"
+     ]
+    },
+    {
+     "code": "5F045AD16",
+     "label": "・1200≦T<1300°C",
+     "parents": [
+      "5F045AD00"
+     ]
+    },
+    {
+     "code": "5F045AD17",
+     "label": "・1300≦T<1400°C",
+     "parents": [
+      "5F045AD00"
+     ]
+    },
+    {
+     "code": "5F045AD18",
+     "label": "・1400°C≦T",
+     "parents": [
+      "5F045AD00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "AE",
+   "code": "5F045AE00",
+   "label": "成長条件成膜時の圧力P",
+   "codes": [
+    {
+     "code": "5F045AE01",
+     "label": "・減圧",
+     "parents": [
+      "5F045AE00"
+     ]
+    },
+    {
+     "code": "5F045AE02",
+     "label": "・・P<10^-9Torr",
+     "parents": [
+      "5F045AE01",
+      "5F045AE00"
+     ]
+    },
+    {
+     "code": "5F045AE03",
+     "label": "・・10^-9≦P<10^-8Torr",
+     "parents": [
+      "5F045AE01",
+      "5F045AE00"
+     ]
+    },
+    {
+     "code": "5F045AE05",
+     "label": "・・10^-8≦P<10^-7Torr",
+     "parents": [
+      "5F045AE01",
+      "5F045AE00"
+     ]
+    },
+    {
+     "code": "5F045AE07",
+     "label": "・・10^-7≦P<10^-6Torr",
+     "parents": [
+      "5F045AE01",
+      "5F045AE00"
+     ]
+    },
+    {
+     "code": "5F045AE09",
+     "label": "・・10^-6≦P<10^-5Torr",
+     "parents": [
+      "5F045AE01",
+      "5F045AE00"
+     ]
+    },
+    {
+     "code": "5F045AE11",
+     "label": "・・10^-5≦P<10^-4Torr",
+     "parents": [
+      "5F045AE01",
+      "5F045AE00"
+     ]
+    },
+    {
+     "code": "5F045AE13",
+     "label": "・・10^-4≦P<10^-3Torr",
+     "parents": [
+      "5F045AE01",
+      "5F045AE00"
+     ]
+    },
+    {
+     "code": "5F045AE15",
+     "label": "・・10^-3≦P<10^-2Torr",
+     "parents": [
+      "5F045AE01",
+      "5F045AE00"
+     ]
+    },
+    {
+     "code": "5F045AE17",
+     "label": "・・10^-2≦P<0.1Torr",
+     "parents": [
+      "5F045AE01",
+      "5F045AE00"
+     ]
+    },
+    {
+     "code": "5F045AE19",
+     "label": "・・0.1≦P<1Torr",
+     "parents": [
+      "5F045AE01",
+      "5F045AE00"
+     ]
+    },
+    {
+     "code": "5F045AE21",
+     "label": "・・1≦P<7.6Torr",
+     "parents": [
+      "5F045AE01",
+      "5F045AE00"
+     ]
+    },
+    {
+     "code": "5F045AE23",
+     "label": "・・7.6≦P<76Torr",
+     "parents": [
+      "5F045AE01",
+      "5F045AE00"
+     ]
+    },
+    {
+     "code": "5F045AE25",
+     "label": "・・76≦P<760Torr",
+     "parents": [
+      "5F045AE01",
+      "5F045AE00"
+     ]
+    },
+    {
+     "code": "5F045AE27",
+     "label": "・・Torr,気圧,Pa以外の単位 *",
+     "parents": [
+      "5F045AE01",
+      "5F045AE00"
+     ]
+    },
+    {
+     "code": "5F045AE29",
+     "label": "・常圧",
+     "parents": [
+      "5F045AE00"
+     ]
+    },
+    {
+     "code": "5F045AE30",
+     "label": "・加圧",
+     "parents": [
+      "5F045AE00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "AF",
+   "code": "5F045AF00",
+   "label": "被成膜面の組成・基板の特徴・ダミー基板・マスク",
+   "codes": [
+    {
+     "code": "5F045AF01",
+     "label": "・被成膜面が半導体であるもの",
+     "parents": [
+      "5F045AF00"
+     ]
+    },
+    {
+     "code": "5F045AF02",
+     "label": "・・IV族面への成膜",
+     "parents": [
+      "5F045AF01",
+      "5F045AF00"
+     ]
+    },
+    {
+     "code": "5F045AF03",
+     "label": "・・・Si面への成膜",
+     "parents": [
+      "5F045AF02",
+      "5F045AF01",
+      "5F045AF00"
+     ]
+    },
+    {
+     "code": "5F045AF04",
+     "label": "・・III-V族面への成膜",
+     "parents": [
+      "5F045AF01",
+      "5F045AF00"
+     ]
+    },
+    {
+     "code": "5F045AF05",
+     "label": "・・・3元以上の混晶面への成膜",
+     "parents": [
+      "5F045AF04",
+      "5F045AF01",
+      "5F045AF00"
+     ]
+    },
+    {
+     "code": "5F045AF06",
+     "label": "・・II-VI族面への成膜",
+     "parents": [
+      "5F045AF01",
+      "5F045AF00"
+     ]
+    },
+    {
+     "code": "5F045AF07",
+     "label": "・被成膜面が絶縁体であるもの",
+     "parents": [
+      "5F045AF00"
+     ]
+    },
+    {
+     "code": "5F045AF08",
+     "label": "・・被成膜面の表面のみが絶縁体であるもの",
+     "parents": [
+      "5F045AF07",
+      "5F045AF00"
+     ]
+    },
+    {
+     "code": "5F045AF09",
+     "label": "・・アルミナ・サファイア・スピネル・ベリリア基板への成膜",
+     "parents": [
+      "5F045AF07",
+      "5F045AF00"
+     ]
+    },
+    {
+     "code": "5F045AF10",
+     "label": "・被成膜面が金属であるもの",
+     "parents": [
+      "5F045AF00"
+     ]
+    },
+    {
+     "code": "5F045AF11",
+     "label": "・基板の形状・構造・大きさ・厚み等に特徴",
+     "parents": [
+      "5F045AF00"
+     ]
+    },
+    {
+     "code": "5F045AF12",
+     "label": "・・基板表面の状態に特徴",
+     "parents": [
+      "5F045AF11",
+      "5F045AF00"
+     ]
+    },
+    {
+     "code": "5F045AF13",
+     "label": "・・・結晶方位・オリフラ・ノッチに特徴",
+     "parents": [
+      "5F045AF12",
+      "5F045AF11",
+      "5F045AF00"
+     ]
+    },
+    {
+     "code": "5F045AF14",
+     "label": "・・・膜形成の核を被成膜面上に有するもの",
+     "parents": [
+      "5F045AF12",
+      "5F045AF11",
+      "5F045AF00"
+     ]
+    },
+    {
+     "code": "5F045AF16",
+     "label": "・基板の物性に特徴を有するもの",
+     "parents": [
+      "5F045AF00"
+     ]
+    },
+    {
+     "code": "5F045AF17",
+     "label": "・・酸素濃度に特徴",
+     "parents": [
+      "5F045AF16",
+      "5F045AF00"
+     ]
+    },
+    {
+     "code": "5F045AF19",
+     "label": "・ダミー基板の構造・ダミー基板の使用に特徴",
+     "parents": [
+      "5F045AF00"
+     ]
+    },
+    {
+     "code": "5F045AF20",
+     "label": "・選択成長用マスクの形状・材質に特徴",
+     "parents": [
+      "5F045AF00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "BB",
+   "code": "5F045BB00",
+   "label": "目的",
+   "codes": [
+    {
+     "code": "5F045BB01",
+     "label": "・膜厚の均一性",
+     "parents": [
+      "5F045BB00"
+     ]
+    },
+    {
+     "code": "5F045BB02",
+     "label": "・・ウエハ面内の膜厚の均一性を向上",
+     "parents": [
+      "5F045BB01",
+      "5F045BB00"
+     ]
+    },
+    {
+     "code": "5F045BB03",
+     "label": "・・ウエハ毎の膜厚のばらつきを防止",
+     "parents": [
+      "5F045BB01",
+      "5F045BB00"
+     ]
+    },
+    {
+     "code": "5F045BB04",
+     "label": "・組成精度の向上・不純物濃度の精度向上",
+     "parents": [
+      "5F045BB00"
+     ]
+    },
+    {
+     "code": "5F045BB05",
+     "label": "・・膜間の組成の変化の急峻性の確保",
+     "parents": [
+      "5F045BB04",
+      "5F045BB00"
+     ]
+    },
+    {
+     "code": "5F045BB06",
+     "label": "・オートドープ防止",
+     "parents": [
+      "5F045BB00"
+     ]
+    },
+    {
+     "code": "5F045BB07",
+     "label": "・低温化",
+     "parents": [
+      "5F045BB00"
+     ]
+    },
+    {
+     "code": "5F045BB08",
+     "label": "・生産性向上",
+     "parents": [
+      "5F045BB00"
+     ]
+    },
+    {
+     "code": "5F045BB09",
+     "label": "・・高速成長",
+     "parents": [
+      "5F045BB08",
+      "5F045BB00"
+     ]
+    },
+    {
+     "code": "5F045BB10",
+     "label": "・・省力化",
+     "parents": [
+      "5F045BB08",
+      "5F045BB00"
+     ]
+    },
+    {
+     "code": "5F045BB11",
+     "label": "・歪・反り防止",
+     "parents": [
+      "5F045BB00"
+     ]
+    },
+    {
+     "code": "5F045BB12",
+     "label": "・・結晶性・格子整合性の向上・結晶欠陥の防止",
+     "parents": [
+      "5F045BB11",
+      "5F045BB00"
+     ]
+    },
+    {
+     "code": "5F045BB13",
+     "label": "・・スリップライン,クラックの発生防止",
+     "parents": [
+      "5F045BB11",
+      "5F045BB00"
+     ]
+    },
+    {
+     "code": "5F045BB14",
+     "label": "・汚染防止・不純物濃度の低減",
+     "parents": [
+      "5F045BB00"
+     ]
+    },
+    {
+     "code": "5F045BB15",
+     "label": "・・ダストの発生防止",
+     "parents": [
+      "5F045BB14",
+      "5F045BB00"
+     ]
+    },
+    {
+     "code": "5F045BB16",
+     "label": "・電気的特性の向上・膜損傷の回避",
+     "parents": [
+      "5F045BB00"
+     ]
+    },
+    {
+     "code": "5F045BB17",
+     "label": "・膜の緻密化・密着性の向上",
+     "parents": [
+      "5F045BB00"
+     ]
+    },
+    {
+     "code": "5F045BB18",
+     "label": "・・粒子経に特徴",
+     "parents": [
+      "5F045BB17",
+      "5F045BB00"
+     ]
+    },
+    {
+     "code": "5F045BB19",
+     "label": "・ステップカバリッジの向上",
+     "parents": [
+      "5F045BB00"
+     ]
+    },
+    {
+     "code": "5F045BB20",
+     "label": "・安全性の向上・異常時の対処",
+     "parents": [
+      "5F045BB00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "CA",
+   "code": "5F045CA00",
+   "label": "半導体素子等への用途",
+   "codes": [
+    {
+     "code": "5F045CA01",
+     "label": "・バイポーラトランジスタ",
+     "parents": [
+      "5F045CA00"
+     ]
+    },
+    {
+     "code": "5F045CA02",
+     "label": "・・HBT",
+     "parents": [
+      "5F045CA01",
+      "5F045CA00"
+     ]
+    },
+    {
+     "code": "5F045CA03",
+     "label": "・・・HET",
+     "parents": [
+      "5F045CA02",
+      "5F045CA01",
+      "5F045CA00"
+     ]
+    },
+    {
+     "code": "5F045CA05",
+     "label": "・MISトランジスタ",
+     "parents": [
+      "5F045CA00"
+     ]
+    },
+    {
+     "code": "5F045CA06",
+     "label": "・MESトランジスタ",
+     "parents": [
+      "5F045CA00"
+     ]
+    },
+    {
+     "code": "5F045CA07",
+     "label": "・HEMT",
+     "parents": [
+      "5F045CA00"
+     ]
+    },
+    {
+     "code": "5F045CA09",
+     "label": "・発光素子",
+     "parents": [
+      "5F045CA00"
+     ]
+    },
+    {
+     "code": "5F045CA10",
+     "label": "・・LED",
+     "parents": [
+      "5F045CA09",
+      "5F045CA00"
+     ]
+    },
+    {
+     "code": "5F045CA11",
+     "label": "・・・青色用",
+     "parents": [
+      "5F045CA10",
+      "5F045CA09",
+      "5F045CA00"
+     ]
+    },
+    {
+     "code": "5F045CA12",
+     "label": "・・半導体レーザ",
+     "parents": [
+      "5F045CA09",
+      "5F045CA00"
+     ]
+    },
+    {
+     "code": "5F045CA13",
+     "label": "・受光素子",
+     "parents": [
+      "5F045CA00"
+     ]
+    },
+    {
+     "code": "5F045CA15",
+     "label": "・TFT",
+     "parents": [
+      "5F045CA00"
+     ]
+    },
+    {
+     "code": "5F045CA16",
+     "label": "・感光ドラム",
+     "parents": [
+      "5F045CA00"
+     ]
+    },
+    {
+     "code": "5F045CA18",
+     "label": "・ホール素子",
+     "parents": [
+      "5F045CA00"
+     ]
+    },
+    {
+     "code": "5F045CA19",
+     "label": "・インパットダイオード,ガンダイオード",
+     "parents": [
+      "5F045CA00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "CB",
+   "code": "5F045CB00",
+   "label": "機能的用途",
+   "codes": [
+    {
+     "code": "5F045CB01",
+     "label": "・能動層〔ターム付与せず〕",
+     "parents": [
+      "5F045CB00"
+     ]
+    },
+    {
+     "code": "5F045CB02",
+     "label": "・中間層",
+     "parents": [
+      "5F045CB00"
+     ]
+    },
+    {
+     "code": "5F045CB04",
+     "label": "・ファイナルパッシベイション用",
+     "parents": [
+      "5F045CB00"
+     ]
+    },
+    {
+     "code": "5F045CB05",
+     "label": "・層間絶縁層",
+     "parents": [
+      "5F045CB00"
+     ]
+    },
+    {
+     "code": "5F045CB06",
+     "label": "・エッチングマスク用",
+     "parents": [
+      "5F045CB00"
+     ]
+    },
+    {
+     "code": "5F045CB07",
+     "label": "・拡散源用",
+     "parents": [
+      "5F045CB00"
+     ]
+    },
+    {
+     "code": "5F045CB10",
+     "label": "・電極配線用",
+     "parents": [
+      "5F045CB00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "DA",
+   "code": "5F045DA00",
+   "label": "半導体成長層の構造",
+   "codes": [
+    {
+     "code": "5F045DA51",
+     "label": "・半導体成長層の形状・構造に特徴",
+     "parents": [
+      "5F045DA00"
+     ]
+    },
+    {
+     "code": "5F045DA52",
+     "label": "・・多層成長層",
+     "parents": [
+      "5F045DA51",
+      "5F045DA00"
+     ]
+    },
+    {
+     "code": "5F045DA53",
+     "label": "・・・バッファ層・中間層・遷移層を有するもの",
+     "parents": [
+      "5F045DA52",
+      "5F045DA51",
+      "5F045DA00"
+     ]
+    },
+    {
+     "code": "5F045DA54",
+     "label": "・・・超格子",
+     "parents": [
+      "5F045DA52",
+      "5F045DA51",
+      "5F045DA00"
+     ]
+    },
+    {
+     "code": "5F045DA55",
+     "label": "・・・量子井戸",
+     "parents": [
+      "5F045DA52",
+      "5F045DA51",
+      "5F045DA00"
+     ]
+    },
+    {
+     "code": "5F045DA56",
+     "label": "・・・量子細線・量子箱",
+     "parents": [
+      "5F045DA52",
+      "5F045DA51",
+      "5F045DA00"
+     ]
+    },
+    {
+     "code": "5F045DA57",
+     "label": "・半導体成長層の組成に特徴を有するもの",
+     "parents": [
+      "5F045DA00"
+     ]
+    },
+    {
+     "code": "5F045DA58",
+     "label": "・・組成が傾斜を有するもの",
+     "parents": [
+      "5F045DA57",
+      "5F045DA00"
+     ]
+    },
+    {
+     "code": "5F045DA59",
+     "label": "・・請求項で不純物濃度を規定するもの",
+     "parents": [
+      "5F045DA57",
+      "5F045DA00"
+     ]
+    },
+    {
+     "code": "5F045DA60",
+     "label": "・・・請求項でドナー・アクセプタの濃度を規定するもの",
+     "parents": [
+      "5F045DA59",
+      "5F045DA57",
+      "5F045DA00"
+     ]
+    },
+    {
+     "code": "5F045DA61",
+     "label": "・結晶構造に特徴",
+     "parents": [
+      "5F045DA00"
+     ]
+    },
+    {
+     "code": "5F045DA62",
+     "label": "・半導体成長層の物性に特徴を有するもの",
+     "parents": [
+      "5F045DA00"
+     ]
+    },
+    {
+     "code": "5F045DA63",
+     "label": "・・バンドギャップに特徴",
+     "parents": [
+      "5F045DA62",
+      "5F045DA00"
+     ]
+    },
+    {
+     "code": "5F045DA64",
+     "label": "・・屈折率に特徴",
+     "parents": [
+      "5F045DA62",
+      "5F045DA00"
+     ]
+    },
+    {
+     "code": "5F045DA65",
+     "label": "・・光導電率・暗導電率に特徴",
+     "parents": [
+      "5F045DA62",
+      "5F045DA00"
+     ]
+    },
+    {
+     "code": "5F045DA66",
+     "label": "・・抵抗値に特徴",
+     "parents": [
+      "5F045DA62",
+      "5F045DA00"
+     ]
+    },
+    {
+     "code": "5F045DA67",
+     "label": "・・結晶欠陥密度・エッチピット密度・表面の面粗さに特徴",
+     "parents": [
+      "5F045DA62",
+      "5F045DA00"
+     ]
+    },
+    {
+     "code": "5F045DA68",
+     "label": "・・水素含有量・結合水素量に特徴",
+     "parents": [
+      "5F045DA62",
+      "5F045DA00"
+     ]
+    },
+    {
+     "code": "5F045DA69",
+     "label": "・・応力に特徴",
+     "parents": [
+      "5F045DA62",
+      "5F045DA00"
+     ]
+    },
+    {
+     "code": "5F045DA70",
+     "label": "・・密度に特徴",
+     "parents": [
+      "5F045DA62",
+      "5F045DA00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "DB",
+   "code": "5F045DB00",
+   "label": "半導体層の選択成長",
+   "codes": [
+    {
+     "code": "5F045DB01",
+     "label": "・絶縁体マスク",
+     "parents": [
+      "5F045DB00"
+     ]
+    },
+    {
+     "code": "5F045DB02",
+     "label": "・・開口部のみに成長",
+     "parents": [
+      "5F045DB01",
+      "5F045DB00"
+     ]
+    },
+    {
+     "code": "5F045DB03",
+     "label": "・・単結晶と非晶質・多結晶の同時成長",
+     "parents": [
+      "5F045DB01",
+      "5F045DB00"
+     ]
+    },
+    {
+     "code": "5F045DB04",
+     "label": "・・基板面方位の選択",
+     "parents": [
+      "5F045DB01",
+      "5F045DB00"
+     ]
+    },
+    {
+     "code": "5F045DB05",
+     "label": "・・埋込エピ層の形成",
+     "parents": [
+      "5F045DB01",
+      "5F045DB00"
+     ]
+    },
+    {
+     "code": "5F045DB06",
+     "label": "・絶縁体以外のマスク",
+     "parents": [
+      "5F045DB00"
+     ]
+    },
+    {
+     "code": "5F045DB08",
+     "label": "・分離マスク",
+     "parents": [
+      "5F045DB00"
+     ]
+    },
+    {
+     "code": "5F045DB09",
+     "label": "・マスクレス成長",
+     "parents": [
+      "5F045DB00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "DC",
+   "code": "5F045DC00",
+   "label": "絶縁体成長層の構造・絶縁体層の選択成長",
+   "codes": [
+    {
+     "code": "5F045DC51",
+     "label": "・2層 *",
+     "parents": [
+      "5F045DC00"
+     ]
+    },
+    {
+     "code": "5F045DC52",
+     "label": "・3層 *",
+     "parents": [
+      "5F045DC00"
+     ]
+    },
+    {
+     "code": "5F045DC53",
+     "label": "・4層以上 *",
+     "parents": [
+      "5F045DC00"
+     ]
+    },
+    {
+     "code": "5F045DC55",
+     "label": "・組成に特徴を有するもの",
+     "parents": [
+      "5F045DC00"
+     ]
+    },
+    {
+     "code": "5F045DC56",
+     "label": "・・組成が傾斜を有するもの",
+     "parents": [
+      "5F045DC55",
+      "5F045DC00"
+     ]
+    },
+    {
+     "code": "5F045DC57",
+     "label": "・・不純物濃度に特徴",
+     "parents": [
+      "5F045DC55",
+      "5F045DC00"
+     ]
+    },
+    {
+     "code": "5F045DC61",
+     "label": "・絶縁体成長層の物性に特徴を有するもの",
+     "parents": [
+      "5F045DC00"
+     ]
+    },
+    {
+     "code": "5F045DC62",
+     "label": "・・屈折率に特徴",
+     "parents": [
+      "5F045DC61",
+      "5F045DC00"
+     ]
+    },
+    {
+     "code": "5F045DC63",
+     "label": "・・誘電率に特徴",
+     "parents": [
+      "5F045DC61",
+      "5F045DC00"
+     ]
+    },
+    {
+     "code": "5F045DC64",
+     "label": "・・水素含有量に特徴",
+     "parents": [
+      "5F045DC61",
+      "5F045DC00"
+     ]
+    },
+    {
+     "code": "5F045DC65",
+     "label": "・・応力に特徴",
+     "parents": [
+      "5F045DC61",
+      "5F045DC00"
+     ]
+    },
+    {
+     "code": "5F045DC66",
+     "label": "・・密度に特徴",
+     "parents": [
+      "5F045DC61",
+      "5F045DC00"
+     ]
+    },
+    {
+     "code": "5F045DC68",
+     "label": "・絶縁体層の選択成長",
+     "parents": [
+      "5F045DC00"
+     ]
+    },
+    {
+     "code": "5F045DC69",
+     "label": "・・分離マスク",
+     "parents": [
+      "5F045DC68",
+      "5F045DC00"
+     ]
+    },
+    {
+     "code": "5F045DC70",
+     "label": "・・マスクレス成長",
+     "parents": [
+      "5F045DC68",
+      "5F045DC00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "DP",
+   "code": "5F045DP00",
+   "label": "装置の形式基板支持の形態・成膜中の基板の運動",
+   "codes": [
+    {
+     "code": "5F045DP01",
+     "label": "・基板を成膜室内に一枚保持するもの",
+     "parents": [
+      "5F045DP00"
+     ]
+    },
+    {
+     "code": "5F045DP02",
+     "label": "・・基板を水平に保持",
+     "parents": [
+      "5F045DP01",
+      "5F045DP00"
+     ]
+    },
+    {
+     "code": "5F045DP03",
+     "label": "・・・基板の上方から原料ガスを供給するもの",
+     "parents": [
+      "5F045DP02",
+      "5F045DP01",
+      "5F045DP00"
+     ]
+    },
+    {
+     "code": "5F045DP04",
+     "label": "・・・基板の側方から原料ガスを供給するもの",
+     "parents": [
+      "5F045DP02",
+      "5F045DP01",
+      "5F045DP00"
+     ]
+    },
+    {
+     "code": "5F045DP05",
+     "label": "・・・基板の下方から原料ガスを供給するもの",
+     "parents": [
+      "5F045DP02",
+      "5F045DP01",
+      "5F045DP00"
+     ]
+    },
+    {
+     "code": "5F045DP07",
+     "label": "・・基板を傾けて保持",
+     "parents": [
+      "5F045DP01",
+      "5F045DP00"
+     ]
+    },
+    {
+     "code": "5F045DP09",
+     "label": "・・基板を垂直に保持",
+     "parents": [
+      "5F045DP01",
+      "5F045DP00"
+     ]
+    },
+    {
+     "code": "5F045DP11",
+     "label": "・基板を成膜室内に二枚保持するもの",
+     "parents": [
+      "5F045DP00"
+     ]
+    },
+    {
+     "code": "5F045DP13",
+     "label": "・基板を成膜室内に三枚以上保持するもの",
+     "parents": [
+      "5F045DP00"
+     ]
+    },
+    {
+     "code": "5F045DP14",
+     "label": "・・基板・基板列を円形状に配置",
+     "parents": [
+      "5F045DP13",
+      "5F045DP00"
+     ]
+    },
+    {
+     "code": "5F045DP15",
+     "label": "・・・基板を円盤上面に配置",
+     "parents": [
+      "5F045DP14",
+      "5F045DP13",
+      "5F045DP00"
+     ]
+    },
+    {
+     "code": "5F045DP16",
+     "label": "・・・基板を円筒・円錐側面に配置",
+     "parents": [
+      "5F045DP14",
+      "5F045DP13",
+      "5F045DP00"
+     ]
+    },
+    {
+     "code": "5F045DP18",
+     "label": "・・基板を直線上に一列に配置",
+     "parents": [
+      "5F045DP13",
+      "5F045DP00"
+     ]
+    },
+    {
+     "code": "5F045DP19",
+     "label": "・・・基板を水平に保持して垂直方向に積層するも",
+     "parents": [
+      "5F045DP18",
+      "5F045DP13",
+      "5F045DP00"
+     ]
+    },
+    {
+     "code": "5F045DP20",
+     "label": "・・・基板を垂直に保持して水平方向に並べたもの",
+     "parents": [
+      "5F045DP18",
+      "5F045DP13",
+      "5F045DP00"
+     ]
+    },
+    {
+     "code": "5F045DP21",
+     "label": "・基板を成膜室内に連続的に供給するもの",
+     "parents": [
+      "5F045DP00"
+     ]
+    },
+    {
+     "code": "5F045DP22",
+     "label": "・・帯状の連続基板を使用するもの",
+     "parents": [
+      "5F045DP21",
+      "5F045DP00"
+     ]
+    },
+    {
+     "code": "5F045DP23",
+     "label": "・・ベルトコンベア等を使用して基板を連続供給",
+     "parents": [
+      "5F045DP21",
+      "5F045DP00"
+     ]
+    },
+    {
+     "code": "5F045DP25",
+     "label": "・板状以外の基材形態に適する成膜装置",
+     "parents": [
+      "5F045DP00"
+     ]
+    },
+    {
+     "code": "5F045DP27",
+     "label": "・成膜中に基板が運動するもの",
+     "parents": [
+      "5F045DP00"
+     ]
+    },
+    {
+     "code": "5F045DP28",
+     "label": "・・基板が基板中心点を中心に回転するもの",
+     "parents": [
+      "5F045DP27",
+      "5F045DP00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "DQ",
+   "code": "5F045DQ00",
+   "label": "装置の形式成膜室の形態",
+   "codes": [
+    {
+     "code": "5F045DQ01",
+     "label": "・封管を使用するもの",
+     "parents": [
+      "5F045DQ00"
+     ]
+    },
+    {
+     "code": "5F045DQ03",
+     "label": "・成膜室が管状のもの",
+     "parents": [
+      "5F045DQ00"
+     ]
+    },
+    {
+     "code": "5F045DQ04",
+     "label": "・・反応管を縦に配するもの",
+     "parents": [
+      "5F045DQ03",
+      "5F045DQ00"
+     ]
+    },
+    {
+     "code": "5F045DQ05",
+     "label": "・・・下から基板・基板支持機構を保持するもの",
+     "parents": [
+      "5F045DQ04",
+      "5F045DQ03",
+      "5F045DQ00"
+     ]
+    },
+    {
+     "code": "5F045DQ06",
+     "label": "・・反応管を横に配するもの",
+     "parents": [
+      "5F045DQ03",
+      "5F045DQ00"
+     ]
+    },
+    {
+     "code": "5F045DQ08",
+     "label": "・成膜室内に原料供給源を有するもの",
+     "parents": [
+      "5F045DQ00"
+     ]
+    },
+    {
+     "code": "5F045DQ10",
+     "label": "・成膜室が管状でないもの",
+     "parents": [
+      "5F045DQ00"
+     ]
+    },
+    {
+     "code": "5F045DQ11",
+     "label": "・成膜室内にガス流を分離する隔壁を有するもの",
+     "parents": [
+      "5F045DQ00"
+     ]
+    },
+    {
+     "code": "5F045DQ12",
+     "label": "・・基板が各ガス流域を移動するもの",
+     "parents": [
+      "5F045DQ11",
+      "5F045DQ00"
+     ]
+    },
+    {
+     "code": "5F045DQ14",
+     "label": "・複数の成膜室を有するもの",
+     "parents": [
+      "5F045DQ00"
+     ]
+    },
+    {
+     "code": "5F045DQ15",
+     "label": "・・成膜室を直線上に配するもの",
+     "parents": [
+      "5F045DQ14",
+      "5F045DQ00"
+     ]
+    },
+    {
+     "code": "5F045DQ16",
+     "label": "・・・常圧CVDでディスパージョンヘッドを有するもの",
+     "parents": [
+      "5F045DQ15",
+      "5F045DQ14",
+      "5F045DQ00"
+     ]
+    },
+    {
+     "code": "5F045DQ17",
+     "label": "・・複数の成膜室に通じる共通室を有するもの",
+     "parents": [
+      "5F045DQ14",
+      "5F045DQ00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "EB",
+   "code": "5F045EB00",
+   "label": "成膜一般",
+   "codes": [
+    {
+     "code": "5F045EB01",
+     "label": "・成膜一般",
+     "parents": [
+      "5F045EB00"
+     ]
+    },
+    {
+     "code": "5F045EB02",
+     "label": "・・成膜装置の構造",
+     "parents": [
+      "5F045EB01",
+      "5F045EB00"
+     ]
+    },
+    {
+     "code": "5F045EB03",
+     "label": "・・成膜装置の材質",
+     "parents": [
+      "5F045EB01",
+      "5F045EB00"
+     ]
+    },
+    {
+     "code": "5F045EB05",
+     "label": "・・成膜装置の保守",
+     "parents": [
+      "5F045EB01",
+      "5F045EB00"
+     ]
+    },
+    {
+     "code": "5F045EB06",
+     "label": "・・・成膜室・反応管のクリーニング",
+     "parents": [
+      "5F045EB05",
+      "5F045EB01",
+      "5F045EB00"
+     ]
+    },
+    {
+     "code": "5F045EB08",
+     "label": "・・予備室・ロード室・搬送室・中間室",
+     "parents": [
+      "5F045EB01",
+      "5F045EB00"
+     ]
+    },
+    {
+     "code": "5F045EB09",
+     "label": "・・ゲートバルブ",
+     "parents": [
+      "5F045EB01",
+      "5F045EB00"
+     ]
+    },
+    {
+     "code": "5F045EB10",
+     "label": "・・シール機構・気密を保つ方法",
+     "parents": [
+      "5F045EB01",
+      "5F045EB00"
+     ]
+    },
+    {
+     "code": "5F045EB11",
+     "label": "・成膜準備作業",
+     "parents": [
+      "5F045EB00"
+     ]
+    },
+    {
+     "code": "5F045EB12",
+     "label": "・・大気パージの方法・真空の引き方",
+     "parents": [
+      "5F045EB11",
+      "5F045EB00"
+     ]
+    },
+    {
+     "code": "5F045EB13",
+     "label": "・・基板表面の清浄化・予熱",
+     "parents": [
+      "5F045EB11",
+      "5F045EB00"
+     ]
+    },
+    {
+     "code": "5F045EB14",
+     "label": "・・・真空中での加熱による清浄化・予熱",
+     "parents": [
+      "5F045EB13",
+      "5F045EB11",
+      "5F045EB00"
+     ]
+    },
+    {
+     "code": "5F045EB15",
+     "label": "・・・ガス中での加熱による清浄化・予熱",
+     "parents": [
+      "5F045EB13",
+      "5F045EB11",
+      "5F045EB00"
+     ]
+    },
+    {
+     "code": "5F045EB17",
+     "label": "・成膜終了作業",
+     "parents": [
+      "5F045EB00"
+     ]
+    },
+    {
+     "code": "5F045EB19",
+     "label": "・塗布装置",
+     "parents": [
+      "5F045EB00"
+     ]
+    },
+    {
+     "code": "5F045EB20",
+     "label": "・・スピンコーター",
+     "parents": [
+      "5F045EB19",
+      "5F045EB00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "EC",
+   "code": "5F045EC00",
+   "label": "成膜室・配管構造・配管方法",
+   "codes": [
+    {
+     "code": "5F045EC01",
+     "label": "・成膜室の形状・構造",
+     "parents": [
+      "5F045EC00"
+     ]
+    },
+    {
+     "code": "5F045EC02",
+     "label": "・・多重管構造",
+     "parents": [
+      "5F045EC01",
+      "5F045EC00"
+     ]
+    },
+    {
+     "code": "5F045EC03",
+     "label": "・・光透過窓",
+     "parents": [
+      "5F045EC01",
+      "5F045EC00"
+     ]
+    },
+    {
+     "code": "5F045EC05",
+     "label": "・成膜室の材質・成膜室の内壁表面の状態に特徴",
+     "parents": [
+      "5F045EC00"
+     ]
+    },
+    {
+     "code": "5F045EC07",
+     "label": "・配管構造・配管システム・配管方法",
+     "parents": [
+      "5F045EC00"
+     ]
+    },
+    {
+     "code": "5F045EC08",
+     "label": "・・配管の長さ・管径・材質に特徴があるもの",
+     "parents": [
+      "5F045EC07",
+      "5F045EC00"
+     ]
+    },
+    {
+     "code": "5F045EC09",
+     "label": "・・配管の加熱・冷却",
+     "parents": [
+      "5F045EC07",
+      "5F045EC00"
+     ]
+    },
+    {
+     "code": "5F045EC10",
+     "label": "・・ダミーガスの配管系を有するもの",
+     "parents": [
+      "5F045EC07",
+      "5F045EC00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "EE",
+   "code": "5F045EE00",
+   "label": "ガス供給・圧力制御",
+   "codes": [
+    {
+     "code": "5F045EE01",
+     "label": "・ガス供給機構",
+     "parents": [
+      "5F045EE00"
+     ]
+    },
+    {
+     "code": "5F045EE02",
+     "label": "・・ボンベ・気化機構・原料供給機構",
+     "parents": [
+      "5F045EE01",
+      "5F045EE00"
+     ]
+    },
+    {
+     "code": "5F045EE03",
+     "label": "・・・バブラー",
+     "parents": [
+      "5F045EE02",
+      "5F045EE01",
+      "5F045EE00"
+     ]
+    },
+    {
+     "code": "5F045EE04",
+     "label": "・・マスフローメーター・バルブ・流量調整機構",
+     "parents": [
+      "5F045EE01",
+      "5F045EE00"
+     ]
+    },
+    {
+     "code": "5F045EE05",
+     "label": "・・ガス混合器",
+     "parents": [
+      "5F045EE01",
+      "5F045EE00"
+     ]
+    },
+    {
+     "code": "5F045EE06",
+     "label": "・・成膜室外でガスを活性化するもの",
+     "parents": [
+      "5F045EE01",
+      "5F045EE00"
+     ]
+    },
+    {
+     "code": "5F045EE07",
+     "label": "・・・熱を用いるもの",
+     "parents": [
+      "5F045EE06",
+      "5F045EE01",
+      "5F045EE00"
+     ]
+    },
+    {
+     "code": "5F045EE08",
+     "label": "・・・光を用いるもの",
+     "parents": [
+      "5F045EE06",
+      "5F045EE01",
+      "5F045EE00"
+     ]
+    },
+    {
+     "code": "5F045EE10",
+     "label": "・・ガス供給系のフィルター",
+     "parents": [
+      "5F045EE01",
+      "5F045EE00"
+     ]
+    },
+    {
+     "code": "5F045EE11",
+     "label": "・ガス供給方法",
+     "parents": [
+      "5F045EE00"
+     ]
+    },
+    {
+     "code": "5F045EE12",
+     "label": "・・ガス供給流量・流量比・配合比に特徴",
+     "parents": [
+      "5F045EE11",
+      "5F045EE00"
+     ]
+    },
+    {
+     "code": "5F045EE13",
+     "label": "・・膜成分以外のガスの供給に特徴",
+     "parents": [
+      "5F045EE11",
+      "5F045EE00"
+     ]
+    },
+    {
+     "code": "5F045EE14",
+     "label": "・・・不活性ガスの供給機構・供給方法に特徴",
+     "parents": [
+      "5F045EE13",
+      "5F045EE11",
+      "5F045EE00"
+     ]
+    },
+    {
+     "code": "5F045EE15",
+     "label": "・・ドーパントガスの供給機構・供給方法に特徴",
+     "parents": [
+      "5F045EE11",
+      "5F045EE00"
+     ]
+    },
+    {
+     "code": "5F045EE17",
+     "label": "・・ガスの供給流量変化・圧力変化の制御に特徴",
+     "parents": [
+      "5F045EE11",
+      "5F045EE00"
+     ]
+    },
+    {
+     "code": "5F045EE18",
+     "label": "・・・ガスの供給開始のタイミングに特徴",
+     "parents": [
+      "5F045EE17",
+      "5F045EE11",
+      "5F045EE00"
+     ]
+    },
+    {
+     "code": "5F045EE19",
+     "label": "・・・パルス状のガス供給・交互供給",
+     "parents": [
+      "5F045EE17",
+      "5F045EE11",
+      "5F045EE00"
+     ]
+    },
+    {
+     "code": "5F045EE20",
+     "label": "・・ガスの流れ方に特徴",
+     "parents": [
+      "5F045EE11",
+      "5F045EE00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "EF",
+   "code": "5F045EF00",
+   "label": "ノズル・整流・遮蔽・排気口",
+   "codes": [
+    {
+     "code": "5F045EF01",
+     "label": "・ノズルの形状・構造",
+     "parents": [
+      "5F045EF00"
+     ]
+    },
+    {
+     "code": "5F045EF02",
+     "label": "・・筒状部材の先端からガスを噴出するもの",
+     "parents": [
+      "5F045EF01",
+      "5F045EF00"
+     ]
+    },
+    {
+     "code": "5F045EF03",
+     "label": "・・筒状部材の側面にガス噴出孔を有するもの",
+     "parents": [
+      "5F045EF01",
+      "5F045EF00"
+     ]
+    },
+    {
+     "code": "5F045EF04",
+     "label": "・・・ノズルがリング状のもの",
+     "parents": [
+      "5F045EF03",
+      "5F045EF01",
+      "5F045EF00"
+     ]
+    },
+    {
+     "code": "5F045EF05",
+     "label": "・・板状部材の表面に多数のガス噴出孔",
+     "parents": [
+      "5F045EF01",
+      "5F045EF00"
+     ]
+    },
+    {
+     "code": "5F045EF07",
+     "label": "・・噴出孔の大きさに大小があるもの",
+     "parents": [
+      "5F045EF01",
+      "5F045EF00"
+     ]
+    },
+    {
+     "code": "5F045EF08",
+     "label": "・・ノズルが複数あるもの",
+     "parents": [
+      "5F045EF01",
+      "5F045EF00"
+     ]
+    },
+    {
+     "code": "5F045EF09",
+     "label": "・・・ノズル毎にガス供給流量を制御するもの",
+     "parents": [
+      "5F045EF08",
+      "5F045EF01",
+      "5F045EF00"
+     ]
+    },
+    {
+     "code": "5F045EF10",
+     "label": "・・ノズルの位置が可変のもの",
+     "parents": [
+      "5F045EF01",
+      "5F045EF00"
+     ]
+    },
+    {
+     "code": "5F045EF11",
+     "label": "・ノズルの材質",
+     "parents": [
+      "5F045EF00"
+     ]
+    },
+    {
+     "code": "5F045EF13",
+     "label": "・ガスの流れを変える整流部材を成膜室に有するもの",
+     "parents": [
+      "5F045EF00"
+     ]
+    },
+    {
+     "code": "5F045EF14",
+     "label": "・・整流部材が板状・円錐状のもの",
+     "parents": [
+      "5F045EF13",
+      "5F045EF00"
+     ]
+    },
+    {
+     "code": "5F045EF15",
+     "label": "・・整流部材が筒状・リング状のもの",
+     "parents": [
+      "5F045EF13",
+      "5F045EF00"
+     ]
+    },
+    {
+     "code": "5F045EF17",
+     "label": "・ガス遮蔽機構",
+     "parents": [
+      "5F045EF00"
+     ]
+    },
+    {
+     "code": "5F045EF18",
+     "label": "・・シャッター機構を有するもの",
+     "parents": [
+      "5F045EF17",
+      "5F045EF00"
+     ]
+    },
+    {
+     "code": "5F045EF20",
+     "label": "・排気口の位置・排気口の構造",
+     "parents": [
+      "5F045EF00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "EG",
+   "code": "5F045EG00",
+   "label": "排気・排気制御・廃ガス処理",
+   "codes": [
+    {
+     "code": "5F045EG01",
+     "label": "・排気機構に特徴",
+     "parents": [
+      "5F045EG00"
+     ]
+    },
+    {
+     "code": "5F045EG02",
+     "label": "・・排気弁・排気調整弁・コンダクタンス調整機構",
+     "parents": [
+      "5F045EG01",
+      "5F045EG00"
+     ]
+    },
+    {
+     "code": "5F045EG03",
+     "label": "・・真空ポンプ・真空ポンプの組み合わせに特徴",
+     "parents": [
+      "5F045EG01",
+      "5F045EG00"
+     ]
+    },
+    {
+     "code": "5F045EG04",
+     "label": "・・逆流防止・ポンプの破損防止のための機構",
+     "parents": [
+      "5F045EG01",
+      "5F045EG00"
+     ]
+    },
+    {
+     "code": "5F045EG05",
+     "label": "・排気方法に特徴",
+     "parents": [
+      "5F045EG00"
+     ]
+    },
+    {
+     "code": "5F045EG06",
+     "label": "・・排気速度・排気流量変化の制御",
+     "parents": [
+      "5F045EG05",
+      "5F045EG00"
+     ]
+    },
+    {
+     "code": "5F045EG07",
+     "label": "・廃ガス処理機構・廃ガスの処理方法",
+     "parents": [
+      "5F045EG00"
+     ]
+    },
+    {
+     "code": "5F045EG08",
+     "label": "・・トラップ・ダストフィルター・捕集機構",
+     "parents": [
+      "5F045EG07",
+      "5F045EG00"
+     ]
+    },
+    {
+     "code": "5F045EG09",
+     "label": "・・循環利用・再利用",
+     "parents": [
+      "5F045EG07",
+      "5F045EG00"
+     ]
+    },
+    {
+     "code": "5F045EG10",
+     "label": "・・ダクト",
+     "parents": [
+      "5F045EG07",
+      "5F045EG00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "EH",
+   "code": "5F045EH00",
+   "label": "プラズマ処理・プラズマ制御",
+   "codes": [
+    {
+     "code": "5F045EH01",
+     "label": "・プラズマ処理機構・プラズマ発生機構",
+     "parents": [
+      "5F045EH00"
+     ]
+    },
+    {
+     "code": "5F045EH02",
+     "label": "・・アンテナ",
+     "parents": [
+      "5F045EH01",
+      "5F045EH00"
+     ]
+    },
+    {
+     "code": "5F045EH03",
+     "label": "・・導波管・誘電体窓",
+     "parents": [
+      "5F045EH01",
+      "5F045EH00"
+     ]
+    },
+    {
+     "code": "5F045EH04",
+     "label": "・・電極の形状・構造",
+     "parents": [
+      "5F045EH01",
+      "5F045EH00"
+     ]
+    },
+    {
+     "code": "5F045EH05",
+     "label": "・・・電極がガス供給ノズルを兼ねるもの",
+     "parents": [
+      "5F045EH04",
+      "5F045EH01",
+      "5F045EH00"
+     ]
+    },
+    {
+     "code": "5F045EH06",
+     "label": "・・・中間電極・補助電極・シールド",
+     "parents": [
+      "5F045EH04",
+      "5F045EH01",
+      "5F045EH00"
+     ]
+    },
+    {
+     "code": "5F045EH07",
+     "label": "・・・電極の位置が可変のもの",
+     "parents": [
+      "5F045EH04",
+      "5F045EH01",
+      "5F045EH00"
+     ]
+    },
+    {
+     "code": "5F045EH08",
+     "label": "・・電極の材料",
+     "parents": [
+      "5F045EH01",
+      "5F045EH00"
+     ]
+    },
+    {
+     "code": "5F045EH09",
+     "label": "・・直流グロー放電型プラズマCVD装置",
+     "parents": [
+      "5F045EH01",
+      "5F045EH00"
+     ]
+    },
+    {
+     "code": "5F045EH10",
+     "label": "・・アーク放電型プラズマCVD装置",
+     "parents": [
+      "5F045EH01",
+      "5F045EH00"
+     ]
+    },
+    {
+     "code": "5F045EH11",
+     "label": "・・誘導結合型プラズマCVD装置",
+     "parents": [
+      "5F045EH01",
+      "5F045EH00"
+     ]
+    },
+    {
+     "code": "5F045EH12",
+     "label": "・・容量結合型プラズマCVD装置",
+     "parents": [
+      "5F045EH01",
+      "5F045EH00"
+     ]
+    },
+    {
+     "code": "5F045EH13",
+     "label": "・・・平行平板型",
+     "parents": [
+      "5F045EH12",
+      "5F045EH01",
+      "5F045EH00"
+     ]
+    },
+    {
+     "code": "5F045EH14",
+     "label": "・・・・基板と電極が平行な位置関係にあるもの",
+     "parents": [
+      "5F045EH13",
+      "5F045EH12",
+      "5F045EH01",
+      "5F045EH00"
+     ]
+    },
+    {
+     "code": "5F045EH15",
+     "label": "・・・感光ドラム型",
+     "parents": [
+      "5F045EH12",
+      "5F045EH01",
+      "5F045EH00"
+     ]
+    },
+    {
+     "code": "5F045EH16",
+     "label": "・・磁界を利用するプラズマCVD装置",
+     "parents": [
+      "5F045EH01",
+      "5F045EH00"
+     ]
+    },
+    {
+     "code": "5F045EH17",
+     "label": "・・・ECRプラズマCVD装置",
+     "parents": [
+      "5F045EH16",
+      "5F045EH01",
+      "5F045EH00"
+     ]
+    },
+    {
+     "code": "5F045EH18",
+     "label": "・・成膜室外でガスをプラズマ化",
+     "parents": [
+      "5F045EH01",
+      "5F045EH00"
+     ]
+    },
+    {
+     "code": "5F045EH19",
+     "label": "・プラズマの制御",
+     "parents": [
+      "5F045EH00"
+     ]
+    },
+    {
+     "code": "5F045EH20",
+     "label": "・・電位の設定",
+     "parents": [
+      "5F045EH19",
+      "5F045EH00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "EJ",
+   "code": "5F045EJ00",
+   "label": "冷却",
+   "codes": [
+    {
+     "code": "5F045EJ01",
+     "label": "・冷却機構・冷却方法",
+     "parents": [
+      "5F045EJ00"
+     ]
+    },
+    {
+     "code": "5F045EJ02",
+     "label": "・・基板の冷却",
+     "parents": [
+      "5F045EJ01",
+      "5F045EJ00"
+     ]
+    },
+    {
+     "code": "5F045EJ03",
+     "label": "・・・サセプタに冷却機構を内蔵",
+     "parents": [
+      "5F045EJ02",
+      "5F045EJ01",
+      "5F045EJ00"
+     ]
+    },
+    {
+     "code": "5F045EJ04",
+     "label": "・・成膜室壁面・反応管の冷却",
+     "parents": [
+      "5F045EJ01",
+      "5F045EJ00"
+     ]
+    },
+    {
+     "code": "5F045EJ05",
+     "label": "・・電極の冷却",
+     "parents": [
+      "5F045EJ01",
+      "5F045EJ00"
+     ]
+    },
+    {
+     "code": "5F045EJ06",
+     "label": "・・ヒーターの冷却",
+     "parents": [
+      "5F045EJ01",
+      "5F045EJ00"
+     ]
+    },
+    {
+     "code": "5F045EJ08",
+     "label": "・・冷却流体を使用しないもの",
+     "parents": [
+      "5F045EJ01",
+      "5F045EJ00"
+     ]
+    },
+    {
+     "code": "5F045EJ09",
+     "label": "・・冷却流体として液体を使用するもの",
+     "parents": [
+      "5F045EJ01",
+      "5F045EJ00"
+     ]
+    },
+    {
+     "code": "5F045EJ10",
+     "label": "・・冷却流体として気体を使用するもの",
+     "parents": [
+      "5F045EJ01",
+      "5F045EJ00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "EK",
+   "code": "5F045EK00",
+   "label": "加熱・温度制御",
+   "codes": [
+    {
+     "code": "5F045EK01",
+     "label": "・加熱機構",
+     "parents": [
+      "5F045EK00"
+     ]
+    },
+    {
+     "code": "5F045EK02",
+     "label": "・・高周波誘導加熱",
+     "parents": [
+      "5F045EK01",
+      "5F045EK00"
+     ]
+    },
+    {
+     "code": "5F045EK03",
+     "label": "・・・高周波誘導加熱法によるサセプタの加熱",
+     "parents": [
+      "5F045EK02",
+      "5F045EK01",
+      "5F045EK00"
+     ]
+    },
+    {
+     "code": "5F045EK05",
+     "label": "・・抵抗加熱",
+     "parents": [
+      "5F045EK01",
+      "5F045EK00"
+     ]
+    },
+    {
+     "code": "5F045EK06",
+     "label": "・・・成膜室の外部に抵抗加熱型ヒーターを有するもの",
+     "parents": [
+      "5F045EK05",
+      "5F045EK01",
+      "5F045EK00"
+     ]
+    },
+    {
+     "code": "5F045EK07",
+     "label": "・・・成膜室の内部に抵抗加熱型ヒーターを有するもの",
+     "parents": [
+      "5F045EK05",
+      "5F045EK01",
+      "5F045EK00"
+     ]
+    },
+    {
+     "code": "5F045EK08",
+     "label": "・・・ヒーターの形状・構造・材質に特徴",
+     "parents": [
+      "5F045EK05",
+      "5F045EK01",
+      "5F045EK00"
+     ]
+    },
+    {
+     "code": "5F045EK09",
+     "label": "・・・・セラミックスヒーター",
+     "parents": [
+      "5F045EK08",
+      "5F045EK05",
+      "5F045EK01",
+      "5F045EK00"
+     ]
+    },
+    {
+     "code": "5F045EK10",
+     "label": "・・加熱流体を使用するもの",
+     "parents": [
+      "5F045EK01",
+      "5F045EK00"
+     ]
+    },
+    {
+     "code": "5F045EK11",
+     "label": "・・ランプ加熱・光照射",
+     "parents": [
+      "5F045EK01",
+      "5F045EK00"
+     ]
+    },
+    {
+     "code": "5F045EK12",
+     "label": "・・・成膜面に光を照射するもの",
+     "parents": [
+      "5F045EK11",
+      "5F045EK01",
+      "5F045EK00"
+     ]
+    },
+    {
+     "code": "5F045EK13",
+     "label": "・・・基板裏面に光を照射するもの",
+     "parents": [
+      "5F045EK11",
+      "5F045EK01",
+      "5F045EK00"
+     ]
+    },
+    {
+     "code": "5F045EK14",
+     "label": "・・・基板支持部材に光を照射するもの",
+     "parents": [
+      "5F045EK11",
+      "5F045EK01",
+      "5F045EK00"
+     ]
+    },
+    {
+     "code": "5F045EK15",
+     "label": "・・・成膜面と平行に光を照射するもの",
+     "parents": [
+      "5F045EK11",
+      "5F045EK01",
+      "5F045EK00"
+     ]
+    },
+    {
+     "code": "5F045EK17",
+     "label": "・・・光がレーザ光であるもの",
+     "parents": [
+      "5F045EK11",
+      "5F045EK01",
+      "5F045EK00"
+     ]
+    },
+    {
+     "code": "5F045EK18",
+     "label": "・・・光の波長に特徴があるもの",
+     "parents": [
+      "5F045EK11",
+      "5F045EK01",
+      "5F045EK00"
+     ]
+    },
+    {
+     "code": "5F045EK19",
+     "label": "・・・・波長が可視光より短いもの",
+     "parents": [
+      "5F045EK18",
+      "5F045EK11",
+      "5F045EK01",
+      "5F045EK00"
+     ]
+    },
+    {
+     "code": "5F045EK20",
+     "label": "・・分子線・クラスタビーム・電子ビーム・イオンビーム照射",
+     "parents": [
+      "5F045EK01",
+      "5F045EK00"
+     ]
+    },
+    {
+     "code": "5F045EK21",
+     "label": "・・均熱機構",
+     "parents": [
+      "5F045EK01",
+      "5F045EK00"
+     ]
+    },
+    {
+     "code": "5F045EK22",
+     "label": "・・・分割ヒーター・複数ヒーター",
+     "parents": [
+      "5F045EK21",
+      "5F045EK01",
+      "5F045EK00"
+     ]
+    },
+    {
+     "code": "5F045EK23",
+     "label": "・・・加熱機構の位置が可変のもの",
+     "parents": [
+      "5F045EK21",
+      "5F045EK01",
+      "5F045EK00"
+     ]
+    },
+    {
+     "code": "5F045EK24",
+     "label": "・・断熱機構・加熱部の隔離",
+     "parents": [
+      "5F045EK01",
+      "5F045EK00"
+     ]
+    },
+    {
+     "code": "5F045EK25",
+     "label": "・加熱方法",
+     "parents": [
+      "5F045EK00"
+     ]
+    },
+    {
+     "code": "5F045EK26",
+     "label": "・・成膜温度に特徴",
+     "parents": [
+      "5F045EK25",
+      "5F045EK00"
+     ]
+    },
+    {
+     "code": "5F045EK27",
+     "label": "・・加熱エネルギー量の変化・温度変化の制御に特徴",
+     "parents": [
+      "5F045EK25",
+      "5F045EK00"
+     ]
+    },
+    {
+     "code": "5F045EK28",
+     "label": "・・・温度変化の開始のタイミングに特徴",
+     "parents": [
+      "5F045EK27",
+      "5F045EK25",
+      "5F045EK00"
+     ]
+    },
+    {
+     "code": "5F045EK29",
+     "label": "・・・パルス状の加熱",
+     "parents": [
+      "5F045EK27",
+      "5F045EK25",
+      "5F045EK00"
+     ]
+    },
+    {
+     "code": "5F045EK30",
+     "label": "・・空間的な温度分布に特徴",
+     "parents": [
+      "5F045EK25",
+      "5F045EK00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "EM",
+   "code": "5F045EM00",
+   "label": "基板支持",
+   "codes": [
+    {
+     "code": "5F045EM01",
+     "label": "・基板支持機構・基板支持の方法に特徴",
+     "parents": [
+      "5F045EM00"
+     ]
+    },
+    {
+     "code": "5F045EM02",
+     "label": "・・サセプタの構造",
+     "parents": [
+      "5F045EM01",
+      "5F045EM00"
+     ]
+    },
+    {
+     "code": "5F045EM03",
+     "label": "・・・固定片・リング等で機械的に固定",
+     "parents": [
+      "5F045EM02",
+      "5F045EM01",
+      "5F045EM00"
+     ]
+    },
+    {
+     "code": "5F045EM04",
+     "label": "・・・真空チャック",
+     "parents": [
+      "5F045EM02",
+      "5F045EM01",
+      "5F045EM00"
+     ]
+    },
+    {
+     "code": "5F045EM05",
+     "label": "・・・静電チャック",
+     "parents": [
+      "5F045EM02",
+      "5F045EM01",
+      "5F045EM00"
+     ]
+    },
+    {
+     "code": "5F045EM06",
+     "label": "・・・スペーサ等を用いて基板を浮かすもの",
+     "parents": [
+      "5F045EM02",
+      "5F045EM01",
+      "5F045EM00"
+     ]
+    },
+    {
+     "code": "5F045EM07",
+     "label": "・・・基板裏面・縁部にガスを供給するもの",
+     "parents": [
+      "5F045EM02",
+      "5F045EM01",
+      "5F045EM00"
+     ]
+    },
+    {
+     "code": "5F045EM08",
+     "label": "・・ウエハボートの構造",
+     "parents": [
+      "5F045EM01",
+      "5F045EM00"
+     ]
+    },
+    {
+     "code": "5F045EM09",
+     "label": "・基板支持機構の材質・表面の状態",
+     "parents": [
+      "5F045EM00"
+     ]
+    },
+    {
+     "code": "5F045EM10",
+     "label": "・基板・基板支持機構の上下動・回転・振動付与機構",
+     "parents": [
+      "5F045EM00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "EN",
+   "code": "5F045EN00",
+   "label": "搬出入口・蓋・搬送・搬出入",
+   "codes": [
+    {
+     "code": "5F045EN01",
+     "label": "・搬出入口・蓋の構造",
+     "parents": [
+      "5F045EN00"
+     ]
+    },
+    {
+     "code": "5F045EN02",
+     "label": "・・大気の巻き込み防止",
+     "parents": [
+      "5F045EN01",
+      "5F045EN00"
+     ]
+    },
+    {
+     "code": "5F045EN04",
+     "label": "・ウエハの搬送・搬出入",
+     "parents": [
+      "5F045EN00"
+     ]
+    },
+    {
+     "code": "5F045EN05",
+     "label": "・ウエハ+キャリアの搬送・搬出入",
+     "parents": [
+      "5F045EN00"
+     ]
+    },
+    {
+     "code": "5F045EN06",
+     "label": "・ウエハの検出・ウエハの位置合わせ",
+     "parents": [
+      "5F045EN00"
+     ]
+    },
+    {
+     "code": "5F045EN08",
+     "label": "・交換部材の搬送",
+     "parents": [
+      "5F045EN00"
+     ]
+    },
+    {
+     "code": "5F045EN10",
+     "label": "・その他の物の搬送",
+     "parents": [
+      "5F045EN00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "GB",
+   "code": "5F045GB00",
+   "label": "測定・測定結果に基づく制御・制御一般",
+   "codes": [
+    {
+     "code": "5F045GB01",
+     "label": "・成膜前の測定・測定結果に基づく成膜条件設定",
+     "parents": [
+      "5F045GB00"
+     ]
+    },
+    {
+     "code": "5F045GB02",
+     "label": "・・成膜装置の評価・調整・検査",
+     "parents": [
+      "5F045GB01",
+      "5F045GB00"
+     ]
+    },
+    {
+     "code": "5F045GB04",
+     "label": "・成膜中の測定・測定結果に基づく制御",
+     "parents": [
+      "5F045GB00"
+     ]
+    },
+    {
+     "code": "5F045GB05",
+     "label": "・・温度を測定するもの",
+     "parents": [
+      "5F045GB04",
+      "5F045GB00"
+     ]
+    },
+    {
+     "code": "5F045GB06",
+     "label": "・・圧力を測定するもの",
+     "parents": [
+      "5F045GB04",
+      "5F045GB00"
+     ]
+    },
+    {
+     "code": "5F045GB07",
+     "label": "・・ガス濃度を測定するもの",
+     "parents": [
+      "5F045GB04",
+      "5F045GB00"
+     ]
+    },
+    {
+     "code": "5F045GB08",
+     "label": "・・プラズマの状態を測定するもの",
+     "parents": [
+      "5F045GB04",
+      "5F045GB00"
+     ]
+    },
+    {
+     "code": "5F045GB09",
+     "label": "・・膜厚を測定するもの",
+     "parents": [
+      "5F045GB04",
+      "5F045GB00"
+     ]
+    },
+    {
+     "code": "5F045GB10",
+     "label": "・・膜の物性を測定するもの",
+     "parents": [
+      "5F045GB04",
+      "5F045GB00"
+     ]
+    },
+    {
+     "code": "5F045GB11",
+     "label": "・成膜後の測定・測定結果に基づく制御",
+     "parents": [
+      "5F045GB00"
+     ]
+    },
+    {
+     "code": "5F045GB12",
+     "label": "・・電気的特性を測定するもの",
+     "parents": [
+      "5F045GB11",
+      "5F045GB00"
+     ]
+    },
+    {
+     "code": "5F045GB13",
+     "label": "・・膜厚を測定するもの",
+     "parents": [
+      "5F045GB11",
+      "5F045GB00"
+     ]
+    },
+    {
+     "code": "5F045GB15",
+     "label": "・制御一般・制御装置・表示に特徴",
+     "parents": [
+      "5F045GB00"
+     ]
+    },
+    {
+     "code": "5F045GB16",
+     "label": "・・データベースを用いるもの",
+     "parents": [
+      "5F045GB15",
+      "5F045GB00"
+     ]
+    },
+    {
+     "code": "5F045GB17",
+     "label": "・・数値計算を用いるもの",
+     "parents": [
+      "5F045GB15",
+      "5F045GB00"
+     ]
+    },
+    {
+     "code": "5F045GB19",
+     "label": "・成膜速度に特徴",
+     "parents": [
+      "5F045GB00"
+     ]
+    },
+    {
+     "code": "5F045GB20",
+     "label": "・・成膜中に成膜速度が変化するもの",
+     "parents": [
+      "5F045GB19",
+      "5F045GB00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "GH",
+   "code": "5F045GH00",
+   "label": "機械加工プロセスとの組み合わせ",
+   "codes": [
+    {
+     "code": "5F045GH01",
+     "label": "・機械加工による前処理",
+     "parents": [
+      "5F045GH00"
+     ]
+    },
+    {
+     "code": "5F045GH02",
+     "label": "・・研磨",
+     "parents": [
+      "5F045GH01",
+      "5F045GH00"
+     ]
+    },
+    {
+     "code": "5F045GH03",
+     "label": "・・・化学的機械研磨",
+     "parents": [
+      "5F045GH02",
+      "5F045GH01",
+      "5F045GH00"
+     ]
+    },
+    {
+     "code": "5F045GH05",
+     "label": "・膜形成工程と膜形成工程の間の機械加工・研磨",
+     "parents": [
+      "5F045GH00"
+     ]
+    },
+    {
+     "code": "5F045GH06",
+     "label": "・・化学的機械研磨",
+     "parents": [
+      "5F045GH05",
+      "5F045GH00"
+     ]
+    },
+    {
+     "code": "5F045GH08",
+     "label": "・機械加工による後処理",
+     "parents": [
+      "5F045GH00"
+     ]
+    },
+    {
+     "code": "5F045GH09",
+     "label": "・・研磨",
+     "parents": [
+      "5F045GH08",
+      "5F045GH00"
+     ]
+    },
+    {
+     "code": "5F045GH10",
+     "label": "・・・化学的機械研磨",
+     "parents": [
+      "5F045GH09",
+      "5F045GH08",
+      "5F045GH00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "HA",
+   "code": "5F045HA00",
+   "label": "他プロセスとの組合せ",
+   "codes": [
+    {
+     "code": "5F045HA01",
+     "label": "・前処理",
+     "parents": [
+      "5F045HA00"
+     ]
+    },
+    {
+     "code": "5F045HA02",
+     "label": "・・エッチング",
+     "parents": [
+      "5F045HA01",
+      "5F045HA00"
+     ]
+    },
+    {
+     "code": "5F045HA03",
+     "label": "・・・ドライエッチ",
+     "parents": [
+      "5F045HA02",
+      "5F045HA01",
+      "5F045HA00"
+     ]
+    },
+    {
+     "code": "5F045HA04",
+     "label": "・・・ウェットエッチ",
+     "parents": [
+      "5F045HA02",
+      "5F045HA01",
+      "5F045HA00"
+     ]
+    },
+    {
+     "code": "5F045HA05",
+     "label": "・・イオン注入",
+     "parents": [
+      "5F045HA01",
+      "5F045HA00"
+     ]
+    },
+    {
+     "code": "5F045HA06",
+     "label": "・・熱処理",
+     "parents": [
+      "5F045HA01",
+      "5F045HA00"
+     ]
+    },
+    {
+     "code": "5F045HA07",
+     "label": "・・ビームアニール",
+     "parents": [
+      "5F045HA01",
+      "5F045HA00"
+     ]
+    },
+    {
+     "code": "5F045HA08",
+     "label": "・・・光ビーム",
+     "parents": [
+      "5F045HA07",
+      "5F045HA01",
+      "5F045HA00"
+     ]
+    },
+    {
+     "code": "5F045HA09",
+     "label": "・・・電子ビーム",
+     "parents": [
+      "5F045HA07",
+      "5F045HA01",
+      "5F045HA00"
+     ]
+    },
+    {
+     "code": "5F045HA10",
+     "label": "・・不純物拡散",
+     "parents": [
+      "5F045HA01",
+      "5F045HA00"
+     ]
+    },
+    {
+     "code": "5F045HA11",
+     "label": "・後処理",
+     "parents": [
+      "5F045HA00"
+     ]
+    },
+    {
+     "code": "5F045HA12",
+     "label": "・・エッチング",
+     "parents": [
+      "5F045HA11",
+      "5F045HA00"
+     ]
+    },
+    {
+     "code": "5F045HA13",
+     "label": "・・・ドライエッチ",
+     "parents": [
+      "5F045HA12",
+      "5F045HA11",
+      "5F045HA00"
+     ]
+    },
+    {
+     "code": "5F045HA14",
+     "label": "・・・ウェットエッチ",
+     "parents": [
+      "5F045HA12",
+      "5F045HA11",
+      "5F045HA00"
+     ]
+    },
+    {
+     "code": "5F045HA15",
+     "label": "・・イオン注入",
+     "parents": [
+      "5F045HA11",
+      "5F045HA00"
+     ]
+    },
+    {
+     "code": "5F045HA16",
+     "label": "・・熱処理",
+     "parents": [
+      "5F045HA11",
+      "5F045HA00"
+     ]
+    },
+    {
+     "code": "5F045HA17",
+     "label": "・・ビームアニール",
+     "parents": [
+      "5F045HA11",
+      "5F045HA00"
+     ]
+    },
+    {
+     "code": "5F045HA18",
+     "label": "・・・光ビーム",
+     "parents": [
+      "5F045HA17",
+      "5F045HA11",
+      "5F045HA00"
+     ]
+    },
+    {
+     "code": "5F045HA19",
+     "label": "・・・電子ビーム",
+     "parents": [
+      "5F045HA17",
+      "5F045HA11",
+      "5F045HA00"
+     ]
+    },
+    {
+     "code": "5F045HA20",
+     "label": "・・不純物拡散",
+     "parents": [
+      "5F045HA11",
+      "5F045HA00"
+     ]
+    },
+    {
+     "code": "5F045HA21",
+     "label": "・連続処理",
+     "parents": [
+      "5F045HA00"
+     ]
+    },
+    {
+     "code": "5F045HA22",
+     "label": "・・一室連続処理",
+     "parents": [
+      "5F045HA21",
+      "5F045HA00"
+     ]
+    },
+    {
+     "code": "5F045HA23",
+     "label": "・・・成膜工程以外との組合せ",
+     "parents": [
+      "5F045HA22",
+      "5F045HA21",
+      "5F045HA00"
+     ]
+    },
+    {
+     "code": "5F045HA24",
+     "label": "・・多室連続処理",
+     "parents": [
+      "5F045HA21",
+      "5F045HA00"
+     ]
+    },
+    {
+     "code": "5F045HA25",
+     "label": "・・・成膜工程以外との組合せ",
+     "parents": [
+      "5F045HA24",
+      "5F045HA21",
+      "5F045HA00"
+     ]
+    }
+   ]
+  }
+ ]
+}

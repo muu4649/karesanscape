@@ -1,0 +1,85 @@
+# 部品「semicon」（半導体の製造工程・デバイス）。2026-10-20 作成。
+# 元にしたもの: config/modules/semicon.draft.tree（Fターム 5F004・5F045・5F157・5F110・5F083 の観点から自動作成。分類用の言い回しが多く、そのままは使っていない）、
+#   datasets/semicon600/_work/ontology_build/candidates_dev.csv（開発用 300 件で上層＋他部品で拾えない語）、
+#   開発用の文書で上層の表記が誤って当たった例（config/modules/alias_scopes.yaml）。
+# 上層と同じ表記は、上層の概念の子孫（細分化）か、上層側の別名が半導体では使わない設定のときだけ置ける。
+# 書き方: 最上段は親の ID（上層の概念か上位型）。ID: 表示名 | 別名, 別名（字下げ 2 文字で 1 段下）
+
+P
+  SEM_P_process_quality: 加工・成膜の品質
+    SEM_P_etch_selectivity: 選択比 | エッチング選択比, エッチングレート, エッチング速度
+    SEM_P_damage: プラズマダメージ | ダメージ, チャージアップ
+    SEM_P_residue: 残渣 | パーティクル, 金属汚染, 再付着, 汚染物
+    SEM_P_etch_shape: 加工形状 | 垂直性, テーパ, ボーイング, サイドエッチ, 側壁形状, アスペクト比, 寸法精度
+    SEM_P_film_quality: 膜質 | 膜厚均一性, 膜厚のばらつき, ステップカバレッジ, 段差被覆性, 埋め込み性, カバレッジ
+    SEM_P_crystal_defect: 結晶欠陥 | 欠陥密度, 転位, キャロット欠陥, 積層欠陥, 基底面転位
+    SEM_P_pattern_collapse: パターン倒壊 | ウォーターマーク, 乾燥不良
+    SEM_P_throughput: スループット | 処理能力, 処理時間, 処理効率
+  SEM_P_device: 素子特性
+    SEM_P_electrical: 電気特性 | 電気的特性, トランジスタ特性, デバイス特性
+    SEM_P_on_current: オン電流 | 電界効果移動度, 移動度, キャリア移動度, 駆動能力
+    SEM_P_off_current: オフ電流 | リーク電流, 漏れ電流, 待機電力
+    SEM_P_threshold: しきい値電圧 | 閾値電圧, しきい値, きい値電圧, ノーマリーオフ, S値
+    SEM_P_short_channel: 短チャネル効果
+    SEM_P_integration: 高集積化 | 集積度, 微細化, 占有面積, 回路面積, セル面積
+    SEM_P_speed: 高速動作 | 高速化, 動作速度, 高速駆動, 書き込み速度, 読み出し速度
+    SEM_P_retention: データ保持 | 保持特性, リテンション, 書き換え回数
+    SEM_P_parasitic: 寄生容量 | 寄生抵抗, 配線容量
+
+M
+  SEM_M_process: 半導体の工程
+    SEM_M_dry_etch: ドライエッチング | プラズマエッチング, 反応性イオンエッチング, RIE, エッチング工程, 原子層エッチング
+    SEM_M_plasma: プラズマ処理 | プラズマ, 高周波電力, 容量結合, 誘導結合, ICP, 容量結合型, プラズマ密度, プラズマ生成
+    SEM_M_sputter: スパッタリング | スパッタ, スパッタリング法, PVD, 物理蒸着
+    SEM_M_epitaxy: エピタキシャル成長 | エピタキシャル, MOCVD, 有機金属気相成長, エピタキシャル層, エピタキシャル膜
+    SEM_M_anneal: アニール | 熱アニール, レーザアニール, 再結晶化, 結晶化
+    SEM_M_cmp: 化学機械研磨 | CMP, 研磨, 平坦化
+    SEM_M_lithography: フォトリソグラフィ | 露光, パターニング, リソグラフィ
+  SEM_M_clean: 洗浄・乾燥
+    SEM_M_cleaning_liquid: 洗浄液 | 薬液, 純水, リンス液, リンス, フッ酸, 希フッ酸, オゾン水, 処理液
+    SEM_M_single_wafer: 枚葉式 | スピン洗浄, スピンチャック, 回転保持
+    SEM_M_brush: ブラシ洗浄 | スクラブ洗浄, 二流体, 二流体ノズル
+  SEM_M_apparatus: 処理装置
+    SEM_M_chamber: 処理容器 | チャンバ, チャンバー, 処理室, 反応室, 真空容器, 処理チャンバ
+    SEM_M_stage: 基板保持部 | 載置台, サセプタ, 静電チャック, ステージ, 基板支持部
+    SEM_M_shower: シャワーヘッド | ガス供給部, ガス導入部, ガス吐出
+    SEM_M_exhaust: 排気部 | 排気口, 排気装置
+    SEM_M_heater: ヒータ | ヒーター, 加熱部, ランプ加熱
+    SEM_M_process_gas: 処理ガス | プロセスガス, 原料ガス, 反応ガス, エッチングガス, 前駆体ガス, フッ素系ガス, 塩素系ガス
+    SEM_M_transfer: 搬送 | 搬送ロボット, ロードロック, 搬送装置
+    SEM_M_monitor: 終点検出 | 発光分光, モニタリング, 膜厚測定
+  SEM_M_film: 膜・材料
+    SEM_M_silicon: シリコン | ポリシリコン, 多結晶シリコン, アモルファスシリコン, シリコン膜, シリコン基板
+    SEM_M_oxide_semi: 酸化物半導体 | IGZO, In-Ga-Zn, 金属酸化物半導体, 酸化物半導体膜, 酸化物半導体層
+    SEM_M_wide_gap: ワイドバンドギャップ半導体 | SiC, GaN, 炭化珪素, 窒化ガリウム, 窒化物半導体
+    SEM_M_dielectric: 絶縁膜 | 誘電体膜, 誘電体, 層間絶縁膜, 酸化シリコン, 窒化シリコン, 酸化膜, 窒化膜, 高誘電率, high-k
+    SEM_M_gate_insulator: ゲート絶縁膜 | ゲート絶縁層
+    SEM_M_wiring: 配線 | 金属膜, 導電膜, 導電層, 電極層, 銅配線, バリアメタル, 配線層
+    SEM_M_mask: マスク | ハードマスク, レジスト, フォトレジスト, エッチングマスク, レジスト膜
+  SEM_M_device: 素子の構造
+    SEM_M_gate: ゲート電極 | ゲート
+    SEM_M_source_drain: ソース電極 | ドレイン電極, ソース領域, ドレイン領域, ソース, ドレイン
+    SEM_M_channel: チャネル形成領域 | チャネル, チャネル領域, チャネル長, チャネル幅
+    SEM_M_tft_type: トップゲート型 | ボトムゲート型, ボトムゲート, トップゲート
+    SEM_M_capacitor: キャパシタ | 容量素子, 静電容量
+    SEM_M_cell_array: メモリセル | メモリセルアレイ, 3次元NAND, 積層型メモリ
+    SEM_M_bitline: ビット線 | ワード線
+    SEM_M_charge_storage: 電荷蓄積層 | 浮遊ゲート, フローティングゲート, 電荷トラップ
+    SEM_M_contact: コンタクトホール | ビア, トレンチ, コンタクトプラグ
+
+M_vapor_phase
+  SEM_M_pecvd: プラズマCVD | PECVD, プラズマ化学気相成長
+  SEM_M_ald: 原子層堆積 | ALD, 原子層成長
+
+M_doping
+  SEM_M_ion_implant: イオン注入 | 不純物添加, ドーピング
+M_drying
+  SEM_M_drying: スピン乾燥 | IPA, イソプロピルアルコール, 超臨界乾燥, 置換乾燥
+
+U_electronics
+  SEM_U_memory: 半導体メモリ | メモリ, DRAM, SRAM, フラッシュメモリ, NAND, 不揮発性メモリ, 記憶装置
+  SEM_U_display: 表示装置 | ディスプレイ, 液晶表示装置, 有機EL, 画素, 液晶ディスプレイ
+  SEM_U_logic: 論理回路 | CPU, プロセッサ, 集積回路, 演算回路
+  SEM_U_power: パワーデバイス | パワー半導体, パワートランジスタ, HEMT, 高電子移動度トランジスタ
+  SEM_U_led: 発光素子 | LED, 発光ダイオード, 半導体レーザ
+  SEM_U_image_sensor: イメージセンサ | 撮像素子, 撮像装置, 受光素子

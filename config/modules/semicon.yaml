@@ -1,0 +1,588 @@
+# 技術オントロジー試作の部品「semicon」。木は config/modules/semicon.tree、作り方は scripts/build_module.py。
+# 概念 68（中間 7・末端 61）、別名 244。
+module: semicon
+concepts:
+- id: SEM_P_process_quality
+  label: 加工・成膜の品質
+  aliases: []
+  parents:
+  - P
+- id: SEM_P_etch_selectivity
+  label: 選択比
+  aliases:
+  - エッチング選択比
+  - エッチングレート
+  - エッチング速度
+  parents:
+  - SEM_P_process_quality
+- id: SEM_P_damage
+  label: プラズマダメージ
+  aliases:
+  - ダメージ
+  - チャージアップ
+  parents:
+  - SEM_P_process_quality
+- id: SEM_P_residue
+  label: 残渣
+  aliases:
+  - パーティクル
+  - 金属汚染
+  - 再付着
+  - 汚染物
+  parents:
+  - SEM_P_process_quality
+- id: SEM_P_etch_shape
+  label: 加工形状
+  aliases:
+  - 垂直性
+  - テーパ
+  - ボーイング
+  - サイドエッチ
+  - 側壁形状
+  - アスペクト比
+  - 寸法精度
+  parents:
+  - SEM_P_process_quality
+- id: SEM_P_film_quality
+  label: 膜質
+  aliases:
+  - 膜厚均一性
+  - 膜厚のばらつき
+  - ステップカバレッジ
+  - 段差被覆性
+  - 埋め込み性
+  - カバレッジ
+  parents:
+  - SEM_P_process_quality
+- id: SEM_P_crystal_defect
+  label: 結晶欠陥
+  aliases:
+  - 欠陥密度
+  - 転位
+  - キャロット欠陥
+  - 積層欠陥
+  - 基底面転位
+  parents:
+  - SEM_P_process_quality
+- id: SEM_P_pattern_collapse
+  label: パターン倒壊
+  aliases:
+  - ウォーターマーク
+  - 乾燥不良
+  parents:
+  - SEM_P_process_quality
+- id: SEM_P_throughput
+  label: スループット
+  aliases:
+  - 処理能力
+  - 処理時間
+  - 処理効率
+  parents:
+  - SEM_P_process_quality
+- id: SEM_P_device
+  label: 素子特性
+  aliases: []
+  parents:
+  - P
+- id: SEM_P_electrical
+  label: 電気特性
+  aliases:
+  - 電気的特性
+  - トランジスタ特性
+  - デバイス特性
+  parents:
+  - SEM_P_device
+- id: SEM_P_on_current
+  label: オン電流
+  aliases:
+  - 電界効果移動度
+  - 移動度
+  - キャリア移動度
+  - 駆動能力
+  parents:
+  - SEM_P_device
+- id: SEM_P_off_current
+  label: オフ電流
+  aliases:
+  - リーク電流
+  - 漏れ電流
+  - 待機電力
+  parents:
+  - SEM_P_device
+- id: SEM_P_threshold
+  label: しきい値電圧
+  aliases:
+  - 閾値電圧
+  - しきい値
+  - きい値電圧
+  - ノーマリーオフ
+  - S値
+  parents:
+  - SEM_P_device
+- id: SEM_P_short_channel
+  label: 短チャネル効果
+  aliases: []
+  parents:
+  - SEM_P_device
+- id: SEM_P_integration
+  label: 高集積化
+  aliases:
+  - 集積度
+  - 微細化
+  - 占有面積
+  - 回路面積
+  - セル面積
+  parents:
+  - SEM_P_device
+- id: SEM_P_speed
+  label: 高速動作
+  aliases:
+  - 高速化
+  - 動作速度
+  - 高速駆動
+  - 書き込み速度
+  - 読み出し速度
+  parents:
+  - SEM_P_device
+- id: SEM_P_retention
+  label: データ保持
+  aliases:
+  - 保持特性
+  - リテンション
+  - 書き換え回数
+  parents:
+  - SEM_P_device
+- id: SEM_P_parasitic
+  label: 寄生容量
+  aliases:
+  - 寄生抵抗
+  - 配線容量
+  parents:
+  - SEM_P_device
+- id: SEM_M_process
+  label: 半導体の工程
+  aliases: []
+  parents:
+  - M
+- id: SEM_M_dry_etch
+  label: ドライエッチング
+  aliases:
+  - プラズマエッチング
+  - 反応性イオンエッチング
+  - RIE
+  - エッチング工程
+  - 原子層エッチング
+  parents:
+  - SEM_M_process
+- id: SEM_M_plasma
+  label: プラズマ処理
+  aliases:
+  - プラズマ
+  - 高周波電力
+  - 容量結合
+  - 誘導結合
+  - ICP
+  - 容量結合型
+  - プラズマ密度
+  - プラズマ生成
+  parents:
+  - SEM_M_process
+- id: SEM_M_sputter
+  label: スパッタリング
+  aliases:
+  - スパッタ
+  - スパッタリング法
+  - PVD
+  - 物理蒸着
+  parents:
+  - SEM_M_process
+- id: SEM_M_epitaxy
+  label: エピタキシャル成長
+  aliases:
+  - エピタキシャル
+  - MOCVD
+  - 有機金属気相成長
+  - エピタキシャル層
+  - エピタキシャル膜
+  parents:
+  - SEM_M_process
+- id: SEM_M_anneal
+  label: アニール
+  aliases:
+  - 熱アニール
+  - レーザアニール
+  - 再結晶化
+  - 結晶化
+  parents:
+  - SEM_M_process
+- id: SEM_M_cmp
+  label: 化学機械研磨
+  aliases:
+  - CMP
+  - 研磨
+  - 平坦化
+  parents:
+  - SEM_M_process
+- id: SEM_M_lithography
+  label: フォトリソグラフィ
+  aliases:
+  - 露光
+  - パターニング
+  - リソグラフィ
+  parents:
+  - SEM_M_process
+- id: SEM_M_clean
+  label: 洗浄・乾燥
+  aliases: []
+  parents:
+  - M
+- id: SEM_M_cleaning_liquid
+  label: 洗浄液
+  aliases:
+  - 薬液
+  - 純水
+  - リンス液
+  - リンス
+  - フッ酸
+  - 希フッ酸
+  - オゾン水
+  - 処理液
+  parents:
+  - SEM_M_clean
+- id: SEM_M_single_wafer
+  label: 枚葉式
+  aliases:
+  - スピン洗浄
+  - スピンチャック
+  - 回転保持
+  parents:
+  - SEM_M_clean
+- id: SEM_M_brush
+  label: ブラシ洗浄
+  aliases:
+  - スクラブ洗浄
+  - 二流体
+  - 二流体ノズル
+  parents:
+  - SEM_M_clean
+- id: SEM_M_apparatus
+  label: 処理装置
+  aliases: []
+  parents:
+  - M
+- id: SEM_M_chamber
+  label: 処理容器
+  aliases:
+  - チャンバ
+  - チャンバー
+  - 処理室
+  - 反応室
+  - 真空容器
+  - 処理チャンバ
+  parents:
+  - SEM_M_apparatus
+- id: SEM_M_stage
+  label: 基板保持部
+  aliases:
+  - 載置台
+  - サセプタ
+  - 静電チャック
+  - ステージ
+  - 基板支持部
+  parents:
+  - SEM_M_apparatus
+- id: SEM_M_shower
+  label: シャワーヘッド
+  aliases:
+  - ガス供給部
+  - ガス導入部
+  - ガス吐出
+  parents:
+  - SEM_M_apparatus
+- id: SEM_M_exhaust
+  label: 排気部
+  aliases:
+  - 排気口
+  - 排気装置
+  parents:
+  - SEM_M_apparatus
+- id: SEM_M_heater
+  label: ヒータ
+  aliases:
+  - ヒーター
+  - 加熱部
+  - ランプ加熱
+  parents:
+  - SEM_M_apparatus
+- id: SEM_M_process_gas
+  label: 処理ガス
+  aliases:
+  - プロセスガス
+  - 原料ガス
+  - 反応ガス
+  - エッチングガス
+  - 前駆体ガス
+  - フッ素系ガス
+  - 塩素系ガス
+  parents:
+  - SEM_M_apparatus
+- id: SEM_M_transfer
+  label: 搬送
+  aliases:
+  - 搬送ロボット
+  - ロードロック
+  - 搬送装置
+  parents:
+  - SEM_M_apparatus
+- id: SEM_M_monitor
+  label: 終点検出
+  aliases:
+  - 発光分光
+  - モニタリング
+  - 膜厚測定
+  parents:
+  - SEM_M_apparatus
+- id: SEM_M_film
+  label: 膜・材料
+  aliases: []
+  parents:
+  - M
+- id: SEM_M_silicon
+  label: シリコン
+  aliases:
+  - ポリシリコン
+  - 多結晶シリコン
+  - アモルファスシリコン
+  - シリコン膜
+  - シリコン基板
+  parents:
+  - SEM_M_film
+- id: SEM_M_oxide_semi
+  label: 酸化物半導体
+  aliases:
+  - IGZO
+  - In-Ga-Zn
+  - In−Ga−Zn
+  - In‐Ga‐Zn
+  - InGaZn
+  - 金属酸化物半導体
+  - 酸化物半導体膜
+  - 酸化物半導体層
+  parents:
+  - SEM_M_film
+- id: SEM_M_wide_gap
+  label: ワイドバンドギャップ半導体
+  aliases:
+  - SiC
+  - GaN
+  - 炭化珪素
+  - 窒化ガリウム
+  - 窒化物半導体
+  parents:
+  - SEM_M_film
+- id: SEM_M_dielectric
+  label: 絶縁膜
+  aliases:
+  - 誘電体膜
+  - 誘電体
+  - 層間絶縁膜
+  - 酸化シリコン
+  - 窒化シリコン
+  - 酸化膜
+  - 窒化膜
+  - 高誘電率
+  - high-k
+  - high−k
+  - high‐k
+  - highk
+  parents:
+  - SEM_M_film
+- id: SEM_M_gate_insulator
+  label: ゲート絶縁膜
+  aliases:
+  - ゲート絶縁層
+  parents:
+  - SEM_M_film
+- id: SEM_M_wiring
+  label: 配線
+  aliases:
+  - 金属膜
+  - 導電膜
+  - 導電層
+  - 電極層
+  - 銅配線
+  - バリアメタル
+  - 配線層
+  parents:
+  - SEM_M_film
+- id: SEM_M_mask
+  label: マスク
+  aliases:
+  - ハードマスク
+  - レジスト
+  - フォトレジスト
+  - エッチングマスク
+  - レジスト膜
+  parents:
+  - SEM_M_film
+- id: SEM_M_device
+  label: 素子の構造
+  aliases: []
+  parents:
+  - M
+- id: SEM_M_gate
+  label: ゲート電極
+  aliases:
+  - ゲート
+  parents:
+  - SEM_M_device
+- id: SEM_M_source_drain
+  label: ソース電極
+  aliases:
+  - ドレイン電極
+  - ソース領域
+  - ドレイン領域
+  - ソース
+  - ドレイン
+  parents:
+  - SEM_M_device
+- id: SEM_M_channel
+  label: チャネル形成領域
+  aliases:
+  - チャネル
+  - チャネル領域
+  - チャネル長
+  - チャネル幅
+  parents:
+  - SEM_M_device
+- id: SEM_M_tft_type
+  label: トップゲート型
+  aliases:
+  - ボトムゲート型
+  - ボトムゲート
+  - トップゲート
+  parents:
+  - SEM_M_device
+- id: SEM_M_capacitor
+  label: キャパシタ
+  aliases:
+  - 容量素子
+  - 静電容量
+  parents:
+  - SEM_M_device
+- id: SEM_M_cell_array
+  label: メモリセル
+  aliases:
+  - メモリセルアレイ
+  - 3次元NAND
+  - 積層型メモリ
+  parents:
+  - SEM_M_device
+- id: SEM_M_bitline
+  label: ビット線
+  aliases:
+  - ワード線
+  parents:
+  - SEM_M_device
+- id: SEM_M_charge_storage
+  label: 電荷蓄積層
+  aliases:
+  - 浮遊ゲート
+  - フローティングゲート
+  - 電荷トラップ
+  parents:
+  - SEM_M_device
+- id: SEM_M_contact
+  label: コンタクトホール
+  aliases:
+  - ビア
+  - トレンチ
+  - コンタクトプラグ
+  parents:
+  - SEM_M_device
+- id: SEM_M_pecvd
+  label: プラズマCVD
+  aliases:
+  - PECVD
+  - プラズマ化学気相成長
+  parents:
+  - M_vapor_phase
+- id: SEM_M_ald
+  label: 原子層堆積
+  aliases:
+  - ALD
+  - 原子層成長
+  parents:
+  - M_vapor_phase
+- id: SEM_M_ion_implant
+  label: イオン注入
+  aliases:
+  - 不純物添加
+  - ドーピング
+  parents:
+  - M_doping
+- id: SEM_M_drying
+  label: スピン乾燥
+  aliases:
+  - IPA
+  - イソプロピルアルコール
+  - 超臨界乾燥
+  - 置換乾燥
+  parents:
+  - M_drying
+- id: SEM_U_memory
+  label: 半導体メモリ
+  aliases:
+  - メモリ
+  - DRAM
+  - SRAM
+  - フラッシュメモリ
+  - NAND
+  - 不揮発性メモリ
+  - 記憶装置
+  parents:
+  - U_electronics
+- id: SEM_U_display
+  label: 表示装置
+  aliases:
+  - ディスプレイ
+  - 液晶表示装置
+  - 有機EL
+  - 画素
+  - 液晶ディスプレイ
+  parents:
+  - U_electronics
+- id: SEM_U_logic
+  label: 論理回路
+  aliases:
+  - CPU
+  - プロセッサ
+  - 集積回路
+  - 演算回路
+  parents:
+  - U_electronics
+- id: SEM_U_power
+  label: パワーデバイス
+  aliases:
+  - パワー半導体
+  - パワートランジスタ
+  - HEMT
+  - 高電子移動度トランジスタ
+  parents:
+  - U_electronics
+- id: SEM_U_led
+  label: 発光素子
+  aliases:
+  - LED
+  - 発光ダイオード
+  - 半導体レーザ
+  parents:
+  - U_electronics
+- id: SEM_U_image_sensor
+  label: イメージセンサ
+  aliases:
+  - 撮像素子
+  - 撮像装置
+  - 受光素子
+  parents:
+  - U_electronics

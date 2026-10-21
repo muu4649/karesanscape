@@ -1,0 +1,305 @@
+# 金属有機構造体（MOF）／多孔性配位高分子（PCP）特許用オントロジー v0.1
+# 上位型は 課題（P）／解決手段（M）／用途（U）の 3 つ。上位型だけを共有する概念どうしの類似度は 0。
+# 中間概念（例: 安定性の課題、有機配位子の設計、ガス分離）で同じ種類をまとめ、兄弟どうしが 0.5 以上になるよう 3〜4 段にしている。
+# 英数字を含む別名には、全角英数字とハイフン違い（− U+2212、－ U+FF0D、‐ U+2010）の表記を自動で足している（特許本文は全角が多いため）。
+# 手で別名を足すときは、全角表記も同じ並びで足すこと（本文の正規化はしていないため）。
+version: "mof-0.1"
+
+top_types:
+  - {id: P, label: 課題}
+  - {id: M, label: 解決手段}
+  - {id: U, label: 用途}
+
+# 述語。group が同じなら 0.7、polarity が逆なら 0、それ以外は 0.2。
+predicates:
+  - {id: addresses, label: "解決する（手段→課題）", group: reduce, polarity: -1}
+  - {id: suppresses, label: "抑制する（手段→課題。辞書抽出器の互換用）", group: reduce, polarity: -1}
+  - {id: prevents, label: "防止する（手段→課題。辞書抽出器の互換用）", group: reduce, polarity: -1}
+  - {id: causes, label: "引き起こす（手段→課題。副作用）", group: induce, polarity: 1}
+  - {id: degrades, label: "劣化させる（課題→手段。辞書抽出器の互換用）", group: induce, polarity: 1}
+  - {id: used_for, label: "用途に使われる（手段→用途）", group: apply, polarity: 0}
+  - {id: applied_to, label: "適用される（手段→用途。辞書抽出器の互換用）", group: apply, polarity: 0}
+  - {id: arises_in, label: "用途で問題になる（課題→用途）", group: locate, polarity: 0}
+  - {id: occurs_in, label: "生じる場所（課題→用途。辞書抽出器の互換用）", group: locate, polarity: 0}
+  - {id: composed_of, label: "構成要素として含む（手段→手段。材料が金属種・配位子・構造を持つ）", group: compose, polarity: 0}
+  - {id: made_by, label: "製造される（手段→手段。材料・成形体が合成法・後処理で作られる）", group: make, polarity: 0}
+
+concepts:
+  # ---- 課題 ----
+  - {id: P_stability, label: "安定性の課題", aliases: ["安定性", "耐久性", "長期安定性", "保存安定性"], parents: [P]}
+  - {id: P_water_stab, label: "耐水性", aliases: ["水安定性", "耐湿性", "湿度安定性", "耐加水分解性", "水蒸気安定性", "水に対する安定性", "水分に対する安定性", "水存在下での安定性", "水中での安定性", "耐水安定性", "感湿性", "加水分解を受けやす", "加水分解され", "水蒸気により分解", "水分により分解", "湿気により分解"], parents: [P_stability]}
+  - {id: P_thermal_stab, label: "熱安定性", aliases: ["耐熱性", "熱的安定性", "高温安定性", "高温下での安定性", "熱分解温度", "耐熱温度", "広い温度域", "熱により吸着材が損傷"], parents: [P_stability]}
+  - {id: P_chem_stab, label: "化学的安定性", aliases: ["化学安定性", "耐酸性", "耐アルカリ性", "耐塩基性", "耐薬品性", "耐溶剤性", "酸性条件下での安定性"], parents: [P_stability]}
+  - {id: P_struct_collapse, label: "骨格の崩壊", aliases: ["構造崩壊", "構造の崩壊", "結晶構造の崩壊", "細孔構造の崩壊", "細孔の崩壊", "骨格構造の維持", "細孔構造の維持", "結晶性の低下", "細孔維持"], parents: [P_stability]}
+  - {id: P_cycle, label: "繰り返し耐久性", aliases: ["繰り返し安定性", "繰り返し使用", "繰返し使用", "何回でも使用", "サイクル安定性", "サイクル特性", "再生使用", "再利用性"], parents: [P_stability]}
+  - {id: P_adsorption, label: "吸着性能の課題", aliases: ["効率的に吸着", "効率よく吸着", "吸着効率", "吸着性に優れ"], parents: [P]}
+  - {id: P_capacity, label: "吸着量", aliases: ["吸着容量", "吸蔵量", "吸蔵能", "吸着能", "ガス吸蔵能", "貯蔵量", "貯蔵容量", "吸着能力", "吸蔵能力", "吸蔵容量", "取込量", "吸着力", "有効に貯蔵", "高密度に吸着", "実用的なレベルで吸着", "効率的に貯蔵", "効率的に水素", "吸湿能力"], parents: [P_adsorption]}
+  - {id: P_working_cap, label: "有効吸着量", aliases: ["有効吸蔵量", "有効貯蔵量", "ワーキングキャパシティ", "working capacity", "ｗｏｒｋｉｎｇ ｃａｐａｃｉｔｙ", "workingcapacity"], parents: [P_capacity]}
+  - {id: P_selectivity, label: "吸着選択性", aliases: ["選択吸着性", "分離選択性", "選択性", "分離係数", "分離性能", "分離能", "選択的吸着性", "選択吸着能", "効率的かつ選択的", "分子サイズに応じて", "分離が困難", "十分に分離できない", "分離困難"], parents: [P_adsorption]}
+  - {id: P_kinetics, label: "吸脱着速度", aliases: ["吸着速度", "脱着速度", "脱離速度", "拡散速度", "吸着脱着速度", "吸蔵速度", "放出速度"], parents: [P_adsorption]}
+  - {id: P_regen_energy, label: "再生エネルギー", aliases: ["脱着エネルギー", "脱離エネルギー", "脱離性能", "脱離特性", "脱着性", "効率良く脱離", "効率よく脱離", "再生温度", "消費エネルギー", "エネルギー消費量", "エネルギー消費", "省エネルギー", "再生に要するエネルギー", "減圧することなく"], parents: [P_adsorption]}
+  - {id: P_hysteresis, label: "吸脱着ヒステリシス", aliases: ["ヒステリシス", "吸着脱着ヒステリシス"], parents: [P_adsorption]}
+  - {id: P_low_pressure, label: "低圧域での吸着", aliases: ["低圧での吸着", "低濃度での吸着", "希薄ガスの吸着", "低分圧"], parents: [P_adsorption]}
+  - {id: P_adsorption_prop, label: "吸脱着特性", aliases: ["吸着特性", "吸着性能", "ガス吸着性能", "吸脱着性能", "吸着等温線", "ガス吸蔵特性", "吸蔵特性", "吸着熱", "吸着エンタルピー"], parents: [P_adsorption]}
+  - {id: P_guest, label: "包接・放出の課題", parents: [P]}
+  - {id: P_loading, label: "担持量", aliases: ["担持率", "内包量", "含浸量", "封入量", "保持量", "包接量", "高濃度で含浸", "担持密度", "含有率"], parents: [P_guest]}
+  - {id: P_release, label: "徐放性", aliases: ["徐放効果", "放出制御", "持続的な放出", "長期間に亘り持続", "長期間持続", "放出の持続", "揮散の制御"], parents: [P_guest]}
+  - {id: P_retention, label: "担持物の脱落", aliases: ["脱落", "脱離しにく", "剥離", "剥がれ", "漏出", "溶出", "リーチング", "分解物", "混入するリスク"], parents: [P_guest]}
+  - {id: P_device, label: "装置・運転の課題", parents: [P]}
+  - {id: P_compact, label: "装置の小型化", aliases: ["小型化", "装置が大型化", "大型化", "省スペース", "コンパクト化"], parents: [P_device]}
+  - {id: P_heat_gen, label: "吸着熱・反応熱による温度上昇", aliases: ["温度が上昇", "発熱反応", "局所的に温度", "ホットスポット", "温度上昇"], parents: [P_device]}
+  - {id: P_heat_transfer, label: "伝熱性", aliases: ["熱伝導率", "熱伝導性", "伝熱効率", "熱交換効率", "熱交換の必要性"], parents: [P_device]}
+  - {id: P_safety, label: "安全性", aliases: ["安全かつ", "安全に使用", "生体に危害", "人体への影響"], parents: [P_device]}
+  - {id: P_operability, label: "操作性", aliases: ["簡便ではない", "切替時間", "運転効率", "メンテナンス"], parents: [P_device]}
+  - {id: P_contamination, label: "汚染・ガス発生の課題", parents: [P]}
+  - {id: P_outgas, label: "ガスの発生", aliases: ["ガスが発生", "ガス発生", "アウトガス", "アンモニアが発生", "発生したアンモニア", "揮発成分"], parents: [P_contamination]}
+  - {id: P_corrosion, label: "腐食・変色", aliases: ["腐食", "脱色", "変色", "黄変", "着色"], parents: [P_contamination]}
+  - {id: P_delivery, label: "送達性能", aliases: ["標的送達", "送達効率", "治療効果", "生体適合性", "細胞毒性", "体内動態", "薬剤耐性"], parents: [P_guest]}
+  - {id: P_production, label: "製造の課題", aliases: ["簡便に製造", "容易に製造", "効率よく製造", "効率的に製造", "製造効率", "生産性", "簡便な方法", "簡易な方法", "保護剤を使用せず", "工程数", "少ない工程"], parents: [P]}
+  - {id: P_yield, label: "収率", aliases: ["歩留まり", "収量", "高収率", "低収率", "空時収量", "時空収量"], parents: [P_production]}
+  - {id: P_cost, label: "製造コスト", aliases: ["コスト", "低コスト", "安価", "原料コスト", "経済性", "高価"], parents: [P_production]}
+  - {id: P_scaleup, label: "量産性", aliases: ["スケールアップ", "大量合成", "大量生産", "大量に製造", "工業的規模", "工業的に製造", "工業的生産", "大規模製造", "量産", "規模化"], parents: [P_production]}
+  - {id: P_solvent, label: "溶媒の負荷", aliases: ["多量の有機溶媒", "有機溶媒の使用量", "溶媒を用いることなく", "溶媒を使用せず", "溶媒を用いずに", "溶媒使用量", "環境負荷", "有害な溶媒", "溶媒の使用", "廃溶媒"], parents: [P_production]}
+  - {id: P_synth_time, label: "合成時間", aliases: ["製造時間", "反応時間", "長時間", "短時間", "結晶化時間", "迅速", "超高速"], parents: [P_production]}
+  - {id: P_morph_control, label: "結晶形態の制御", aliases: ["結晶子寸法", "結晶子サイズ", "サイズ及び形状", "形態制御", "粒子サイズの制御"], parents: [P_production]}
+  - {id: P_purity, label: "純度", aliases: ["副生成物", "不純物", "溶媒残留物", "残留溶媒", "未反応物", "遊離配位子", "高純度", "相純度", "単一相"], parents: [P_production]}
+  - {id: P_reproducibility, label: "再現性", aliases: ["安定して連続的", "品質のばらつき", "ばらつき", "均質性", "再現よく"], parents: [P_production]}
+  - {id: P_processing, label: "成形・加工の課題", parents: [P]}
+  - {id: P_powder, label: "粉体の取扱い", aliases: ["粉末状", "取扱性", "取り扱い性", "ハンドリング性", "ハンドリング", "飛散", "粉立ち", "圧力損失", "目詰まり", "充填性", "嵩密度"], parents: [P_processing]}
+  - {id: P_strength, label: "成形体の強度", aliases: ["機械的強度", "強度", "圧縮強度", "圧壊強度", "耐摩耗性", "耐衝撃性", "崩壊しにく", "形状保持性", "可撓性", "柔軟性の付与", "力学的性能"], parents: [P_processing]}
+  - {id: P_film, label: "膜化", aliases: ["成膜性", "製膜性", "薄膜化", "膜の均一性", "ピンホール", "欠陥のない膜", "緻密な膜", "連続膜", "膜厚の制御", "膜の形成", "クラック", "ひび割れ"], parents: [P_processing]}
+  - {id: P_dispersion, label: "分散性", aliases: ["相溶性", "凝集", "均一分散性", "均一な分布", "均一に分布", "均一に分散", "界面の欠陥", "界面欠陥", "界面密着性", "密着性", "固着性"], parents: [P_processing]}
+  - {id: P_curing, label: "硬化性", aliases: ["熱硬化性", "低温硬化", "硬化温度"], parents: [P_processing]}
+  - {id: P_perf_loss, label: "成形による性能低下", aliases: ["比表面積の低下", "吸着性能の低下", "性能の低下", "細孔の閉塞", "細孔閉塞", "活性の低下"], parents: [P_processing]}
+  - {id: P_function, label: "機能性能の課題", aliases: ["高性能", "高機能", "機能や性能"], parents: [P]}
+  - {id: P_electronic, label: "電子・光機能の課題", parents: [P_function]}
+  - {id: P_conductivity, label: "導電性", aliases: ["電気伝導性", "電子伝導性", "電気伝導度", "電気抵抗", "導電率", "電荷移動"], parents: [P_electronic]}
+  - {id: P_ion_cond, label: "イオン伝導性", aliases: ["イオン伝導度", "プロトン伝導性", "プロトン伝導度", "リチウムイオン伝導性", "イオン導電性"], parents: [P_electronic]}
+  - {id: P_optical, label: "発光特性", aliases: ["発光強度", "発光効率", "量子収率", "蛍光強度", "光応答性", "光吸収", "色調"], parents: [P_electronic]}
+  - {id: P_battery, label: "電池性能", aliases: ["容量維持率", "充放電", "酸化分解", "還元分解", "電解液の分解", "出力特性", "レート特性", "放電容量", "エネルギー密度", "デンドライト", "電池寿命", "抵抗が高く", "挿入脱離効率", "内部抵抗"], parents: [P_electronic]}
+  - {id: P_dielectric, label: "誘電特性", aliases: ["誘電率", "低誘電率", "絶縁性"], parents: [P_electronic]}
+  - {id: P_catalytic, label: "触媒性能の課題", parents: [P_function]}
+  - {id: P_cat_activity, label: "触媒活性", aliases: ["触媒作用の高い", "触媒性能", "触媒能", "反応活性", "転化率", "ターンオーバー数", "活性点", "活性部位"], parents: [P_catalytic]}
+  - {id: P_cat_selectivity, label: "反応選択性", aliases: ["生成物選択性", "選択的に生成", "選択率"], parents: [P_catalytic]}
+  - {id: P_cat_life, label: "触媒寿命", aliases: ["触媒の劣化", "触媒が劣化", "失活", "触媒の再利用", "触媒の回収"], parents: [P_catalytic]}
+  - {id: P_sensing, label: "検知性能の課題", parents: [P_function]}
+  - {id: P_sensitivity, label: "検知感度", aliases: ["検出感度", "感度", "検出限界", "検知精度", "応答速度", "応答性", "応答特性", "微量検出", "選択的に検知"], parents: [P_sensing]}
+  # ---- 解決手段 ----
+  - {id: M_metal, label: "金属種の選択", parents: [M]}
+  - {id: M_metal_main, label: "典型金属", aliases: ["アルカリ金属", "アルカリ土類金属", "第２族金属", "第2族金属", "典型金属元素"], parents: [M_metal]}
+  - {id: M_mg, label: "マグネシウム", aliases: ["マグネシウムイオン", "Mg2+", "Ｍｇ２＋", "Mg-MOF", "Mg−MOF", "Mg‐MOF", "Ｍｇ−ＭＯＦ", "Ｍｇ－ＭＯＦ"], parents: [M_metal_main]}
+  - {id: M_al, label: "アルミニウム", aliases: ["アルミニウムイオン", "Al3+", "Ａｌ３＋", "Al-MOF", "Al−MOF", "Al‐MOF", "Ａｌ−ＭＯＦ", "Ａｌ－ＭＯＦ"], parents: [M_metal_main]}
+  - {id: M_ca, label: "カルシウム", aliases: ["カルシウムイオン", "Ca2+", "Ｃａ２＋"], parents: [M_metal_main]}
+  - {id: M_alkali, label: "アルカリ金属イオン", aliases: ["カリウムイオン", "ナトリウムイオン", "セシウムイオン", "ルビジウムイオン"], parents: [M_metal_main]}
+  - {id: M_metal_tm, label: "遷移金属", aliases: ["遷移金属イオン", "第一遷移金属", "後周期遷移金属"], parents: [M_metal]}
+  - {id: M_cu, label: "銅イオン", aliases: ["銅塩", "銅錯体", "銅(II)", "銅（ＩＩ）", "Cu2+", "Ｃｕ２＋", "Cu(II)", "Ｃｕ（ＩＩ）", "二価銅", "銅パドルホイール"], parents: [M_metal_tm]}
+  - {id: M_zn, label: "亜鉛", aliases: ["亜鉛イオン", "亜鉛クラスター", "亜鉛クラスターイオン", "Zn2+", "Ｚｎ２＋", "Zn(II)", "Ｚｎ（ＩＩ）"], parents: [M_metal_tm]}
+  - {id: M_fe, label: "鉄イオン", aliases: ["鉄塩", "鉄錯体", "鉄(III)", "鉄（ＩＩＩ）", "鉄(II)", "鉄（ＩＩ）", "Fe3+", "Ｆｅ３＋", "Fe2+", "Ｆｅ２＋", "Fe(III)", "Ｆｅ（ＩＩＩ）"], parents: [M_metal_tm]}
+  - {id: M_cr, label: "クロム", aliases: ["クロムイオン", "Cr3+", "Ｃｒ３＋", "Cr(III)", "Ｃｒ（ＩＩＩ）"], parents: [M_metal_tm]}
+  - {id: M_co, label: "コバルト", aliases: ["コバルトイオン", "Co2+", "Ｃｏ２＋", "Co(II)", "Ｃｏ（ＩＩ）"], parents: [M_metal_tm]}
+  - {id: M_ni, label: "ニッケル", aliases: ["ニッケルイオン", "Ni2+", "Ｎｉ２＋", "Ni(II)", "Ｎｉ（ＩＩ）"], parents: [M_metal_tm]}
+  - {id: M_mn, label: "マンガン", aliases: ["マンガンイオン", "Mn2+", "Ｍｎ２＋", "Mn(II)", "Ｍｎ（ＩＩ）"], parents: [M_metal_tm]}
+  - {id: M_metal_g4, label: "第４族金属", aliases: ["第4族金属", "４価金属", "4価金属", "高原子価金属"], parents: [M_metal]}
+  - {id: M_zr, label: "ジルコニウム", aliases: ["ジルコニウムイオン", "ジルコニウム含有", "ジルコニウムクラスター", "Zr4+", "Ｚｒ４＋", "Zr6", "Ｚｒ６", "Zr-MOF", "Zr−MOF", "Zr‐MOF", "Ｚｒ−ＭＯＦ", "Ｚｒ－ＭＯＦ", "オキシ塩化ジルコニウム", "塩化ジルコニウム"], parents: [M_metal_g4]}
+  - {id: M_ti, label: "チタン", aliases: ["チタンイオン", "Ti4+", "Ｔｉ４＋", "Ti-MOF", "Ti−MOF", "Ti‐MOF", "Ｔｉ−ＭＯＦ", "Ｔｉ－ＭＯＦ", "チタンオキソクラスター"], parents: [M_metal_g4]}
+  - {id: M_hf, label: "ハフニウム", aliases: ["ハフニウムイオン", "Hf4+", "Ｈｆ４＋"], parents: [M_metal_g4]}
+  - {id: M_metal_re, label: "希土類金属", aliases: ["希土類", "ランタノイド", "希土類元素", "ランタニド"], parents: [M_metal]}
+  - {id: M_ln, label: "ランタノイドイオン", aliases: ["ユウロピウム", "テルビウム", "ランタン", "セリウムイオン", "Eu3+", "Ｅｕ３＋", "Tb3+", "Ｔｂ３＋"], parents: [M_metal_re]}
+  - {id: M_bi, label: "ビスマス", aliases: ["ビスマス含有", "ビスマスイオン"], parents: [M_metal]}
+  - {id: M_metal_cluster, label: "金属クラスター", aliases: ["金属クラスターイオン", "二次構造単位", "SBU", "ＳＢＵ", "パドルホイール", "オキソクラスター", "Zn4O", "Ｚｎ４Ｏ", "Ｚｎ<sub>4</sub>Ｏ", "Ｚｎ＜ｓｕｂ＞４＜／ｓｕｂ＞Ｏ", "金属オキソクラスター"], parents: [M_metal]}
+  - {id: M_bimetal, label: "異種金属の併用", aliases: ["二種類の金属", "2種の金属", "２種の金属", "バイメタル", "混合金属", "金属の一部を置換", "金属置換", "ドープ", "ドーピング", "骨格外にカルシウム"], parents: [M_metal]}
+  - {id: M_ligand, label: "有機配位子の設計", parents: [M]}
+  - {id: M_lig_carbox, label: "カルボン酸系配位子", aliases: ["カルボン酸配位子", "カルボキシレート配位子", "アリールカルボキシレート", "ポリカルボン酸", "ジカルボン酸", "トリカルボン酸", "トリカルボン酸イオン", "テトラカルボン酸", "芳香族カルボン酸", "カルボキシル基", "多座配位子", "芳香族アニオン"], parents: [M_ligand]}
+  - {id: M_bdc, label: "テレフタル酸", aliases: ["ベンゼンジカルボン酸", "ベンゼンジカルボキシレート", "1,4-ベンゼンジカルボン酸", "1,4−ベンゼンジカルボン酸", "1,4‐ベンゼンジカルボン酸", "１，４−ベンゼンジカルボン酸", "１，４－ベンゼンジカルボン酸", "テレフタル酸イオン", "BDC", "ＢＤＣ"], parents: [M_lig_carbox]}
+  - {id: M_btc, label: "トリメシン酸", aliases: ["ベンゼントリカルボン酸", "ベンゼントリカルボキシレート", "1,3,5-ベンゼントリカルボン酸", "1,3,5−ベンゼントリカルボン酸", "1,3,5‐ベンゼントリカルボン酸", "１，３，５−ベンゼントリカルボン酸", "１，３，５－ベンゼントリカルボン酸", "BTC", "ＢＴＣ"], parents: [M_lig_carbox]}
+  - {id: M_dobdc, label: "ジヒドロキシテレフタル酸", aliases: ["２，５−ジヒドロキシテレフタル酸", "2,5-ジヒドロキシテレフタル酸", "2,5−ジヒドロキシテレフタル酸", "2,5‐ジヒドロキシテレフタル酸", "２，５－ジヒドロキシテレフタル酸", "dobdc", "ｄｏｂｄｃ", "DOBDC", "ＤＯＢＤＣ", "dhtp", "ｄｈｔｐ"], parents: [M_lig_carbox]}
+  - {id: M_fumarate, label: "フマル酸", aliases: ["フマル酸イオン", "フマレート"], parents: [M_lig_carbox]}
+  - {id: M_bpdc, label: "ビフェニルジカルボン酸", aliases: ["ビフェニルジカルボキシレート", "BPDC", "ＢＰＤＣ"], parents: [M_lig_carbox]}
+  - {id: M_ndc, label: "ナフタレンジカルボン酸", aliases: ["ナフタレンジカルボキシレート"], parents: [M_lig_carbox]}
+  - {id: M_adc, label: "アセチレンジカルボン酸", aliases: ["アセチレンジカルボキシレート", "−ＯＯＣ−Ｃ≡Ｃ−ＣＯＯ", "OOC-C≡C-COO", "OOC−C≡C−COO", "OOC‐C≡C‐COO", "ＯＯＣ−Ｃ≡Ｃ−ＣＯＯ", "ＯＯＣ－Ｃ≡Ｃ－ＣＯＯ"], parents: [M_lig_carbox]}
+  - {id: M_isophthal, label: "イソフタル酸", aliases: ["イソフタル酸イオン", "5-置換イソフタル酸", "5−置換イソフタル酸", "5‐置換イソフタル酸", "５−置換イソフタル酸", "５－置換イソフタル酸"], parents: [M_lig_carbox]}
+  - {id: M_lig_azole, label: "アゾール系配位子", aliases: ["アゾレート配位子", "含窒素複素環配位子", "アゾール配位子"], parents: [M_ligand]}
+  - {id: M_imidazole, label: "イミダゾール系配位子", aliases: ["イミダゾール", "イミダゾレート", "メチルイミダゾール", "2-メチルイミダゾール", "2−メチルイミダゾール", "2‐メチルイミダゾール", "２−メチルイミダゾール", "２－メチルイミダゾール", "イミダゾール骨格", "ベンズイミダゾール", "ビスイミダゾール", "ビスイミダゾールブタン"], parents: [M_lig_azole]}
+  - {id: M_triazole, label: "トリアゾール系配位子", aliases: ["トリアゾール", "トリアゾレート", "テトラゾール", "テトラゾレート"], parents: [M_lig_azole]}
+  - {id: M_pyrazole, label: "ピラゾール系配位子", aliases: ["ピラゾール", "ピラゾレート", "ピラゾールジカルボン酸"], parents: [M_lig_azole]}
+  - {id: M_lig_neutral, label: "含窒素中性配位子", aliases: ["ピリジン系配位子", "ピリジル基"], parents: [M_ligand]}
+  - {id: M_pyrazine, label: "ピラジン", aliases: ["ピラジン配位子"], parents: [M_lig_neutral]}
+  - {id: M_bipyridine, label: "ビピリジン", aliases: ["4,4'-ビピリジン", "4,4'−ビピリジン", "4,4'‐ビピリジン", "４，４＇−ビピリジン", "４，４＇－ビピリジン", "ビピリジル", "bpy", "ｂｐｙ"], parents: [M_lig_neutral]}
+  - {id: M_dabco, label: "ジアザビシクロオクタン", aliases: ["DABCO", "ＤＡＢＣＯ", "トリエチレンジアミン"], parents: [M_lig_neutral]}
+  - {id: M_lig_cyano, label: "シアノ架橋配位子", aliases: ["シアノ錯体", "シアン化物イオン", "シアノ基", "テトラシアノ", "ヘキサシアノ"], parents: [M_ligand]}
+  - {id: M_lig_func, label: "官能基の付与", aliases: ["官能基を有する配位子", "官能基化", "官能性金属有機骨格"], parents: [M_ligand]}
+  - {id: M_amino, label: "アミノ基", aliases: ["アミノテレフタル酸", "アミノ基含有", "-NH2", "−NH2", "‐NH2", "−ＮＨ２", "－ＮＨ２", "NH2-", "NH2−", "NH2‐", "ＮＨ２−", "ＮＨ２－"], parents: [M_lig_func]}
+  - {id: M_hydroxy, label: "水酸基", aliases: ["ヒドロキシ基", "水酸基が導入", "フェノール性水酸基"], parents: [M_lig_func]}
+  - {id: M_sulfo, label: "スルホン酸基", aliases: ["スルホ基", "スルホン酸"], parents: [M_lig_func]}
+  - {id: M_amide, label: "アミド基", aliases: ["アミド結合", "アミド基を有する"], parents: [M_lig_func]}
+  - {id: M_fluoro, label: "含フッ素配位子", aliases: ["フッ素化配位子", "フルオロ基", "パーフルオロ", "トリフルオロメチル基", "SIFSIX", "ＳＩＦＳＩＸ"], parents: [M_lig_func]}
+  - {id: M_nitro, label: "ニトロ基", aliases: ["ニトロ基含有"], parents: [M_lig_func]}
+  - {id: M_photoreactive, label: "光反応性部位", aliases: ["光反応性", "光照射により", "光照射することにより", "フォトクロミック配位子", "アゾベンゼン"], parents: [M_lig_func]}
+  - {id: M_hydride, label: "ヒドリド供与基", aliases: ["ヒドリド", "NADH類似", "ＮＡＤＨ類似"], parents: [M_lig_func]}
+  - {id: M_mixed_lig, label: "混合配位子", aliases: ["第２有機配位子", "第2有機配位子", "第２の配位子", "第2の配位子", "異なる有機配位子", "異種の有機配位子", "複数種の配位子", "マルチバリエイト", "第１有機配位子"], parents: [M_ligand]}
+  - {id: M_lig_bio, label: "生体由来配位子", aliases: ["生体分子配位子"], parents: [M_ligand]}
+  - {id: M_cyclodextrin, label: "シクロデキストリン", aliases: ["CD-MOF", "CD−MOF", "CD‐MOF", "ＣＤ−ＭＯＦ", "ＣＤ－ＭＯＦ", "シクロデキストリン金属有機構造体", "γ-シクロデキストリン"], parents: [M_lig_bio]}
+  - {id: M_aminoacid, label: "アミノ酸配位子", aliases: ["ペプチド", "アミノ酸"], parents: [M_lig_bio]}
+  - {id: M_porphyrin, label: "ポルフィリン", aliases: ["ポルフィリン配位子", "金属ポルフィリン", "フタロシアニン"], parents: [M_ligand]}
+  - {id: M_framework, label: "骨格・細孔設計", parents: [M]}
+  - {id: M_pore_size, label: "細孔径の制御", aliases: ["細孔径", "細孔口径", "細孔サイズ", "細孔容積", "孔径", "開口径", "窓径", "細孔の大きさ", "細孔の空間構造", "ミクロ孔", "メソ孔", "階層的細孔"], parents: [M_framework]}
+  - {id: M_open_metal, label: "配位不飽和金属サイト", aliases: ["オープンメタルサイト", "不飽和金属サイト", "露出金属サイト", "配位不飽和サイト", "open metal site", "ｏｐｅｎ ｍｅｔａｌ ｓｉｔｅ", "openmetalsite"], parents: [M_framework]}
+  - {id: M_defect, label: "欠陥導入", aliases: ["欠陥構造", "欠損サイト", "配位子欠損", "欠陥サイト", "欠陥を導入", "クラスター欠損"], parents: [M_framework]}
+  - {id: M_flexible, label: "柔軟構造", aliases: ["ゲート吸着", "ゲート型吸着", "構造変化", "構造転移", "動的構造", "柔軟性を有する", "フレキシブル", "呼吸現象", "ブリージング", "スピンクロスオーバー"], parents: [M_framework]}
+  - {id: M_interpenetration, label: "相互貫入構造", aliases: ["相互貫入", "相互侵入", "二重貫入", "インターペネトレーション"], parents: [M_framework]}
+  - {id: M_crystal_spec, label: "結晶構造の特定", aliases: ["結晶構造", "Ｘ線回折", "X線回折", "ＸＲＤ", "XRD", "ブラッグ角", "回折ピーク", "ピーク強度", "回折強度", "強度比", "単位格子", "トポロジー", "空間群"], parents: [M_framework]}
+  - {id: M_amorphous, label: "非晶質化", aliases: ["非晶質", "アモルファス", "ガラス化", "溶融", "非晶質の金属有機構造体", "MOFガラス", "ＭＯＦガラス"], parents: [M_framework]}
+  - {id: M_layered, label: "層状構造", aliases: ["二次元", "層状", "ナノシート", "二次元シート", "積層構造"], parents: [M_framework]}
+  - {id: M_guest_site, label: "細孔表面の化学修飾", aliases: ["細孔表面", "細孔内表面", "細孔内の官能基", "吸着サイト", "親水性細孔", "疎水性細孔", "疎水性", "親水性"], parents: [M_framework]}
+  - {id: M_synthesis, label: "合成法", parents: [M]}
+  - {id: M_solvothermal, label: "ソルボサーマル合成", aliases: ["ソルボサーマル", "ソルボサーマル法", "溶媒熱合成", "水熱合成", "ハイドロサーマル", "水熱法", "オートクレーブ"], parents: [M_synthesis]}
+  - {id: M_aqueous, label: "水系合成", aliases: ["水系溶媒", "水を溶媒", "水溶媒", "水中で合成", "水溶液中で", "グリーン合成"], parents: [M_synthesis]}
+  - {id: M_mild, label: "温和条件合成", aliases: ["室温合成", "室温で合成", "常温常圧", "常温で", "室温で反応", "常圧下"], parents: [M_synthesis]}
+  - {id: M_mechano, label: "機械化学合成", aliases: ["メカノケミカル", "ボールミル", "ボールミリング", "無溶媒合成", "無溶媒", "固相合成", "混練", "粉砕混合", "押出合成"], parents: [M_synthesis]}
+  - {id: M_flow, label: "連続フロー合成", aliases: ["マイクロリアクター", "マイクロリアクタ", "連続フロー", "フロー合成", "連続的に製造", "連続合成", "流通式", "連続的に複合型", "連続式"], parents: [M_synthesis]}
+  - {id: M_microwave, label: "マイクロ波合成", aliases: ["マイクロ波", "マイクロ波照射", "マイクロ波加熱"], parents: [M_synthesis]}
+  - {id: M_ultrasound, label: "超音波合成", aliases: ["超音波照射", "超音波処理", "ソノケミカル"], parents: [M_synthesis]}
+  - {id: M_spray, label: "噴霧乾燥合成", aliases: ["噴霧乾燥", "スプレードライ", "スプレードライヤー", "噴霧"], parents: [M_synthesis]}
+  - {id: M_electro_synth, label: "電気化学合成", aliases: ["電解合成", "電着", "陽極溶解"], parents: [M_synthesis]}
+  - {id: M_modulator, label: "モジュレーター", aliases: ["モジュレータ", "結晶成長調整剤", "調整剤", "安息香酸", "単座配位子の添加", "酸添加"], parents: [M_synthesis]}
+  - {id: M_precursor, label: "原料の選択", aliases: ["金属塩", "金属源", "原料混合液", "金属酸化物原料", "金属水酸化物", "金属アルコキシド", "前駆体溶液", "配位子溶液", "金属イオン溶液"], parents: [M_synthesis]}
+  - {id: M_premix, label: "原料の分散処理", aliases: ["均一分散性を高める", "分散性を高める処理", "予備混合", "不溶である"], parents: [M_synthesis]}
+  - {id: M_crystallization, label: "結晶化条件の制御", aliases: ["結晶化", "析出", "反応温度", "pH調整", "ｐＨ調整", "濃度制御", "再結晶"], parents: [M_synthesis]}
+  - {id: M_system, label: "装置・プロセス構成", parents: [M]}
+  - {id: M_adsorber, label: "吸着塔", aliases: ["充填塔", "吸着カラム", "吸着槽", "吸着器", "吸着ユニット", "充填層", "固定層", "吸着筒"], parents: [M_system]}
+  - {id: M_regen_op, label: "脱着・再生操作", aliases: ["脱着工程", "再生工程", "共脱着", "共吸着", "減圧脱着", "加熱脱着", "加熱再生", "吸脱着サイクル", "脱離工程", "パージ"], parents: [M_system]}
+  - {id: M_electrolysis, label: "電気分解の併用", aliases: ["電気分解", "電解処理", "電解槽", "電解酸化"], parents: [M_system]}
+  - {id: M_filter_unit, label: "フィルタの配置", aliases: ["ろ過部", "フィルター部", "フィルタ部", "フィルター", "フィルタ", "排気経路に設けられる"], parents: [M_system]}
+  - {id: M_flow_ctrl, label: "運転条件の制御", aliases: ["制御部", "制御方法", "温度制御", "圧力制御", "流量制御", "送風する工程", "送風"], parents: [M_system]}
+  - {id: M_feed, label: "被処理ガスの導入", aliases: ["導入部", "供給部", "被処理ガス", "原料ガス", "水分濃度"], parents: [M_system]}
+  - {id: M_computational, label: "計算・機械学習による設計", parents: [M]}
+  - {id: M_ml_design, label: "機械学習モデル", aliases: ["学習済みモデル", "学習されたモデル", "学習された第１モデル", "機械学習", "情報処理方法", "ニューラルネットワーク", "マテリアルズインフォマティクス"], parents: [M_computational]}
+  - {id: M_simulation, label: "分子シミュレーション", aliases: ["シミュレーション", "計算化学", "第一原理計算", "分子動力学", "スクリーニング計算"], parents: [M_computational]}
+  - {id: M_postproc, label: "後処理・後修飾", parents: [M]}
+  - {id: M_activation, label: "活性化処理", aliases: ["活性化", "真空加熱", "加熱真空", "加熱減圧", "溶媒交換", "脱溶媒", "乾燥工程", "賦活"], parents: [M_postproc]}
+  - {id: M_scco2, label: "超臨界二酸化炭素処理", aliases: ["超臨界二酸化炭素", "超臨界乾燥", "超臨界流体", "超臨界CO2", "超臨界ＣＯ２", "二酸化炭素および有機溶媒の混合流体"], parents: [M_postproc]}
+  - {id: M_psm, label: "合成後修飾", aliases: ["後修飾", "ポストシンセティック修飾", "ポストシンセシス", "配位子交換", "金属交換", "イオン交換", "グラフト", "表面修飾", "PSM", "ＰＳＭ"], parents: [M_postproc]}
+  - {id: M_amine, label: "アミン修飾", aliases: ["アルキルアミン", "アミン担持", "エチレンジアミン", "ポリエチレンイミン", "ジアミン", "アミン化合物"], parents: [M_postproc]}
+  - {id: M_impregnation, label: "ゲスト分子の含浸", aliases: ["含浸", "含浸工程", "含浸させる", "封入", "内包させ", "包接", "細孔内に保持", "担持させる", "容器に封入", "攪拌する工程"], parents: [M_postproc]}
+  - {id: M_pyrolysis, label: "熱処理・炭化", aliases: ["焼成", "炭化", "炭素化", "熱分解", "MOF由来", "ＭＯＦ由来", "MOF誘導体", "ＭＯＦ誘導体", "金属有機構造体由来"], parents: [M_postproc]}
+  - {id: M_composite, label: "複合化", parents: [M]}
+  - {id: M_mmm, label: "混合マトリクス膜", aliases: ["混合マトリックス膜", "ミックスドマトリックス膜", "ミックスドマトリクス膜", "MMM", "ＭＭＭ", "高分子マトリクス", "高分子マトリックス", "ポリマーマトリクス"], parents: [M_composite]}
+  - {id: M_support, label: "担体への担持", aliases: ["担体", "支持体", "多孔質支持体", "多孔質担体", "基材上", "担持体", "担持された"], parents: [M_composite]}
+  - {id: M_cellulose, label: "セルロース複合", aliases: ["セルロース", "ナノセルロース", "セルロースナノファイバー", "パルプ"], parents: [M_support]}
+  - {id: M_fiber, label: "繊維担持", aliases: ["繊維", "不織布", "布帛", "織物", "ナノファイバー", "繊維基材", "通気性のある薄膜材料"], parents: [M_support]}
+  - {id: M_carbon, label: "炭素材料複合", aliases: ["活性炭との複合", "活性炭に担持", "グラフェン", "酸化グラフェン", "カーボンナノチューブ", "カーボンブラック", "炭素材料"], parents: [M_support]}
+  - {id: M_inorg_support, label: "無機担体", aliases: ["シリカ", "アルミナ", "ゼオライト膜", "ゼオライトとの複合", "セラミックス", "メソポーラス材料", "メソポーラスシリカ", "多孔質セラミック", "粘土鉱物"], parents: [M_support]}
+  - {id: M_coreshell, label: "コアシェル構造", aliases: ["コアシェル", "コア−シェル", "コア・シェル", "被覆", "被覆層", "シェル層", "MOF-on-MOF", "MOF−on−MOF", "MOF‐on‐MOF", "ＭＯＦ−ｏｎ−ＭＯＦ", "ＭＯＦ－ｏｎ－ＭＯＦ", "表面を被覆", "付着した"], parents: [M_composite]}
+  - {id: M_metal_np, label: "金属ナノ粒子複合", aliases: ["金属ナノ粒子", "金属微粒子", "貴金属ナノ粒子", "金属担持", "パラジウム", "白金", "ルテニウム", "金ナノ粒子", "銀ナノ粒子", "複合微粒子"], parents: [M_composite]}
+  - {id: M_ionic_liquid, label: "イオン液体複合", aliases: ["イオン液体"], parents: [M_composite]}
+  - {id: M_cp_coat, label: "配位高分子による被覆", aliases: ["非多孔性アモルファス配位高分子", "非多孔性配位高分子", "アモルファス配位高分子"], parents: [M_composite]}
+  - {id: M_polymer, label: "高分子複合", aliases: ["樹脂組成物", "ポリマー複合", "熱可塑性樹脂", "樹脂中に分散", "ゴム"], parents: [M_composite]}
+  - {id: M_complex_guest, label: "金属錯体の導入", aliases: ["ルテニウム錯体", "錯体触媒", "分子性触媒", "金属錯体を導入", "金属錯体を担持"], parents: [M_composite]}
+  - {id: M_forming, label: "成形", parents: [M]}
+  - {id: M_pellet, label: "ペレット・顆粒成形", aliases: ["ペレット", "顆粒", "造粒", "打錠", "成形体", "賦形体", "ビーズ", "押出成形", "圧縮成形", "成型体", "成形品", "タブレット"], parents: [M_forming]}
+  - {id: M_thin_film, label: "薄膜形成", aliases: ["薄膜", "被膜", "塗膜", "成膜", "製膜", "金属有機構造体膜", "MOF膜", "ＭＯＦ膜", "コーティング", "塗布", "層状成長", "SURMOF", "ＳＵＲＭＯＦ", "結晶膜"], parents: [M_forming]}
+  - {id: M_binder, label: "バインダー", aliases: ["バインダー樹脂", "結着剤", "結合剤", "バインダ"], parents: [M_forming]}
+  - {id: M_sheet, label: "シート化", aliases: ["シート状物", "シート状", "シート", "フィルム", "テープ"], parents: [M_forming]}
+  - {id: M_monolith, label: "モノリス・エアロゲル", aliases: ["モノリス", "エアロゲル", "ゲル化", "ハニカム", "キセロゲル"], parents: [M_forming]}
+  - {id: M_morphology, label: "粒子形態の制御", aliases: ["中空微粒子", "中空粒子", "球状", "粒子径", "粒径", "粒度分布", "ナノ結晶", "微結晶", "結晶サイズ", "ナノ粒子"], parents: [M_forming]}
+  - {id: M_named_mof, label: "代表的なMOF", aliases: ["代表的なＭＯＦ"], parents: [M]}
+  - {id: M_hkust_fam, label: "HKUST系", aliases: ["銅トリメシン酸塩", "ＨＫＵＳＴ系"], parents: [M_named_mof]}
+  - {id: M_hkust1, label: "HKUST-1", aliases: ["Cu-BTC", "Cu−BTC", "Cu‐BTC", "Ｃｕ−ＢＴＣ", "Ｃｕ－ＢＴＣ", "Cu3(BTC)2", "Ｃｕ３（ＢＴＣ）２", "MOF-199", "MOF−199", "MOF‐199", "ＭＯＦ−１９９", "ＭＯＦ－１９９", "Basolite C300", "Ｂａｓｏｌｉｔｅ Ｃ３００", "BasoliteC300", "HKUST−1", "HKUST‐1", "ＨＫＵＳＴ−１", "ＨＫＵＳＴ－１"], parents: [M_hkust_fam]}
+  - {id: M_irmof_fam, label: "IRMOF系", aliases: ["IRMOF", "ＩＲＭＯＦ", "イソレティキュラー", "ＩＲＭＯＦ系"], parents: [M_named_mof]}
+  - {id: M_mof5, label: "MOF-5", aliases: ["IRMOF-1", "IRMOF−1", "IRMOF‐1", "ＩＲＭＯＦ−１", "ＩＲＭＯＦ－１", "Zn4O(BDC)3", "Ｚｎ４Ｏ（ＢＤＣ）３", "MOF−5", "MOF‐5", "ＭＯＦ−５", "ＭＯＦ－５"], parents: [M_irmof_fam]}
+  - {id: M_mof177, label: "その他のIRMOF", aliases: ["MOF-177", "MOF−177", "MOF‐177", "ＭＯＦ−１７７", "ＭＯＦ－１７７", "MOF-210", "MOF−210", "MOF‐210", "ＭＯＦ−２１０", "ＭＯＦ－２１０", "IRMOF-8", "IRMOF−8", "IRMOF‐8", "ＩＲＭＯＦ−８", "ＩＲＭＯＦ－８", "その他のＩＲＭＯＦ"], parents: [M_irmof_fam]}
+  - {id: M_zif_fam, label: "ゼオライト様イミダゾレート骨格体", aliases: ["ZIF", "ＺＩＦ", "ゼオライト型イミダゾレート骨格", "ゼオライト様イミダゾレート骨格", "ゼオライトイミダゾレート骨格"], parents: [M_named_mof]}
+  - {id: M_zif8, label: "ZIF-8", aliases: ["Basolite Z1200", "Ｂａｓｏｌｉｔｅ Ｚ１２００", "BasoliteZ1200", "ZIF8", "ＺＩＦ８", "ZIF−8", "ZIF‐8", "ＺＩＦ−８", "ＺＩＦ－８"], parents: [M_zif_fam]}
+  - {id: M_zif67, label: "ZIF-67", aliases: ["ZIF67", "ＺＩＦ６７", "ZIF−67", "ZIF‐67", "ＺＩＦ−６７", "ＺＩＦ－６７"], parents: [M_zif_fam]}
+  - {id: M_zif_other, label: "その他のZIF", aliases: ["ZIF-71", "ZIF−71", "ZIF‐71", "ＺＩＦ−７１", "ＺＩＦ－７１", "ZIF-90", "ZIF−90", "ZIF‐90", "ＺＩＦ−９０", "ＺＩＦ－９０", "ZIF-7", "ZIF−7", "ZIF‐7", "ＺＩＦ−７", "ＺＩＦ－７", "ZIF-11", "ZIF−11", "ZIF‐11", "ＺＩＦ−１１", "ＺＩＦ－１１", "ZIF-69", "ZIF−69", "ZIF‐69", "ＺＩＦ−６９", "ＺＩＦ－６９", "その他のＺＩＦ"], parents: [M_zif_fam]}
+  - {id: M_uio_fam, label: "UiO系", aliases: ["ジルコニウム系MOF", "ジルコニウム系ＭＯＦ", "Zr系MOF", "Ｚｒ系ＭＯＦ", "ジルコニウム系金属有機構造体", "ＵｉＯ系"], parents: [M_named_mof]}
+  - {id: M_uio66, label: "UiO-66", aliases: ["UiO66", "ＵｉＯ６６", "UiO-66-NH2", "UiO−66−NH2", "UiO‐66‐NH2", "ＵｉＯ−６６−ＮＨ２", "ＵｉＯ－６６－ＮＨ２", "UiO−66", "UiO‐66", "ＵｉＯ−６６", "ＵｉＯ－６６"], parents: [M_uio_fam]}
+  - {id: M_uio67, label: "UiO-67", aliases: ["UiO-68", "UiO−68", "UiO‐68", "ＵｉＯ−６８", "ＵｉＯ－６８", "UiO−67", "UiO‐67", "ＵｉＯ−６７", "ＵｉＯ－６７"], parents: [M_uio_fam]}
+  - {id: M_mof808, label: "その他のZr系MOF", aliases: ["MOF-808", "MOF−808", "MOF‐808", "ＭＯＦ−８０８", "ＭＯＦ－８０８", "MOF-801", "MOF−801", "MOF‐801", "ＭＯＦ−８０１", "ＭＯＦ－８０１", "NU-1000", "NU−1000", "NU‐1000", "ＮＵ−１０００", "ＮＵ－１０００", "PCN-222", "PCN−222", "PCN‐222", "ＰＣＮ−２２２", "ＰＣＮ－２２２", "MOF-545", "MOF−545", "MOF‐545", "ＭＯＦ−５４５", "ＭＯＦ－５４５", "その他のＺｒ系ＭＯＦ"], parents: [M_uio_fam]}
+  - {id: M_mil_fam, label: "MIL系", aliases: ["MIL系MOF", "ＭＩＬ系ＭＯＦ", "ＭＩＬ系"], parents: [M_named_mof]}
+  - {id: M_mil101, label: "MIL-101", aliases: ["MIL-101(Cr)", "MIL−101(Cr)", "MIL‐101(Cr)", "ＭＩＬ−１０１（Ｃｒ）", "ＭＩＬ－１０１（Ｃｒ）", "MIL-101(Fe)", "MIL−101(Fe)", "MIL‐101(Fe)", "ＭＩＬ−１０１（Ｆｅ）", "ＭＩＬ－１０１（Ｆｅ）", "MIL−101", "MIL‐101", "ＭＩＬ−１０１", "ＭＩＬ－１０１"], parents: [M_mil_fam]}
+  - {id: M_mil100, label: "MIL-100", aliases: ["MIL-100(Fe)", "MIL−100(Fe)", "MIL‐100(Fe)", "ＭＩＬ−１００（Ｆｅ）", "ＭＩＬ－１００（Ｆｅ）", "Basolite F300", "Ｂａｓｏｌｉｔｅ Ｆ３００", "BasoliteF300", "MIL−100", "MIL‐100", "ＭＩＬ−１００", "ＭＩＬ－１００"], parents: [M_mil_fam]}
+  - {id: M_mil53, label: "MIL-53類", aliases: ["MIL-53", "MIL−53", "MIL‐53", "ＭＩＬ−５３", "ＭＩＬ－５３", "MIL-53(Al)", "MIL−53(Al)", "MIL‐53(Al)", "ＭＩＬ−５３（Ａｌ）", "ＭＩＬ－５３（Ａｌ）", "MIL-68", "MIL−68", "MIL‐68", "ＭＩＬ−６８", "ＭＩＬ－６８", "MIL-88", "MIL−88", "MIL‐88", "ＭＩＬ−８８", "ＭＩＬ－８８", "MIL−53類", "MIL‐53類", "ＭＩＬ−５３類", "ＭＩＬ－５３類"], parents: [M_mil_fam]}
+  - {id: M_mil160, label: "その他のMIL・CAU系", aliases: ["MIL-160", "MIL−160", "MIL‐160", "ＭＩＬ−１６０", "ＭＩＬ－１６０", "CAU-10", "CAU−10", "CAU‐10", "ＣＡＵ−１０", "ＣＡＵ－１０", "MIL-125", "MIL−125", "MIL‐125", "ＭＩＬ−１２５", "ＭＩＬ－１２５", "その他のＭＩＬ・ＣＡＵ系"], parents: [M_mil_fam]}
+  - {id: M_mof74_fam, label: "MOF-74系", aliases: ["CPO-27", "CPO−27", "CPO‐27", "ＣＰＯ−２７", "ＣＰＯ－２７", "M2(dobdc)", "Ｍ２（ｄｏｂｄｃ）", "MOF−74系", "MOF‐74系", "ＭＯＦ−７４系", "ＭＯＦ－７４系"], parents: [M_named_mof]}
+  - {id: M_mof74, label: "MOF-74", aliases: ["Mg-MOF-74", "Mg−MOF−74", "Mg‐MOF‐74", "Ｍｇ−ＭＯＦ−７４", "Ｍｇ－ＭＯＦ－７４", "Ni-MOF-74", "Ni−MOF−74", "Ni‐MOF‐74", "Ｎｉ−ＭＯＦ−７４", "Ｎｉ－ＭＯＦ－７４", "Co-MOF-74", "Co−MOF−74", "Co‐MOF‐74", "Ｃｏ−ＭＯＦ−７４", "Ｃｏ－ＭＯＦ－７４", "Zn-MOF-74", "Zn−MOF−74", "Zn‐MOF‐74", "Ｚｎ−ＭＯＦ−７４", "Ｚｎ－ＭＯＦ－７４", "Mg2(dobdc)", "Ｍｇ２（ｄｏｂｄｃ）", "MOF−74", "MOF‐74", "ＭＯＦ−７４", "ＭＯＦ－７４"], parents: [M_mof74_fam]}
+  - {id: M_alfum_fam, label: "フマル酸アルミニウム系", aliases: ["アルミニウムフマレート"], parents: [M_named_mof]}
+  - {id: M_alfum, label: "フマル酸アルミニウム", aliases: ["Basolite A520", "Ｂａｓｏｌｉｔｅ Ａ５２０", "BasoliteA520", "Alフマレート", "Ａｌフマレート", "A520", "Ａ５２０"], parents: [M_alfum_fam]}
+  - {id: M_mof303, label: "MOF-303", aliases: ["MOF-333", "MOF−333", "MOF‐333", "ＭＯＦ−３３３", "ＭＯＦ－３３３", "MOF−303", "MOF‐303", "ＭＯＦ−３０３", "ＭＯＦ－３０３"], parents: [M_alfum_fam]}
+  - {id: M_pillared_fam, label: "ピラードレイヤー型PCP", aliases: ["ピラードレイヤー", "柱状層構造", "ピラー型", "ピラードレイヤー型ＰＣＰ"], parents: [M_named_mof]}
+  - {id: M_cpl, label: "CPL-1", aliases: ["CPL-2", "CPL−2", "CPL‐2", "ＣＰＬ−２", "ＣＰＬ－２", "CPL系", "ＣＰＬ系", "CPL−1", "CPL‐1", "ＣＰＬ−１", "ＣＰＬ－１"], parents: [M_pillared_fam]}
+  - {id: M_elm, label: "ELM-11", aliases: ["ELM-12", "ELM−12", "ELM‐12", "ＥＬＭ−１２", "ＥＬＭ－１２", "ELM−11", "ELM‐11", "ＥＬＭ−１１", "ＥＬＭ－１１"], parents: [M_pillared_fam]}
+  - {id: M_sifsix, label: "SIFSIX-3", aliases: ["SIFSIX-1", "SIFSIX−1", "SIFSIX‐1", "ＳＩＦＳＩＸ−１", "ＳＩＦＳＩＸ－１", "SIFSIX-2", "SIFSIX−2", "SIFSIX‐2", "ＳＩＦＳＩＸ−２", "ＳＩＦＳＩＸ－２", "SIFSIX−3", "SIFSIX‐3", "ＳＩＦＳＩＸ−３", "ＳＩＦＳＩＸ－３"], parents: [M_pillared_fam]}
+  - {id: M_cyano_fam, label: "シアノ架橋型配位高分子", aliases: ["シアノ架橋", "シアノ架橋型"], parents: [M_named_mof]}
+  - {id: M_prussian, label: "プルシアンブルー類似体", aliases: ["プルシアンブルー", "プルシアンブルー型錯体", "ヘキサシアノ鉄酸", "ヘキサシアノ金属酸塩", "PBA", "ＰＢＡ"], parents: [M_cyano_fam]}
+  - {id: M_hofmann, label: "ホフマン型錯体", aliases: ["ホフマン型", "ホフマン型配位高分子", "（ピラジン）［Ｎｉ", "(ピラジン)[Ni", "Fe(pyrazine)", "Ｆｅ（ｐｙｒａｚｉｎｅ）"], parents: [M_cyano_fam]}
+  - {id: M_cond_mof_fam, label: "導電性MOF", aliases: ["導電性金属有機構造体", "導電性配位高分子", "電気伝導性MOF", "電気伝導性ＭＯＦ", "導電性ＭＯＦ"], parents: [M_named_mof]}
+  - {id: M_hhtp, label: "Cu3(HHTP)2", aliases: ["HHTP", "ＨＨＴＰ", "ヘキサヒドロキシトリフェニレン", "ヘキサアミノトリフェニレン", "HITP", "ＨＩＴＰ", "Ni3(HITP)2", "Ｎｉ３（ＨＩＴＰ）２", "Ｃｕ３（ＨＨＴＰ）２"], parents: [M_cond_mof_fam]}
+  # ---- 用途 ----
+  - {id: U_hydrogen, label: "水素の利用（横断）", aliases: ["オルト−パラ変換", "パラ水素", "水素キャリア"], parents: [U]}
+  - {id: U_co2_chain, label: "二酸化炭素の回収・利用（横断）", parents: [U]}
+  - {id: U_gas_storage, label: "ガス貯蔵", aliases: ["ガス吸蔵", "ガス貯蔵装置", "ガス吸蔵装置", "ガス貯蔵材", "ガス吸蔵材", "貯蔵装置", "貯蔵タンク", "ガス吸蔵方法", "気体貯蔵", "気体貯蔵材料", "ガス貯蔵材料", "吸蔵材"], parents: [U]}
+  - {id: U_h2_storage, label: "水素貯蔵", aliases: ["水素吸蔵", "水素分子貯蔵", "水素貯蔵装置", "水素貯蔵タンク", "水素吸着材", "水素吸蔵材", "水素貯蔵材料", "水素を貯蔵", "水素の貯蔵"], parents: [U_gas_storage, U_hydrogen]}
+  - {id: U_ch4_storage, label: "メタン貯蔵", aliases: ["メタン吸蔵", "天然ガス貯蔵", "吸着天然ガス", "天然ガス吸蔵"], parents: [U_gas_storage]}
+  - {id: U_c2h2_storage, label: "アセチレン貯蔵", aliases: ["アセチレン吸蔵", "アセチレンの貯蔵"], parents: [U_gas_storage]}
+  - {id: U_o2_storage, label: "酸素貯蔵", aliases: ["酸素吸蔵", "酸素供給システム", "酸素の供給", "酸素供給"], parents: [U_gas_storage]}
+  - {id: U_gas_supply, label: "ガス供給システム", aliases: ["気体供給システム", "ガス貯蔵・供給", "ガス循環システム", "ガス供給装置", "ガス循環", "原料カートリッジ", "貯蔵送出容器", "ガスを分配", "原料タンク", "処理ガスを供給"], parents: [U_gas_storage]}
+  - {id: U_gas_sep, label: "ガス分離", aliases: ["気体分離", "ガス分離装置", "ガス分離材", "ガス分離ユニット", "ガス分離方法", "吸着分離", "圧力スイング吸着", "PSA", "ＰＳＡ", "温度スイング吸着", "TSA", "ＴＳＡ", "ガス精製", "混合ガスから", "選択的に吸着させる", "分離する方法", "不純物分子", "不純物ガス", "分離材", "ガス吸着材", "ガス吸着剤", "気体吸着用", "ガス吸着用", "気体吸着材"], parents: [U]}
+  - {id: U_co2_capture, label: "二酸化炭素回収", aliases: ["二酸化炭素の回収", "二酸化炭素の分離", "二酸化炭素の吸着分離", "二酸化炭素吸着材", "二酸化炭素の処理", "二酸化炭素を吸着", "二酸化炭素", "CO2", "ＣＯ２", "ＣＯ<sub>２</sub>", "ＣＯ＜ｓｕｂ＞２＜／ｓｕｂ＞", "CO<sub>2</sub>", "CO2回収", "ＣＯ２回収", "CO2分離", "ＣＯ２分離", "CO2吸着", "ＣＯ２吸着", "炭素回収", "CCS", "ＣＣＳ", "CCUS", "ＣＣＵＳ", "二酸化炭素分離回収", "二酸化炭素含有ガス"], parents: [U_gas_sep, U_co2_chain]}
+  - {id: U_dac, label: "大気中二酸化炭素の直接回収", aliases: ["直接空気回収", "大気中の二酸化炭素", "DAC", "ＤＡＣ", "空気中の二酸化炭素"], parents: [U_co2_capture]}
+  - {id: U_hc_sep, label: "炭化水素分離", aliases: ["炭化水素の分離", "炭化水素", "オレフィン", "パラフィン", "不飽和炭化水素", "エチレンとエタン", "プロピレンとプロパン", "アセチレンとエチレン", "アセチレンと二酸化炭素", "キシレン異性体", "C2炭化水素", "Ｃ２炭化水素", "C3炭化水素", "Ｃ３炭化水素"], parents: [U_gas_sep]}
+  - {id: U_fluoro_sep, label: "含フッ素化合物の分離", aliases: ["ハロゲン化不飽和炭素化合物", "フッ素化炭化水素", "フルオロカーボン", "フロン", "冷媒の分離", "ハイドロフルオロオレフィン", "六フッ化硫黄", "SF6", "ＳＦ６"], parents: [U_gas_sep]}
+  - {id: U_noble_gas, label: "希ガス分離", aliases: ["希ガス", "キセノン", "クリプトン", "放射性希ガス"], parents: [U_gas_sep]}
+  - {id: U_h2_purif, label: "水素精製", aliases: ["水素純化", "水素分子分離", "水素の分離", "水素純化装置", "水素分子分離方法", "水素の精製"], parents: [U_gas_sep, U_hydrogen]}
+  - {id: U_air_sep, label: "空気分離", aliases: ["酸素と窒素", "酸素富化", "窒素の分離", "酸素の分離", "酸素濃縮"], parents: [U_gas_sep]}
+  - {id: U_exhaust, label: "排気ガスの回収", aliases: ["排気ガス", "排ガス", "排気経路", "ガスを回収", "基板処理装置", "処理チャンバ", "転炉ガス", "燃焼排ガス"], parents: [U_gas_sep]}
+  - {id: U_sep_membrane, label: "分離膜", aliases: ["ガス分離膜", "膜分離", "分離膜モジュール", "透過膜", "気体分離膜"], parents: [U_gas_sep]}
+  - {id: U_catalysis, label: "触媒", aliases: ["触媒反応", "触媒用途", "不均一系触媒", "固体触媒", "金属担持触媒", "触媒担体"], parents: [U]}
+  - {id: U_photocat, label: "光触媒", aliases: ["光触媒反応", "光還元触媒", "光還元", "人工光合成", "光触媒活性", "可視光応答"], parents: [U_catalysis]}
+  - {id: U_electrocat, label: "電極触媒", aliases: ["電気化学触媒", "酸素還元反応", "酸素発生反応", "水素発生反応", "水電解", "電解触媒", "ORR", "ＯＲＲ", "OER", "ＯＥＲ"], parents: [U_catalysis]}
+  - {id: U_co2_conv, label: "二酸化炭素の変換", aliases: ["二酸化炭素の還元", "二酸化炭素還元", "二酸化炭素の固定", "二酸化炭素光還元", "二酸化炭素の固定材", "CO2還元", "ＣＯ２還元", "CO2変換", "ＣＯ２変換", "メタン化", "メタノール製造", "メタノールの製造", "メタン及びエタン"], parents: [U_catalysis, U_co2_chain]}
+  - {id: U_ammonia, label: "アンモニア合成・分解", aliases: ["アンモニア製造", "アンモニアの製造", "アンモニア合成", "アンモニアの合成", "アンモニア分解", "アンモニアの分解", "アンモニア製造用触媒"], parents: [U_catalysis]}
+  - {id: U_polymer_cat, label: "重合触媒", aliases: ["オレフィン重合", "重合用触媒", "オレフィン重合用触媒", "重合体の製造"], parents: [U_catalysis]}
+  - {id: U_organic_cat, label: "有機合成触媒", aliases: ["有機合成", "ルイス酸触媒", "酸化反応", "水素化反応", "カップリング反応", "不斉触媒", "エステル化", "酸塩基触媒", "バイオマス変換"], parents: [U_catalysis]}
+  - {id: U_sensor, label: "センサ", aliases: ["センサー", "検知材", "検出素子", "検知素子", "検知方法", "検出方法", "濃度測定"], parents: [U]}
+  - {id: U_gas_sensor, label: "ガスセンサ", aliases: ["ガスセンサー", "ガス検知材", "ガス検知シート", "ガス検知テープ", "ガス検知器", "ガス検知", "ガス検出装置", "ガス検出", "ガス濃度測定", "希薄ガス濃度", "アンモニア濃度測定", "匂いセル"], parents: [U_sensor]}
+  - {id: U_chem_sensor, label: "化学センサ", aliases: ["バイオセンサ", "バイオセンサー", "イオンセンサ", "湿度センサ", "湿度センサー", "化学センサー"], parents: [U_sensor]}
+  - {id: U_opt_sensor, label: "蛍光センサ", aliases: ["蛍光センサー", "蛍光プローブ", "発光センサ", "蛍光検出"], parents: [U_sensor]}
+  - {id: U_electrochem, label: "電気化学デバイス", aliases: ["電気化学素子", "電気化学デバイス用", "蓄電デバイス", "電気化学セル"], parents: [U]}
+  - {id: U_battery, label: "二次電池", aliases: ["リチウムイオン二次電池", "リチウムイオン電池", "全固体電池", "リチウム二次電池", "ナトリウムイオン電池", "リチウム硫黄電池", "正極活物質", "負極活物質", "セパレータ", "一次電池", "電池用", "二次電池用分離膜", "電気化学素子用分離膜"], parents: [U_electrochem]}
+  - {id: U_electrolyte, label: "固体電解質", aliases: ["電解質", "電気化学デバイス用電解質", "イオン伝導体", "イオン伝導性複合体", "電解質膜", "高分子電解質"], parents: [U_electrochem]}
+  - {id: U_capacitor, label: "キャパシタ", aliases: ["スーパーキャパシタ", "スーパーキャパシタ電極", "電気二重層キャパシタ", "電気二重層", "蓄電器"], parents: [U_electrochem]}
+  - {id: U_fuel_cell, label: "燃料電池", aliases: ["プロトン伝導体", "プロトン伝導膜", "膜電極接合体", "電解質膜−電極接合体", "水素生成システム", "固体高分子形燃料電池"], parents: [U_electrochem, U_hydrogen]}
+  - {id: U_solar, label: "太陽電池", aliases: ["ペロブスカイト太陽電池", "光電変換素子", "光電変換", "色素増感"], parents: [U_electrochem]}
+  - {id: U_electronics, label: "電子デバイス", aliases: ["半導体デバイス", "電子デバイス用", "電子素子", "半導体製造", "研磨用スラリー", "集積回路", "半導体処理"], parents: [U]}
+  - {id: U_insulator, label: "絶縁膜", aliases: ["層間絶縁膜", "低誘電率膜", "絶縁膜形成用", "絶縁材料"], parents: [U_electronics]}
+  - {id: U_device_other, label: "その他の機能デバイス", aliases: ["アクチュエータ", "アクチュエーター", "メモリ素子", "トランジスタ", "磁性体", "磁性材料"], parents: [U_electronics]}
+  - {id: U_water_ads, label: "水吸着", aliases: ["水蒸気吸着", "水吸着材", "吸湿材", "水分吸着", "吸湿", "水を捕捉", "水の捕捉"], parents: [U]}
+  - {id: U_dehumid, label: "除湿", aliases: ["調湿", "デシカント", "乾燥剤", "除湿装置", "除湿材", "湿度調整"], parents: [U_water_ads]}
+  - {id: U_heat_pump, label: "吸着式ヒートポンプ", aliases: ["ヒートポンプ", "吸着式冷凍", "吸着冷凍機", "吸着式冷凍機", "蓄熱", "熱輸送", "熱輸送システム", "吸着式熱交換", "冷熱", "冷却システム", "冷却用途", "冷却／加熱", "冷凍庫", "冷蔵庫", "バロカロリック", "熱量効果"], parents: [U_water_ads]}
+  - {id: U_water_harvest, label: "大気水回収", aliases: ["大気中の水", "空気中の水分", "造水", "大気中から水", "空気から水", "水回収", "水採取", "水収穫", "水分捕集", "水捕集"], parents: [U_water_ads]}
+  - {id: U_removal, label: "有害物質の除去", aliases: ["除去材", "吸着除去", "浄化材", "浄化装置", "除去方法", "空気清浄", "空気浄化", "空気フィルター", "エアフィルター", "液体の清浄化", "清浄化", "液相化合物の除去"], parents: [U]}
+  - {id: U_voc, label: "揮発性有機化合物の除去", aliases: ["揮発性有機化合物", "VOC", "ＶＯＣ", "ホルムアルデヒド", "有機溶剤蒸気", "トルエン蒸気"], parents: [U_removal]}
+  - {id: U_odor, label: "消臭", aliases: ["消臭剤", "脱臭", "消臭性", "生活臭", "悪臭", "臭気", "防臭", "消臭抗菌", "匂い分子"], parents: [U_removal]}
+  - {id: U_water_treat, label: "水処理", aliases: ["排水処理", "水処理装置", "水処理方法", "被処理水", "浄水", "難分解性物質", "有機フッ素化合物", "PFAS", "ＰＦＡＳ", "PFOS", "ＰＦＯＳ", "PFOA", "ＰＦＯＡ", "水環境"], parents: [U_removal]}
+  - {id: U_heavy_metal, label: "重金属の除去", aliases: ["重金属", "重金属イオン", "水銀", "ヒ素", "放射性セシウム", "放射性物質", "レアメタル回収", "貴金属回収", "金属イオンの回収", "ヨウ素"], parents: [U_removal]}
+  - {id: U_desulf, label: "脱硫", aliases: ["脱硫装置", "脱硫方法", "硫黄化合物", "含硫黄化合物", "硫化水素", "付臭剤", "メルカプタン"], parents: [U_removal]}
+  - {id: U_toxic_gas, label: "有毒ガスの除去", aliases: ["有毒ガス", "有害ガス", "化学剤", "神経剤", "防毒マスク", "アンモニアの除去", "アンモニア吸着"], parents: [U_removal]}
+  - {id: U_antimicrobial, label: "抗菌・抗ウイルス", aliases: ["抗菌", "抗ウイルス", "抗菌性", "抗ウイルス性", "防黴", "防カビ", "殺菌", "抗菌防黴"], parents: [U_removal]}
+  - {id: U_medical, label: "医薬用途", aliases: ["医療用途", "医療", "医薬", "製剤", "マクロファージ", "大食細胞", "免疫", "人工透析", "人工腎臓"], parents: [U]}
+  - {id: U_dds, label: "薬物送達", aliases: ["ドラッグデリバリー", "薬物送達システム", "DDS", "ＤＤＳ", "薬物担体", "薬理活性物質", "医薬品化合物", "薬物の担持", "送達する成分", "処置の方法", "薬剤", "がん治療", "プロドラッグ", "抗がん剤", "化学療法", "光増感剤", "光線力学療法", "核酸の送達"], parents: [U_medical]}
+  - {id: U_imaging, label: "造影・診断", aliases: ["造影剤", "イメージング", "診断薬", "MRI", "ＭＲＩ"], parents: [U_medical]}
+  - {id: U_cosmetic, label: "化粧品", aliases: ["化粧品化合物", "化粧料"], parents: [U_medical]}
+  - {id: U_release_use, label: "機能性物質の放出", aliases: ["有効成分放出", "有効成分の放出", "機能徐放性組成物", "徐放性組成物", "徐放材", "揮散", "ゲスト放出", "化学種の放出"], parents: [U]}
+  - {id: U_fragrance, label: "芳香材", aliases: ["録香", "香り", "芳香成分", "芳香発生", "香料", "芳香装置", "芳香材料"], parents: [U_release_use]}
+  - {id: U_pest, label: "防虫・農業", aliases: ["防虫", "防虫剤", "農薬", "栽培", "植物の生育", "二酸化炭素施用", "施用方法", "水生生物の飼育", "飼育システム"], parents: [U_release_use]}
+  - {id: U_food, label: "食品・鮮度保持", aliases: ["鮮度保持", "食品容器", "青果物", "エチレン除去", "食品包装", "包装材"], parents: [U_release_use]}
+  - {id: U_optical, label: "光学・発光材料", aliases: ["光学材料", "光学素子"], parents: [U]}
+  - {id: U_luminescent, label: "発光材料", aliases: ["蛍光体", "発光素子", "有機EL", "有機ＥＬ", "波長変換", "発光体", "白色発光", "シンチレーション", "シンチレータ", "放射線検出"], parents: [U_optical]}
+  - {id: U_photonic, label: "非線形光学材料", aliases: ["非線形光学", "フォトクロミック材料", "光記録", "光スイッチ"], parents: [U_optical]}
+  - {id: U_thermal, label: "熱管理材料", aliases: ["熱伝導性樹脂組成物", "放熱材料", "断熱材"], parents: [U]}
+  - {id: U_coating_use, label: "塗料・樹脂・接着の用途", parents: [U]}
+  - {id: U_paint, label: "塗料", aliases: ["塗料組成物", "粉体塗料", "被膜体", "塗料用"], parents: [U_coating_use]}
+  - {id: U_adhesive, label: "接着剤", aliases: ["接着方法", "熱硬化性組成物", "硬化剤", "硬化促進剤", "封止材"], parents: [U_coating_use]}
+  - {id: U_polymer_additive, label: "樹脂添加剤", aliases: ["安定化ポリアミド", "熱安定剤", "樹脂の安定化", "ポリアミドの安定化", "核剤", "充填剤", "難燃剤", "難燃性"], parents: [U_coating_use]}
+  - {id: U_mobility, label: "移動体用途", aliases: ["飛行体", "電動モビリティ", "水中航走体", "燃料電池車", "車両用"], parents: [U]}

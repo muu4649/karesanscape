@@ -1,0 +1,16 @@
+.venv/
+runs/
+.env
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# 特許データ（商用サービス経由で集めた明細書・要約・抽出した段落）は公開しない。収集の報告書（*.md）と Fターム の骨組みは残す
+datasets/**/raw/
+datasets/**/_work/
+datasets/**/documents_sections*.csv
+datasets/**/sampling_frame.csv
+# 作業メモ・報告書・いただいた設計書
+_drafts/
+*.docx
+.DS_Store

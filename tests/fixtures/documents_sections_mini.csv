@@ -1,0 +1,7 @@
+doc_id,pub_number,app_number,title,applicants,filing_date,pub_date,ipc,fi,abstract,problem,solution,use_text,use_source,claim1,problem_source,solution_source
+D1,JP2020-000001,2019-1,疎水化MOF,甲社,2019-01-01,2020-01-01,B01J20/22;C07F7/00,"B01J20/22,A",【課題】耐水性の向上。【解決手段】疎水化。【選択図】図1,従来の金属有機構造体は耐水性が低い。,【０００５】ジルコニウム系MOFに疎水化処理を施すことで、水分による劣化を抑制する。,二酸化炭素の回収に用いられる。,description,請求項1,abstract,abstract
+D2,JP2020-000002,2019-2,疎水性MOF,乙社,2019-02-01,2020-02-01,B01J 20/22,B01J20/22@Z,疎水性基を導入したMOF。,MOFは水分による劣化が生じる。,ＵｉＯ－６６に疎水性基の導入を行う。,ＣＯ２回収に好適である。,description,請求項1,abstract,abstract
+D3,JP2020-000003,2019-3,複合体,丙社,2019-03-01,2020-03-01,B01J20/26,B01J20/26,ポリマーとの複合体。,吸着量が少ない。,HKUST-1をポリマーとの複合体とする。,水素の貯蔵に用いる。,description,請求項1,abstract,abstract
+D4,JP2020-000004,2019-4,分離材,丁社,2019-04-01,2020-04-01,B01D53/04,B01D53/04G,銅系の分離材。,分離選択性が低い。,銅系MOFを用いる。,,,請求項1,abstract,abstract
+D5,JP2020-000005,2019-5,小型装置,戊社,2019-05-01,2020-05-01,F24F1/00,F24F1/00,小型の装置。,装置が大型化する。,筐体を小型化する。,家庭用機器に用いる。,description,請求項1,abstract,abstract
+D6,JP2020-000006,2019-6,触媒,己社,2019-06-01,2020-06-01,B01J31/22,B01J31/22Z,触媒用のMOF。,熱による分解が生じる。,金属有機構造体では熱安定性を確保できない。そこで、ジルコニウム系MOFを用いる。,触媒反応に用いられる。,description,請求項1,abstract,abstract

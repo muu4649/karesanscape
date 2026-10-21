@@ -1,0 +1,560 @@
+# 技術オントロジー試作の部品「battery」。木は config/modules/battery.tree、作り方は scripts/build_module.py。
+# 概念 69（中間 6・末端 63）、別名 211。
+module: battery
+concepts:
+- id: BAT_P_internal_resistance
+  label: 内部抵抗
+  aliases:
+  - 抵抗上昇
+  - 抵抗増加
+  - 直流抵抗
+  - 界面抵抗
+  parents:
+  - P_rate
+- id: BAT_P_low_temp
+  label: 低温特性
+  aliases:
+  - 低温環境
+  - 低温時
+  parents:
+  - P_rate
+- id: BAT_P_fast_charge
+  label: 急速充電
+  aliases:
+  - レート特性
+  - 高レート
+  - 入出力特性
+  parents:
+  - P_rate
+- id: BAT_P_self_discharge
+  label: 自己放電
+  aliases: []
+  parents:
+  - P_side_reaction
+- id: BAT_P_li_deposition
+  label: リチウム析出
+  aliases:
+  - デンドライト
+  - リチウムデンドライト
+  parents:
+  - P_side_reaction
+- id: BAT_P_electrolyte_decomp
+  label: 電解液の分解
+  aliases:
+  - 電解液の劣化
+  - 電解液分解
+  parents:
+  - P_side_reaction
+- id: BAT_P_gas
+  label: ガス発生
+  aliases:
+  - ガスの発生
+  - 発生ガス
+  - ガス膨れ
+  parents:
+  - P_side_reaction
+- id: BAT_P_storage
+  label: 保存特性
+  aliases:
+  - 高温保存
+  - 保存性
+  parents:
+  - P_cycle
+- id: BAT_P_capacity_fade
+  label: 容量劣化
+  aliases:
+  - 容量低下
+  - 容量維持率
+  - 容量保持率
+  parents:
+  - P_cycle
+- id: BAT_P_energy_density
+  label: エネルギー密度
+  aliases:
+  - 高エネルギー密度
+  - 体積エネルギー密度
+  - 重量エネルギー密度
+  parents:
+  - P_capacity
+- id: BAT_P_overcharge
+  label: 過充電
+  aliases:
+  - 過放電
+  parents:
+  - P_electrochem
+- id: BAT_P_swelling
+  label: 膨張
+  aliases:
+  - 体積膨張
+  - 膨張収縮
+  - 体積変化
+  - 膨れ
+  parents:
+  - P_structural_stability
+- id: BAT_P_heat_shrink
+  label: 熱収縮
+  aliases:
+  - 熱収縮率
+  - 寸法安定性
+  parents:
+  - P_structural_stability
+- id: BAT_P_thermal_runaway
+  label: 熱暴走
+  aliases:
+  - 発火
+  - 発煙
+  - 破裂
+  - 熱連鎖
+  parents:
+  - P_safety
+- id: BAT_P_short
+  label: 内部短絡
+  aliases:
+  - 短絡
+  - ショート
+  parents:
+  - P_env_safety
+- id: BAT_P_temp_rise
+  label: 温度上昇
+  aliases:
+  - 発熱
+  - 異常発熱
+  parents:
+  - P_env_safety
+- id: BAT_P_internal_pressure
+  label: 内圧上昇
+  aliases:
+  - 内圧
+  - 内部圧力
+  parents:
+  - P_env_safety
+- id: BAT_P_leak
+  label: 漏液
+  aliases:
+  - 液漏れ
+  - 耐漏液性
+  parents:
+  - P_env_safety
+- id: BAT_P_shutdown
+  label: シャットダウン
+  aliases:
+  - シャットダウン機能
+  - シャットダウン温度
+  - メルトダウン
+  - メルトダウン温度
+  parents:
+  - P_env_safety
+- id: BAT_P_vibration
+  label: 振動
+  aliases:
+  - 耐振性
+  - 衝撃
+  parents:
+  - P_mechanical
+- id: BAT_P_wettability
+  label: 濡れ性
+  aliases:
+  - 含浸性
+  - 保液性
+  parents:
+  - P_mechanical
+- id: BAT_P_assembly
+  label: 組立性
+  aliases:
+  - 組み立て
+  - 組付け
+  - 作業性
+  parents:
+  - P_handling
+- id: BAT_P_space
+  label: 省スペース
+  aliases:
+  - デッドスペース
+  - 小型化
+  - 薄型化
+  parents:
+  - P_size_weight
+- id: BAT_P_cooling_perf
+  label: 冷却性能
+  aliases:
+  - 放熱性
+  - 冷却効率
+  - 温度ムラ
+  - 温度ばらつき
+  parents:
+  - P_thermal_property
+- id: BAT_P_air_perm
+  label: 透気度
+  aliases:
+  - 透気性
+  - 通気性
+  - 透気抵抗度
+  parents:
+  - P_functional_property
+- id: BAT_M_electrode_plate
+  label: 正極板
+  aliases:
+  - 負極板
+  - 極板
+  - 電極板
+  - 正極シート
+  - 負極シート
+  - 電極シート
+  parents:
+  - M_cell_component
+- id: BAT_M_mixture_layer
+  label: 合剤層
+  aliases:
+  - 正極合剤層
+  - 負極合剤層
+  - 活物質層
+  - 正極活物質層
+  - 負極活物質層
+  - 電極合材
+  - 合材層
+  parents:
+  - M_cell_component
+- id: BAT_M_separator
+  label: セパレータ
+  aliases:
+  - セパレーター
+  - 隔離膜
+  parents:
+  - M_cell_component
+- id: BAT_M_polyolefin
+  label: ポリオレフィン微多孔膜
+  aliases:
+  - ポリオレフィン
+  - ポリエチレン
+  - ポリプロピレン
+  - 微多孔膜
+  - 微多孔質膜
+  parents:
+  - M_polymer
+- id: BAT_M_heat_resistant_layer
+  label: 耐熱層
+  aliases:
+  - 多孔質層
+  - 耐熱多孔質層
+  - 無機粒子層
+  - 塗工層
+  - コート層
+  parents:
+  - M_coating
+- id: BAT_M_sei
+  label: SEI
+  aliases:
+  - SEI被膜
+  - 固体電解質界面
+  parents:
+  - M_coating
+- id: BAT_M_inorganic_particle
+  label: 無機粒子
+  aliases:
+  - 無機フィラー
+  - セラミック粒子
+  - ベーマイト
+  parents:
+  - M_alumina
+- id: BAT_M_el_additive
+  label: 電解液添加剤
+  aliases:
+  - ビニレンカーボネート
+  - フルオロエチレンカーボネート
+  - 被膜形成剤
+  parents:
+  - M_liquid_electrolyte
+- id: BAT_M_cell_structure
+  label: 電池の構造
+  aliases: []
+  parents:
+  - M
+- id: BAT_M_electrode_assembly
+  label: 電極体
+  aliases:
+  - 電極組立体
+  - 電極アセンブリ
+  - 発電要素
+  - 電極群
+  parents:
+  - BAT_M_cell_structure
+- id: BAT_M_wound
+  label: 巻回電極体
+  aliases:
+  - 巻回体
+  - 電極巻回体
+  - 巻回型
+  - 捲回
+  - 巻回
+  parents:
+  - BAT_M_electrode_assembly
+- id: BAT_M_stacked
+  label: 積層電極体
+  aliases:
+  - 積層型
+  - スタック
+  - 積層構造体
+  parents:
+  - BAT_M_electrode_assembly
+- id: BAT_M_bipolar
+  label: バイポーラ電極
+  aliases:
+  - 双極型電極
+  - 双極型電池
+  parents:
+  - BAT_M_cell_structure
+- id: BAT_M_nonwoven
+  label: 不織布
+  aliases:
+  - 織布
+  parents:
+  - BAT_M_cell_structure
+- id: BAT_M_case_mid
+  label: 外装・封口
+  aliases: []
+  parents:
+  - M
+- id: BAT_M_case
+  label: 外装体
+  aliases:
+  - 外装ケース
+  - 電池ケース
+  - 電槽
+  - 外装缶
+  - 電池缶
+  - ケース本体
+  - 筐体
+  parents:
+  - BAT_M_case_mid
+- id: BAT_M_laminate
+  label: ラミネートフィルム
+  aliases:
+  - ラミネート外装体
+  - ラミネートシート
+  - 外装フィルム
+  parents:
+  - BAT_M_case_mid
+- id: BAT_M_sealing_plate
+  label: 封口板
+  aliases:
+  - 封口体
+  - 蓋体
+  - 蓋板
+  parents:
+  - BAT_M_case_mid
+- id: BAT_M_gasket
+  label: ガスケット
+  aliases:
+  - パッキン
+  - シール材
+  - Oリング
+  parents:
+  - BAT_M_case_mid
+- id: BAT_M_vent
+  label: ガス排出弁
+  aliases:
+  - 安全弁
+  - 排出弁
+  - 破裂弁
+  - 排気弁
+  - 開裂弁
+  parents:
+  - BAT_M_case_mid
+- id: BAT_M_heat_seal
+  label: 熱溶着
+  aliases:
+  - 熱融着
+  - ヒートシール
+  - 溶着部
+  - 熱溶着部
+  parents:
+  - BAT_M_case_mid
+- id: BAT_M_terminal_mid
+  label: 端子・接続
+  aliases: []
+  parents:
+  - M
+- id: BAT_M_tab
+  label: タブ
+  aliases:
+  - 正極タブ
+  - 負極タブ
+  - 電極タブ
+  - 集電タブ
+  parents:
+  - BAT_M_terminal_mid
+- id: BAT_M_lead
+  label: 電極リード
+  aliases:
+  - リード端子
+  - 正極リード
+  - 負極リード
+  - リード部材
+  parents:
+  - BAT_M_terminal_mid
+- id: BAT_M_terminal
+  label: 電極端子
+  aliases:
+  - 正極端子
+  - 負極端子
+  - 外部端子
+  - 端子部材
+  parents:
+  - BAT_M_terminal_mid
+- id: BAT_M_busbar
+  label: バスバー
+  aliases:
+  - 接続部材
+  - 導電部材
+  parents:
+  - BAT_M_terminal_mid
+- id: BAT_M_current_foil
+  label: 集電箔
+  aliases:
+  - 銅箔
+  - アルミニウム箔
+  - 金属箔
+  - 集電部
+  parents:
+  - BAT_M_terminal_mid
+- id: BAT_M_welding
+  label: 溶接
+  aliases:
+  - レーザ溶接
+  - 超音波溶接
+  - 抵抗溶接
+  - 溶接部
+  parents:
+  - BAT_M_terminal_mid
+- id: BAT_M_module_mid
+  label: 組電池・冷却
+  aliases: []
+  parents:
+  - M
+- id: BAT_M_module
+  label: 組電池
+  aliases:
+  - 蓄電モジュール
+  - 電池スタック
+  parents:
+  - BAT_M_module_mid
+- id: BAT_M_cooling
+  label: 冷却構造
+  aliases:
+  - 冷媒
+  - 冷却板
+  - 冷却器
+  - 冷却流路
+  - 放熱板
+  - ヒートシンク
+  - ファン
+  - 送風
+  parents:
+  - BAT_M_module_mid
+- id: BAT_M_spacer
+  label: スペーサ
+  aliases:
+  - スペーサー
+  - 緩衝材
+  parents:
+  - BAT_M_module_mid
+- id: BAT_M_insulating_member
+  label: 絶縁部材
+  aliases:
+  - 絶縁シート
+  - 絶縁フィルム
+  - 絶縁テープ
+  - 絶縁カバー
+  parents:
+  - BAT_M_module_mid
+- id: BAT_M_restraint
+  label: 拘束部材
+  aliases:
+  - 拘束
+  - エンドプレート
+  - 押圧
+  - 加圧部材
+  parents:
+  - BAT_M_module_mid
+- id: BAT_M_management_mid
+  label: 充放電の管理
+  aliases: []
+  parents:
+  - M
+- id: BAT_M_soc
+  label: 充電状態
+  aliases:
+  - SOC
+  - 充電率
+  - 残存容量
+  - 満充電
+  parents:
+  - BAT_M_management_mid
+- id: BAT_M_soh
+  label: 劣化状態
+  aliases:
+  - SOH
+  - 劣化度
+  - 寿命推定
+  - 劣化推定
+  parents:
+  - BAT_M_management_mid
+- id: BAT_M_charge_control
+  label: 充電制御
+  aliases:
+  - 充電電流
+  - 充電電圧
+  - 定電流
+  - 定電圧
+  - 充電器
+  - 充電装置
+  parents:
+  - BAT_M_management_mid
+- id: BAT_M_voltage_detect
+  label: 電圧検出
+  aliases:
+  - 電圧センサ
+  - 電圧測定
+  - セル電圧
+  parents:
+  - BAT_M_management_mid
+- id: BAT_M_temp_detect
+  label: 温度検出
+  aliases:
+  - 温度センサ
+  - サーミスタ
+  - 温度測定
+  parents:
+  - BAT_M_management_mid
+- id: BAT_M_balancing
+  label: 均等化
+  aliases:
+  - セルバランス
+  - バランス回路
+  - 均等化回路
+  parents:
+  - BAT_M_management_mid
+- id: BAT_M_bms
+  label: 電池管理装置
+  aliases:
+  - 電池監視
+  - 監視装置
+  - バッテリマネジメント
+  - BMS
+  parents:
+  - BAT_M_management_mid
+- id: BAT_M_formation
+  label: 化成
+  aliases:
+  - 化成処理
+  - 初期充電
+  - エージング
+  parents:
+  - BAT_M_management_mid
+- id: BAT_U_forklift
+  label: フォークリフト
+  aliases:
+  - 産業車両
+  - 作業車両
+  parents:
+  - U_vehicle

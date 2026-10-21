@@ -1,0 +1,28 @@
+# テスト用の小さな MOF オントロジー（上位型 P/M/U、述語 addresses / used_for / arises_in）
+version: "mof-mini"
+top_types:
+  - {id: P, label: 課題}
+  - {id: M, label: 解決手段}
+  - {id: U, label: 用途}
+predicates:
+  - {id: addresses, label: 解決する, group: reduce, polarity: -1}
+  - {id: used_for, label: 用途に使われる, group: apply, polarity: 0}
+  - {id: arises_in, label: 用途で問題になる, group: locate, polarity: 0}
+concepts:
+  - {id: P_stability, label: 安定性の課題, parents: [P]}
+  - {id: P_water, label: 耐水性, aliases: [水分による劣化, 耐湿性], parents: [P_stability]}
+  - {id: P_heat, label: 熱安定性, aliases: [熱による分解, 耐熱性], parents: [P_stability]}
+  - {id: P_adsorption, label: 吸着性能の課題, parents: [P]}
+  - {id: P_capacity, label: 吸着量, aliases: [吸着容量], parents: [P_adsorption]}
+  - {id: P_selectivity, label: 分離選択性, aliases: [選択性], parents: [P_adsorption]}
+  - {id: M_mof, label: 金属有機構造体, aliases: [MOF, 多孔性配位高分子], parents: [M]}
+  - {id: M_material, label: 材料の選択, parents: [M]}
+  - {id: M_zr, label: ジルコニウム系MOF, aliases: [UiO-66], parents: [M_material]}
+  - {id: M_cu, label: 銅系MOF, aliases: [HKUST-1], parents: [M_material]}
+  - {id: M_process, label: 後処理, parents: [M]}
+  - {id: M_hydrophobic, label: 疎水化処理, aliases: [疎水性基の導入], parents: [M_process]}
+  - {id: M_composite, label: ポリマーとの複合化, aliases: [ポリマーとの複合体], parents: [M_process]}
+  - {id: U_gas, label: ガス分離・貯蔵, parents: [U]}
+  - {id: U_co2, label: 二酸化炭素の回収, aliases: [CO2回収], parents: [U_gas]}
+  - {id: U_h2, label: 水素貯蔵, aliases: [水素の貯蔵], parents: [U_gas]}
+  - {id: U_catalyst, label: 触媒, aliases: [触媒反応], parents: [U]}

@@ -1,0 +1,3224 @@
+{
+ "theme": "5F110",
+ "theme_label": "薄膜トランジスタ",
+ "retrieved": "2026-10-20",
+ "source": "Summaria-MCP(Model Context Protocol)",
+ "jppm_release_date": "2026-06-26",
+ "aspects": [
+  {
+   "aspect": "AA",
+   "code": "5F110AA00",
+   "label": "目的",
+   "codes": [
+    {
+     "code": "5F110AA01",
+     "label": "・動作の高速化",
+     "parents": [
+      "5F110AA00"
+     ]
+    },
+    {
+     "code": "5F110AA02",
+     "label": "・・寄生容量低減",
+     "parents": [
+      "5F110AA01",
+      "5F110AA00"
+     ]
+    },
+    {
+     "code": "5F110AA03",
+     "label": "・・電極、配線の低抵抗化",
+     "parents": [
+      "5F110AA01",
+      "5F110AA00"
+     ]
+    },
+    {
+     "code": "5F110AA04",
+     "label": "・集積化",
+     "parents": [
+      "5F110AA00"
+     ]
+    },
+    {
+     "code": "5F110AA05",
+     "label": "・ON/OFF比向上",
+     "parents": [
+      "5F110AA00"
+     ]
+    },
+    {
+     "code": "5F110AA06",
+     "label": "・・リ-ク電流の低減",
+     "parents": [
+      "5F110AA05",
+      "5F110AA00"
+     ]
+    },
+    {
+     "code": "5F110AA07",
+     "label": "・・大電流化",
+     "parents": [
+      "5F110AA05",
+      "5F110AA00"
+     ]
+    },
+    {
+     "code": "5F110AA08",
+     "label": "・しきい値電圧の制御",
+     "parents": [
+      "5F110AA00"
+     ]
+    },
+    {
+     "code": "5F110AA09",
+     "label": "・低消費電力",
+     "parents": [
+      "5F110AA00"
+     ]
+    },
+    {
+     "code": "5F110AA11",
+     "label": "・高耐圧化",
+     "parents": [
+      "5F110AA00"
+     ]
+    },
+    {
+     "code": "5F110AA12",
+     "label": "・・ゲ-トの高耐圧化",
+     "parents": [
+      "5F110AA11",
+      "5F110AA00"
+     ]
+    },
+    {
+     "code": "5F110AA13",
+     "label": "・・ソ-ス、ドレイン間の高耐圧化",
+     "parents": [
+      "5F110AA11",
+      "5F110AA00"
+     ]
+    },
+    {
+     "code": "5F110AA14",
+     "label": "・経時的特性劣化防止",
+     "parents": [
+      "5F110AA00"
+     ]
+    },
+    {
+     "code": "5F110AA15",
+     "label": "・キンク防止",
+     "parents": [
+      "5F110AA00"
+     ]
+    },
+    {
+     "code": "5F110AA16",
+     "label": "・製造工程の簡単化",
+     "parents": [
+      "5F110AA00"
+     ]
+    },
+    {
+     "code": "5F110AA17",
+     "label": "・低温プロセス",
+     "parents": [
+      "5F110AA00"
+     ]
+    },
+    {
+     "code": "5F110AA18",
+     "label": "・平坦化",
+     "parents": [
+      "5F110AA00"
+     ]
+    },
+    {
+     "code": "5F110AA19",
+     "label": "・ダングリングボンドの終端",
+     "parents": [
+      "5F110AA00"
+     ]
+    },
+    {
+     "code": "5F110AA21",
+     "label": "・保護対策",
+     "parents": [
+      "5F110AA00"
+     ]
+    },
+    {
+     "code": "5F110AA22",
+     "label": "・・静電破壊防止",
+     "parents": [
+      "5F110AA21",
+      "5F110AA00"
+     ]
+    },
+    {
+     "code": "5F110AA23",
+     "label": "・・熱からの保護",
+     "parents": [
+      "5F110AA21",
+      "5F110AA00"
+     ]
+    },
+    {
+     "code": "5F110AA24",
+     "label": "・試験、測定、検査",
+     "parents": [
+      "5F110AA00"
+     ]
+    },
+    {
+     "code": "5F110AA25",
+     "label": "・・シミュレ-ション",
+     "parents": [
+      "5F110AA24",
+      "5F110AA00"
+     ]
+    },
+    {
+     "code": "5F110AA26",
+     "label": "・素子または配線の欠陥の防止",
+     "parents": [
+      "5F110AA00"
+     ]
+    },
+    {
+     "code": "5F110AA27",
+     "label": "・素子または配線の欠陥の修正",
+     "parents": [
+      "5F110AA00"
+     ]
+    },
+    {
+     "code": "5F110AA28",
+     "label": "・大面積化",
+     "parents": [
+      "5F110AA00"
+     ]
+    },
+    {
+     "code": "5F110AA30",
+     "label": "・その他*",
+     "parents": [
+      "5F110AA00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "BB",
+   "code": "5F110BB00",
+   "label": "用途、動作",
+   "codes": [
+    {
+     "code": "5F110BB01",
+     "label": "・アクティブマトリクス基板",
+     "parents": [
+      "5F110BB00"
+     ]
+    },
+    {
+     "code": "5F110BB02",
+     "label": "・・周辺回路と一体に形成されたもの",
+     "parents": [
+      "5F110BB01",
+      "5F110BB00"
+     ]
+    },
+    {
+     "code": "5F110BB03",
+     "label": "・論理回路",
+     "parents": [
+      "5F110BB00"
+     ]
+    },
+    {
+     "code": "5F110BB04",
+     "label": "・・CMOS回路",
+     "parents": [
+      "5F110BB03",
+      "5F110BB00"
+     ]
+    },
+    {
+     "code": "5F110BB05",
+     "label": "・メモリ",
+     "parents": [
+      "5F110BB00"
+     ]
+    },
+    {
+     "code": "5F110BB06",
+     "label": "・・DRAM",
+     "parents": [
+      "5F110BB05",
+      "5F110BB00"
+     ]
+    },
+    {
+     "code": "5F110BB07",
+     "label": "・・SRAM",
+     "parents": [
+      "5F110BB05",
+      "5F110BB00"
+     ]
+    },
+    {
+     "code": "5F110BB08",
+     "label": "・・不揮発性メモリ",
+     "parents": [
+      "5F110BB05",
+      "5F110BB00"
+     ]
+    },
+    {
+     "code": "5F110BB09",
+     "label": "・センサ",
+     "parents": [
+      "5F110BB00"
+     ]
+    },
+    {
+     "code": "5F110BB10",
+     "label": "・・イメ-ジセンサ",
+     "parents": [
+      "5F110BB09",
+      "5F110BB00"
+     ]
+    },
+    {
+     "code": "5F110BB11",
+     "label": "・三次元集積回路",
+     "parents": [
+      "5F110BB00"
+     ]
+    },
+    {
+     "code": "5F110BB12",
+     "label": "・大電力用素子",
+     "parents": [
+      "5F110BB00"
+     ]
+    },
+    {
+     "code": "5F110BB13",
+     "label": "・特殊動作",
+     "parents": [
+      "5F110BB00"
+     ]
+    },
+    {
+     "code": "5F110BB20",
+     "label": "・その他*",
+     "parents": [
+      "5F110BB00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "CC",
+   "code": "5F110CC00",
+   "label": "構造",
+   "codes": [
+    {
+     "code": "5F110CC01",
+     "label": "・順コプレナ",
+     "parents": [
+      "5F110CC00"
+     ]
+    },
+    {
+     "code": "5F110CC02",
+     "label": "・・順コプレナド-プ",
+     "parents": [
+      "5F110CC01",
+      "5F110CC00"
+     ]
+    },
+    {
+     "code": "5F110CC03",
+     "label": "・逆コプレナ",
+     "parents": [
+      "5F110CC00"
+     ]
+    },
+    {
+     "code": "5F110CC04",
+     "label": "・・逆コプレナド-プ",
+     "parents": [
+      "5F110CC03",
+      "5F110CC00"
+     ]
+    },
+    {
+     "code": "5F110CC05",
+     "label": "・順スタガ",
+     "parents": [
+      "5F110CC00"
+     ]
+    },
+    {
+     "code": "5F110CC06",
+     "label": "・・順スタガド-プ",
+     "parents": [
+      "5F110CC05",
+      "5F110CC00"
+     ]
+    },
+    {
+     "code": "5F110CC07",
+     "label": "・逆スタガ",
+     "parents": [
+      "5F110CC00"
+     ]
+    },
+    {
+     "code": "5F110CC08",
+     "label": "・・逆スタガド-プ",
+     "parents": [
+      "5F110CC07",
+      "5F110CC00"
+     ]
+    },
+    {
+     "code": "5F110CC09",
+     "label": "・縦型",
+     "parents": [
+      "5F110CC00"
+     ]
+    },
+    {
+     "code": "5F110CC10",
+     "label": "・その他",
+     "parents": [
+      "5F110CC00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "DD",
+   "code": "5F110DD00",
+   "label": "基板",
+   "codes": [
+    {
+     "code": "5F110DD01",
+     "label": "・基板材料*",
+     "parents": [
+      "5F110DD00"
+     ]
+    },
+    {
+     "code": "5F110DD02",
+     "label": "・・ガラス*",
+     "parents": [
+      "5F110DD01",
+      "5F110DD00"
+     ]
+    },
+    {
+     "code": "5F110DD03",
+     "label": "・・・石英ガラス",
+     "parents": [
+      "5F110DD02",
+      "5F110DD01",
+      "5F110DD00"
+     ]
+    },
+    {
+     "code": "5F110DD04",
+     "label": "・・単結晶絶縁物",
+     "parents": [
+      "5F110DD01",
+      "5F110DD00"
+     ]
+    },
+    {
+     "code": "5F110DD05",
+     "label": "・・シリコン基板",
+     "parents": [
+      "5F110DD01",
+      "5F110DD00"
+     ]
+    },
+    {
+     "code": "5F110DD06",
+     "label": "・・材料の特性が規定",
+     "parents": [
+      "5F110DD01",
+      "5F110DD00"
+     ]
+    },
+    {
+     "code": "5F110DD07",
+     "label": "・・・歪点が規定",
+     "parents": [
+      "5F110DD06",
+      "5F110DD01",
+      "5F110DD00"
+     ]
+    },
+    {
+     "code": "5F110DD08",
+     "label": "・・・熱膨張係数が規定",
+     "parents": [
+      "5F110DD06",
+      "5F110DD01",
+      "5F110DD00"
+     ]
+    },
+    {
+     "code": "5F110DD11",
+     "label": "・表面層を有するもの",
+     "parents": [
+      "5F110DD00"
+     ]
+    },
+    {
+     "code": "5F110DD12",
+     "label": "・・表面層材料*",
+     "parents": [
+      "5F110DD11",
+      "5F110DD00"
+     ]
+    },
+    {
+     "code": "5F110DD13",
+     "label": "・・・SiO",
+     "parents": [
+      "5F110DD12",
+      "5F110DD11",
+      "5F110DD00"
+     ]
+    },
+    {
+     "code": "5F110DD14",
+     "label": "・・・SiN",
+     "parents": [
+      "5F110DD12",
+      "5F110DD11",
+      "5F110DD00"
+     ]
+    },
+    {
+     "code": "5F110DD15",
+     "label": "・・・SiON",
+     "parents": [
+      "5F110DD12",
+      "5F110DD11",
+      "5F110DD00"
+     ]
+    },
+    {
+     "code": "5F110DD17",
+     "label": "・・複数層",
+     "parents": [
+      "5F110DD11",
+      "5F110DD00"
+     ]
+    },
+    {
+     "code": "5F110DD18",
+     "label": "・・両面",
+     "parents": [
+      "5F110DD11",
+      "5F110DD00"
+     ]
+    },
+    {
+     "code": "5F110DD19",
+     "label": "・・裏面のみ",
+     "parents": [
+      "5F110DD11",
+      "5F110DD00"
+     ]
+    },
+    {
+     "code": "5F110DD21",
+     "label": "・基板形状",
+     "parents": [
+      "5F110DD00"
+     ]
+    },
+    {
+     "code": "5F110DD22",
+     "label": "・基板への電圧印加に工夫",
+     "parents": [
+      "5F110DD00"
+     ]
+    },
+    {
+     "code": "5F110DD24",
+     "label": "・製法*",
+     "parents": [
+      "5F110DD00"
+     ]
+    },
+    {
+     "code": "5F110DD25",
+     "label": "・・処理*",
+     "parents": [
+      "5F110DD24",
+      "5F110DD00"
+     ]
+    },
+    {
+     "code": "5F110DD30",
+     "label": "・その他*",
+     "parents": [
+      "5F110DD00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "EE",
+   "code": "5F110EE00",
+   "label": "ゲ-ト",
+   "codes": [
+    {
+     "code": "5F110EE01",
+     "label": "・材料*",
+     "parents": [
+      "5F110EE00"
+     ]
+    },
+    {
+     "code": "5F110EE02",
+     "label": "・・金属*",
+     "parents": [
+      "5F110EE01",
+      "5F110EE00"
+     ]
+    },
+    {
+     "code": "5F110EE03",
+     "label": "・・・Al",
+     "parents": [
+      "5F110EE02",
+      "5F110EE01",
+      "5F110EE00"
+     ]
+    },
+    {
+     "code": "5F110EE04",
+     "label": "・・・高融点金属*",
+     "parents": [
+      "5F110EE02",
+      "5F110EE01",
+      "5F110EE00"
+     ]
+    },
+    {
+     "code": "5F110EE05",
+     "label": "・・・シリサイド",
+     "parents": [
+      "5F110EE02",
+      "5F110EE01",
+      "5F110EE00"
+     ]
+    },
+    {
+     "code": "5F110EE06",
+     "label": "・・・合金*",
+     "parents": [
+      "5F110EE02",
+      "5F110EE01",
+      "5F110EE00"
+     ]
+    },
+    {
+     "code": "5F110EE07",
+     "label": "・・・透明導電膜",
+     "parents": [
+      "5F110EE02",
+      "5F110EE01",
+      "5F110EE00"
+     ]
+    },
+    {
+     "code": "5F110EE08",
+     "label": "・・半導体*",
+     "parents": [
+      "5F110EE01",
+      "5F110EE00"
+     ]
+    },
+    {
+     "code": "5F110EE09",
+     "label": "・・・多結晶Si",
+     "parents": [
+      "5F110EE08",
+      "5F110EE01",
+      "5F110EE00"
+     ]
+    },
+    {
+     "code": "5F110EE10",
+     "label": "・・・導電型の分布",
+     "parents": [
+      "5F110EE08",
+      "5F110EE01",
+      "5F110EE00"
+     ]
+    },
+    {
+     "code": "5F110EE11",
+     "label": "・・材料の特性が規定",
+     "parents": [
+      "5F110EE01",
+      "5F110EE00"
+     ]
+    },
+    {
+     "code": "5F110EE12",
+     "label": "・・複数種の構成材料の分布",
+     "parents": [
+      "5F110EE01",
+      "5F110EE00"
+     ]
+    },
+    {
+     "code": "5F110EE14",
+     "label": "・複数層",
+     "parents": [
+      "5F110EE00"
+     ]
+    },
+    {
+     "code": "5F110EE15",
+     "label": "・・三層以上",
+     "parents": [
+      "5F110EE14",
+      "5F110EE00"
+     ]
+    },
+    {
+     "code": "5F110EE21",
+     "label": "・形状",
+     "parents": [
+      "5F110EE00"
+     ]
+    },
+    {
+     "code": "5F110EE22",
+     "label": "・・断面形状",
+     "parents": [
+      "5F110EE21",
+      "5F110EE00"
+     ]
+    },
+    {
+     "code": "5F110EE23",
+     "label": "・・・テ-パ状",
+     "parents": [
+      "5F110EE22",
+      "5F110EE21",
+      "5F110EE00"
+     ]
+    },
+    {
+     "code": "5F110EE24",
+     "label": "・・平面形状",
+     "parents": [
+      "5F110EE21",
+      "5F110EE00"
+     ]
+    },
+    {
+     "code": "5F110EE25",
+     "label": "・・他の構成要素との相対的な大きさが規定",
+     "parents": [
+      "5F110EE21",
+      "5F110EE00"
+     ]
+    },
+    {
+     "code": "5F110EE27",
+     "label": "・複数ゲ-ト",
+     "parents": [
+      "5F110EE00"
+     ]
+    },
+    {
+     "code": "5F110EE28",
+     "label": "・・直列",
+     "parents": [
+      "5F110EE27",
+      "5F110EE00"
+     ]
+    },
+    {
+     "code": "5F110EE29",
+     "label": "・・並列",
+     "parents": [
+      "5F110EE27",
+      "5F110EE00"
+     ]
+    },
+    {
+     "code": "5F110EE30",
+     "label": "・・バックゲ-ト",
+     "parents": [
+      "5F110EE27",
+      "5F110EE00"
+     ]
+    },
+    {
+     "code": "5F110EE31",
+     "label": "・サイドウォ-ルを有するもの",
+     "parents": [
+      "5F110EE00"
+     ]
+    },
+    {
+     "code": "5F110EE32",
+     "label": "・・堆積によるもの",
+     "parents": [
+      "5F110EE31",
+      "5F110EE00"
+     ]
+    },
+    {
+     "code": "5F110EE33",
+     "label": "・・電極表面を酸化したもの",
+     "parents": [
+      "5F110EE31",
+      "5F110EE00"
+     ]
+    },
+    {
+     "code": "5F110EE34",
+     "label": "・・・陽極酸化膜",
+     "parents": [
+      "5F110EE33",
+      "5F110EE31",
+      "5F110EE00"
+     ]
+    },
+    {
+     "code": "5F110EE36",
+     "label": "・ゲ-ト配線との接続部に工夫",
+     "parents": [
+      "5F110EE00"
+     ]
+    },
+    {
+     "code": "5F110EE37",
+     "label": "・ゲ-ト配線に工夫",
+     "parents": [
+      "5F110EE00"
+     ]
+    },
+    {
+     "code": "5F110EE38",
+     "label": "・コンタクトホ-ルを介して配線を設けたもの",
+     "parents": [
+      "5F110EE00"
+     ]
+    },
+    {
+     "code": "5F110EE41",
+     "label": "・製法*",
+     "parents": [
+      "5F110EE00"
+     ]
+    },
+    {
+     "code": "5F110EE42",
+     "label": "・・堆積*",
+     "parents": [
+      "5F110EE41",
+      "5F110EE00"
+     ]
+    },
+    {
+     "code": "5F110EE43",
+     "label": "・・・蒸着",
+     "parents": [
+      "5F110EE42",
+      "5F110EE41",
+      "5F110EE00"
+     ]
+    },
+    {
+     "code": "5F110EE44",
+     "label": "・・・スパッタ",
+     "parents": [
+      "5F110EE42",
+      "5F110EE41",
+      "5F110EE00"
+     ]
+    },
+    {
+     "code": "5F110EE45",
+     "label": "・・・CVD",
+     "parents": [
+      "5F110EE42",
+      "5F110EE41",
+      "5F110EE00"
+     ]
+    },
+    {
+     "code": "5F110EE47",
+     "label": "・・前処理*",
+     "parents": [
+      "5F110EE41",
+      "5F110EE00"
+     ]
+    },
+    {
+     "code": "5F110EE48",
+     "label": "・・後処理*",
+     "parents": [
+      "5F110EE41",
+      "5F110EE00"
+     ]
+    },
+    {
+     "code": "5F110EE50",
+     "label": "・その他*",
+     "parents": [
+      "5F110EE00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "FF",
+   "code": "5F110FF00",
+   "label": "ゲ-ト絶縁膜",
+   "codes": [
+    {
+     "code": "5F110FF01",
+     "label": "・材料*",
+     "parents": [
+      "5F110FF00"
+     ]
+    },
+    {
+     "code": "5F110FF02",
+     "label": "・・SiO",
+     "parents": [
+      "5F110FF01",
+      "5F110FF00"
+     ]
+    },
+    {
+     "code": "5F110FF03",
+     "label": "・・SiN",
+     "parents": [
+      "5F110FF01",
+      "5F110FF00"
+     ]
+    },
+    {
+     "code": "5F110FF04",
+     "label": "・・SiON",
+     "parents": [
+      "5F110FF01",
+      "5F110FF00"
+     ]
+    },
+    {
+     "code": "5F110FF05",
+     "label": "・・材料の特性が規定",
+     "parents": [
+      "5F110FF01",
+      "5F110FF00"
+     ]
+    },
+    {
+     "code": "5F110FF06",
+     "label": "・・複数種の構成材料の分布",
+     "parents": [
+      "5F110FF01",
+      "5F110FF00"
+     ]
+    },
+    {
+     "code": "5F110FF07",
+     "label": "・・不純物を含有するもの*",
+     "parents": [
+      "5F110FF01",
+      "5F110FF00"
+     ]
+    },
+    {
+     "code": "5F110FF09",
+     "label": "・複数層",
+     "parents": [
+      "5F110FF00"
+     ]
+    },
+    {
+     "code": "5F110FF10",
+     "label": "・・三層以上",
+     "parents": [
+      "5F110FF09",
+      "5F110FF00"
+     ]
+    },
+    {
+     "code": "5F110FF11",
+     "label": "・形状",
+     "parents": [
+      "5F110FF00"
+     ]
+    },
+    {
+     "code": "5F110FF12",
+     "label": "・・断面形状",
+     "parents": [
+      "5F110FF11",
+      "5F110FF00"
+     ]
+    },
+    {
+     "code": "5F110FF13",
+     "label": "・・平面形状",
+     "parents": [
+      "5F110FF11",
+      "5F110FF00"
+     ]
+    },
+    {
+     "code": "5F110FF21",
+     "label": "・製法*",
+     "parents": [
+      "5F110FF00"
+     ]
+    },
+    {
+     "code": "5F110FF22",
+     "label": "・・酸化",
+     "parents": [
+      "5F110FF21",
+      "5F110FF00"
+     ]
+    },
+    {
+     "code": "5F110FF23",
+     "label": "・・・熱酸化",
+     "parents": [
+      "5F110FF22",
+      "5F110FF21",
+      "5F110FF00"
+     ]
+    },
+    {
+     "code": "5F110FF24",
+     "label": "・・・陽極酸化",
+     "parents": [
+      "5F110FF22",
+      "5F110FF21",
+      "5F110FF00"
+     ]
+    },
+    {
+     "code": "5F110FF25",
+     "label": "・・・・プラズマ雰囲気中",
+     "parents": [
+      "5F110FF24",
+      "5F110FF22",
+      "5F110FF21",
+      "5F110FF00"
+     ]
+    },
+    {
+     "code": "5F110FF26",
+     "label": "・・窒化",
+     "parents": [
+      "5F110FF21",
+      "5F110FF00"
+     ]
+    },
+    {
+     "code": "5F110FF27",
+     "label": "・・堆積*",
+     "parents": [
+      "5F110FF21",
+      "5F110FF00"
+     ]
+    },
+    {
+     "code": "5F110FF28",
+     "label": "・・・スパッタ",
+     "parents": [
+      "5F110FF27",
+      "5F110FF21",
+      "5F110FF00"
+     ]
+    },
+    {
+     "code": "5F110FF29",
+     "label": "・・・CVD*",
+     "parents": [
+      "5F110FF27",
+      "5F110FF21",
+      "5F110FF00"
+     ]
+    },
+    {
+     "code": "5F110FF30",
+     "label": "・・・・プラズマCVD",
+     "parents": [
+      "5F110FF29",
+      "5F110FF27",
+      "5F110FF21",
+      "5F110FF00"
+     ]
+    },
+    {
+     "code": "5F110FF31",
+     "label": "・・・・・ECRプラズマCVD",
+     "parents": [
+      "5F110FF30",
+      "5F110FF29",
+      "5F110FF27",
+      "5F110FF21",
+      "5F110FF00"
+     ]
+    },
+    {
+     "code": "5F110FF32",
+     "label": "・・・・減圧CVD",
+     "parents": [
+      "5F110FF29",
+      "5F110FF27",
+      "5F110FF21",
+      "5F110FF00"
+     ]
+    },
+    {
+     "code": "5F110FF33",
+     "label": "・・・・光CVD",
+     "parents": [
+      "5F110FF29",
+      "5F110FF27",
+      "5F110FF21",
+      "5F110FF00"
+     ]
+    },
+    {
+     "code": "5F110FF35",
+     "label": "・・前処理*",
+     "parents": [
+      "5F110FF21",
+      "5F110FF00"
+     ]
+    },
+    {
+     "code": "5F110FF36",
+     "label": "・・後処理*",
+     "parents": [
+      "5F110FF21",
+      "5F110FF00"
+     ]
+    },
+    {
+     "code": "5F110FF40",
+     "label": "・その他*",
+     "parents": [
+      "5F110FF00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "GG",
+   "code": "5F110GG00",
+   "label": "チャネル半導体層",
+   "codes": [
+    {
+     "code": "5F110GG01",
+     "label": "・材料*",
+     "parents": [
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG02",
+     "label": "・・Si",
+     "parents": [
+      "5F110GG01",
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG03",
+     "label": "・・Ge",
+     "parents": [
+      "5F110GG01",
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG04",
+     "label": "・・化合物半導体*",
+     "parents": [
+      "5F110GG01",
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG05",
+     "label": "・・有機半導体",
+     "parents": [
+      "5F110GG01",
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG06",
+     "label": "・・材料の特性が規定",
+     "parents": [
+      "5F110GG01",
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG07",
+     "label": "・・複数種の構成材料の分布",
+     "parents": [
+      "5F110GG01",
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG11",
+     "label": "・結晶構造",
+     "parents": [
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG12",
+     "label": "・・単結晶",
+     "parents": [
+      "5F110GG11",
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG13",
+     "label": "・・多結晶",
+     "parents": [
+      "5F110GG11",
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG14",
+     "label": "・・微結晶",
+     "parents": [
+      "5F110GG11",
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG15",
+     "label": "・・非晶質",
+     "parents": [
+      "5F110GG11",
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG16",
+     "label": "・・結晶粒径が規定",
+     "parents": [
+      "5F110GG11",
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG17",
+     "label": "・・結晶方位が規定",
+     "parents": [
+      "5F110GG11",
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG19",
+     "label": "・複数層",
+     "parents": [
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG20",
+     "label": "・・超格子",
+     "parents": [
+      "5F110GG19",
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG21",
+     "label": "・形状",
+     "parents": [
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG22",
+     "label": "・・断面形状",
+     "parents": [
+      "5F110GG21",
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG23",
+     "label": "・・平面形状",
+     "parents": [
+      "5F110GG21",
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG24",
+     "label": "・・チャネル半導体層の膜厚が規定",
+     "parents": [
+      "5F110GG21",
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG25",
+     "label": "・・・1000Å以下",
+     "parents": [
+      "5F110GG24",
+      "5F110GG21",
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG26",
+     "label": "・・他の構成要素との相対的な大きさが規定",
+     "parents": [
+      "5F110GG21",
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG28",
+     "label": "・チャネル長が規定",
+     "parents": [
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG29",
+     "label": "・チャネル幅が規定",
+     "parents": [
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG30",
+     "label": "・チャネルの数がゲ-トの数より多いもの",
+     "parents": [
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG31",
+     "label": "・チャネル領域の不純物",
+     "parents": [
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG32",
+     "label": "・・不純物材料*",
+     "parents": [
+      "5F110GG31",
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG33",
+     "label": "・・・キャリアにならない不純物*",
+     "parents": [
+      "5F110GG32",
+      "5F110GG31",
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG34",
+     "label": "・・濃度が規定",
+     "parents": [
+      "5F110GG31",
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG35",
+     "label": "・・・i層",
+     "parents": [
+      "5F110GG34",
+      "5F110GG31",
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG36",
+     "label": "・・不純物の分布",
+     "parents": [
+      "5F110GG31",
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG37",
+     "label": "・・・一導電型不純物のみ",
+     "parents": [
+      "5F110GG36",
+      "5F110GG31",
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG39",
+     "label": "・チャネル半導体層に絶縁領域を有するもの",
+     "parents": [
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG41",
+     "label": "・製法*",
+     "parents": [
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG42",
+     "label": "・・堆積*",
+     "parents": [
+      "5F110GG41",
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG43",
+     "label": "・・・スパッタ",
+     "parents": [
+      "5F110GG42",
+      "5F110GG41",
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG44",
+     "label": "・・・CVD*",
+     "parents": [
+      "5F110GG42",
+      "5F110GG41",
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG45",
+     "label": "・・・・プラズマCVD",
+     "parents": [
+      "5F110GG44",
+      "5F110GG42",
+      "5F110GG41",
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG46",
+     "label": "・・・・・ECRプラズマCVD",
+     "parents": [
+      "5F110GG45",
+      "5F110GG44",
+      "5F110GG42",
+      "5F110GG41",
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG47",
+     "label": "・・・・減圧CVD",
+     "parents": [
+      "5F110GG44",
+      "5F110GG42",
+      "5F110GG41",
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG48",
+     "label": "・・・・光CVD",
+     "parents": [
+      "5F110GG44",
+      "5F110GG42",
+      "5F110GG41",
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG51",
+     "label": "・・不純物の導入方法*",
+     "parents": [
+      "5F110GG41",
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG52",
+     "label": "・・・イオン注入",
+     "parents": [
+      "5F110GG51",
+      "5F110GG41",
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG53",
+     "label": "・・・拡散",
+     "parents": [
+      "5F110GG51",
+      "5F110GG41",
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG54",
+     "label": "・・・・固相拡散",
+     "parents": [
+      "5F110GG53",
+      "5F110GG51",
+      "5F110GG41",
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG55",
+     "label": "・・・・気相拡散",
+     "parents": [
+      "5F110GG53",
+      "5F110GG51",
+      "5F110GG41",
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG57",
+     "label": "・・前処理*",
+     "parents": [
+      "5F110GG41",
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG58",
+     "label": "・・後処理*",
+     "parents": [
+      "5F110GG41",
+      "5F110GG00"
+     ]
+    },
+    {
+     "code": "5F110GG60",
+     "label": "・その他*",
+     "parents": [
+      "5F110GG00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "HJ",
+   "code": "5F110HJ00",
+   "label": "ソ-ス、ドレイン1",
+   "codes": [
+    {
+     "code": "5F110HJ01",
+     "label": "・不純物材料*",
+     "parents": [
+      "5F110HJ00"
+     ]
+    },
+    {
+     "code": "5F110HJ02",
+     "label": "・・キャリアにならない不純物*",
+     "parents": [
+      "5F110HJ01",
+      "5F110HJ00"
+     ]
+    },
+    {
+     "code": "5F110HJ04",
+     "label": "・不純物濃度が規定",
+     "parents": [
+      "5F110HJ00"
+     ]
+    },
+    {
+     "code": "5F110HJ06",
+     "label": "・不純物の分布",
+     "parents": [
+      "5F110HJ00"
+     ]
+    },
+    {
+     "code": "5F110HJ07",
+     "label": "・・一導電型不純物のみ",
+     "parents": [
+      "5F110HJ06",
+      "5F110HJ00"
+     ]
+    },
+    {
+     "code": "5F110HJ11",
+     "label": "・不純物領域の製法*",
+     "parents": [
+      "5F110HJ00"
+     ]
+    },
+    {
+     "code": "5F110HJ12",
+     "label": "・・不純物の導入方法*",
+     "parents": [
+      "5F110HJ11",
+      "5F110HJ00"
+     ]
+    },
+    {
+     "code": "5F110HJ13",
+     "label": "・・・イオン注入",
+     "parents": [
+      "5F110HJ12",
+      "5F110HJ11",
+      "5F110HJ00"
+     ]
+    },
+    {
+     "code": "5F110HJ14",
+     "label": "・・・・斜めイオン注入",
+     "parents": [
+      "5F110HJ13",
+      "5F110HJ12",
+      "5F110HJ11",
+      "5F110HJ00"
+     ]
+    },
+    {
+     "code": "5F110HJ15",
+     "label": "・・・拡散",
+     "parents": [
+      "5F110HJ12",
+      "5F110HJ11",
+      "5F110HJ00"
+     ]
+    },
+    {
+     "code": "5F110HJ16",
+     "label": "・・・・固相拡散",
+     "parents": [
+      "5F110HJ15",
+      "5F110HJ12",
+      "5F110HJ11",
+      "5F110HJ00"
+     ]
+    },
+    {
+     "code": "5F110HJ17",
+     "label": "・・・・気相拡散",
+     "parents": [
+      "5F110HJ15",
+      "5F110HJ12",
+      "5F110HJ11",
+      "5F110HJ00"
+     ]
+    },
+    {
+     "code": "5F110HJ18",
+     "label": "・・・・・プラズマ雰囲気中",
+     "parents": [
+      "5F110HJ17",
+      "5F110HJ15",
+      "5F110HJ12",
+      "5F110HJ11",
+      "5F110HJ00"
+     ]
+    },
+    {
+     "code": "5F110HJ21",
+     "label": "・・不純物導入前の処理*",
+     "parents": [
+      "5F110HJ11",
+      "5F110HJ00"
+     ]
+    },
+    {
+     "code": "5F110HJ22",
+     "label": "・・不純物導入後の処理*",
+     "parents": [
+      "5F110HJ11",
+      "5F110HJ00"
+     ]
+    },
+    {
+     "code": "5F110HJ23",
+     "label": "・・・不純物の活性化",
+     "parents": [
+      "5F110HJ22",
+      "5F110HJ11",
+      "5F110HJ00"
+     ]
+    },
+    {
+     "code": "5F110HJ30",
+     "label": "・その他*",
+     "parents": [
+      "5F110HJ00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "HK",
+   "code": "5F110HK00",
+   "label": "ソ-ス、ドレイン2",
+   "codes": [
+    {
+     "code": "5F110HK01",
+     "label": "・材料*",
+     "parents": [
+      "5F110HK00"
+     ]
+    },
+    {
+     "code": "5F110HK02",
+     "label": "・・金属*",
+     "parents": [
+      "5F110HK01",
+      "5F110HK00"
+     ]
+    },
+    {
+     "code": "5F110HK03",
+     "label": "・・・Al",
+     "parents": [
+      "5F110HK02",
+      "5F110HK01",
+      "5F110HK00"
+     ]
+    },
+    {
+     "code": "5F110HK04",
+     "label": "・・・高融点金属*",
+     "parents": [
+      "5F110HK02",
+      "5F110HK01",
+      "5F110HK00"
+     ]
+    },
+    {
+     "code": "5F110HK05",
+     "label": "・・・シリサイド",
+     "parents": [
+      "5F110HK02",
+      "5F110HK01",
+      "5F110HK00"
+     ]
+    },
+    {
+     "code": "5F110HK06",
+     "label": "・・・合金*",
+     "parents": [
+      "5F110HK02",
+      "5F110HK01",
+      "5F110HK00"
+     ]
+    },
+    {
+     "code": "5F110HK07",
+     "label": "・・・透明導電膜",
+     "parents": [
+      "5F110HK02",
+      "5F110HK01",
+      "5F110HK00"
+     ]
+    },
+    {
+     "code": "5F110HK08",
+     "label": "・・半導体*",
+     "parents": [
+      "5F110HK01",
+      "5F110HK00"
+     ]
+    },
+    {
+     "code": "5F110HK09",
+     "label": "・・・Si",
+     "parents": [
+      "5F110HK08",
+      "5F110HK01",
+      "5F110HK00"
+     ]
+    },
+    {
+     "code": "5F110HK10",
+     "label": "・・・Ge",
+     "parents": [
+      "5F110HK08",
+      "5F110HK01",
+      "5F110HK00"
+     ]
+    },
+    {
+     "code": "5F110HK11",
+     "label": "・・・化合物半導体*",
+     "parents": [
+      "5F110HK08",
+      "5F110HK01",
+      "5F110HK00"
+     ]
+    },
+    {
+     "code": "5F110HK12",
+     "label": "・・・半導体の結晶構造",
+     "parents": [
+      "5F110HK08",
+      "5F110HK01",
+      "5F110HK00"
+     ]
+    },
+    {
+     "code": "5F110HK13",
+     "label": "・・・・単結晶",
+     "parents": [
+      "5F110HK12",
+      "5F110HK08",
+      "5F110HK01",
+      "5F110HK00"
+     ]
+    },
+    {
+     "code": "5F110HK14",
+     "label": "・・・・多結晶",
+     "parents": [
+      "5F110HK12",
+      "5F110HK08",
+      "5F110HK01",
+      "5F110HK00"
+     ]
+    },
+    {
+     "code": "5F110HK15",
+     "label": "・・・・微結晶",
+     "parents": [
+      "5F110HK12",
+      "5F110HK08",
+      "5F110HK01",
+      "5F110HK00"
+     ]
+    },
+    {
+     "code": "5F110HK16",
+     "label": "・・・・非晶質",
+     "parents": [
+      "5F110HK12",
+      "5F110HK08",
+      "5F110HK01",
+      "5F110HK00"
+     ]
+    },
+    {
+     "code": "5F110HK17",
+     "label": "・・材料の特性が規定",
+     "parents": [
+      "5F110HK01",
+      "5F110HK00"
+     ]
+    },
+    {
+     "code": "5F110HK18",
+     "label": "・・複数種の構成材料の分布",
+     "parents": [
+      "5F110HK01",
+      "5F110HK00"
+     ]
+    },
+    {
+     "code": "5F110HK21",
+     "label": "・複数層",
+     "parents": [
+      "5F110HK00"
+     ]
+    },
+    {
+     "code": "5F110HK22",
+     "label": "・・三層以上",
+     "parents": [
+      "5F110HK21",
+      "5F110HK00"
+     ]
+    },
+    {
+     "code": "5F110HK24",
+     "label": "・低抵抗層に含まれる不純物",
+     "parents": [
+      "5F110HK00"
+     ]
+    },
+    {
+     "code": "5F110HK25",
+     "label": "・・不純物材料*",
+     "parents": [
+      "5F110HK24",
+      "5F110HK00"
+     ]
+    },
+    {
+     "code": "5F110HK26",
+     "label": "・・・キャリアにならない不純物*",
+     "parents": [
+      "5F110HK25",
+      "5F110HK24",
+      "5F110HK00"
+     ]
+    },
+    {
+     "code": "5F110HK27",
+     "label": "・・不純物濃度が規定",
+     "parents": [
+      "5F110HK24",
+      "5F110HK00"
+     ]
+    },
+    {
+     "code": "5F110HK28",
+     "label": "・・不純物の分布",
+     "parents": [
+      "5F110HK24",
+      "5F110HK00"
+     ]
+    },
+    {
+     "code": "5F110HK31",
+     "label": "・低抵抗層の製法*",
+     "parents": [
+      "5F110HK00"
+     ]
+    },
+    {
+     "code": "5F110HK32",
+     "label": "・・堆積*",
+     "parents": [
+      "5F110HK31",
+      "5F110HK00"
+     ]
+    },
+    {
+     "code": "5F110HK33",
+     "label": "・・・スパッタ",
+     "parents": [
+      "5F110HK32",
+      "5F110HK31",
+      "5F110HK00"
+     ]
+    },
+    {
+     "code": "5F110HK34",
+     "label": "・・・CVD*",
+     "parents": [
+      "5F110HK32",
+      "5F110HK31",
+      "5F110HK00"
+     ]
+    },
+    {
+     "code": "5F110HK35",
+     "label": "・・・・プラズマCVD",
+     "parents": [
+      "5F110HK34",
+      "5F110HK32",
+      "5F110HK31",
+      "5F110HK00"
+     ]
+    },
+    {
+     "code": "5F110HK36",
+     "label": "・・・・・ECRプラズマCVD",
+     "parents": [
+      "5F110HK35",
+      "5F110HK34",
+      "5F110HK32",
+      "5F110HK31",
+      "5F110HK00"
+     ]
+    },
+    {
+     "code": "5F110HK37",
+     "label": "・・・・減圧CVD",
+     "parents": [
+      "5F110HK34",
+      "5F110HK32",
+      "5F110HK31",
+      "5F110HK00"
+     ]
+    },
+    {
+     "code": "5F110HK38",
+     "label": "・・・・光CVD",
+     "parents": [
+      "5F110HK34",
+      "5F110HK32",
+      "5F110HK31",
+      "5F110HK00"
+     ]
+    },
+    {
+     "code": "5F110HK39",
+     "label": "・・不純物の導入",
+     "parents": [
+      "5F110HK31",
+      "5F110HK00"
+     ]
+    },
+    {
+     "code": "5F110HK40",
+     "label": "・・シリサイド化",
+     "parents": [
+      "5F110HK31",
+      "5F110HK00"
+     ]
+    },
+    {
+     "code": "5F110HK41",
+     "label": "・・低抵抗層形成前の処理*",
+     "parents": [
+      "5F110HK31",
+      "5F110HK00"
+     ]
+    },
+    {
+     "code": "5F110HK42",
+     "label": "・・低抵抗層形成後の処理*",
+     "parents": [
+      "5F110HK31",
+      "5F110HK00"
+     ]
+    },
+    {
+     "code": "5F110HK50",
+     "label": "・その他*",
+     "parents": [
+      "5F110HK00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "HL",
+   "code": "5F110HL00",
+   "label": "ソース、ドレイン3",
+   "codes": [
+    {
+     "code": "5F110HL01",
+     "label": "・材料*",
+     "parents": [
+      "5F110HL00"
+     ]
+    },
+    {
+     "code": "5F110HL02",
+     "label": "・・金属*",
+     "parents": [
+      "5F110HL01",
+      "5F110HL00"
+     ]
+    },
+    {
+     "code": "5F110HL03",
+     "label": "・・・Al",
+     "parents": [
+      "5F110HL02",
+      "5F110HL01",
+      "5F110HL00"
+     ]
+    },
+    {
+     "code": "5F110HL04",
+     "label": "・・・高融点金属*",
+     "parents": [
+      "5F110HL02",
+      "5F110HL01",
+      "5F110HL00"
+     ]
+    },
+    {
+     "code": "5F110HL05",
+     "label": "・・・シリサイド",
+     "parents": [
+      "5F110HL02",
+      "5F110HL01",
+      "5F110HL00"
+     ]
+    },
+    {
+     "code": "5F110HL06",
+     "label": "・・・合金*",
+     "parents": [
+      "5F110HL02",
+      "5F110HL01",
+      "5F110HL00"
+     ]
+    },
+    {
+     "code": "5F110HL07",
+     "label": "・・・透明導電膜",
+     "parents": [
+      "5F110HL02",
+      "5F110HL01",
+      "5F110HL00"
+     ]
+    },
+    {
+     "code": "5F110HL08",
+     "label": "・・半導体*",
+     "parents": [
+      "5F110HL01",
+      "5F110HL00"
+     ]
+    },
+    {
+     "code": "5F110HL09",
+     "label": "・・材料の特性が規定",
+     "parents": [
+      "5F110HL01",
+      "5F110HL00"
+     ]
+    },
+    {
+     "code": "5F110HL10",
+     "label": "・・複数種の構成材料の分布",
+     "parents": [
+      "5F110HL01",
+      "5F110HL00"
+     ]
+    },
+    {
+     "code": "5F110HL11",
+     "label": "・複数層",
+     "parents": [
+      "5F110HL00"
+     ]
+    },
+    {
+     "code": "5F110HL12",
+     "label": "・・三層以上",
+     "parents": [
+      "5F110HL11",
+      "5F110HL00"
+     ]
+    },
+    {
+     "code": "5F110HL14",
+     "label": "・コンタクトホ-ルの形状または製法に工夫",
+     "parents": [
+      "5F110HL00"
+     ]
+    },
+    {
+     "code": "5F110HL21",
+     "label": "・電極、配線の製法*",
+     "parents": [
+      "5F110HL00"
+     ]
+    },
+    {
+     "code": "5F110HL22",
+     "label": "・・堆積*",
+     "parents": [
+      "5F110HL21",
+      "5F110HL00"
+     ]
+    },
+    {
+     "code": "5F110HL23",
+     "label": "・・・スパッタ",
+     "parents": [
+      "5F110HL22",
+      "5F110HL21",
+      "5F110HL00"
+     ]
+    },
+    {
+     "code": "5F110HL24",
+     "label": "・・・CVD",
+     "parents": [
+      "5F110HL22",
+      "5F110HL21",
+      "5F110HL00"
+     ]
+    },
+    {
+     "code": "5F110HL26",
+     "label": "・・電極、配線形成前の処理*",
+     "parents": [
+      "5F110HL21",
+      "5F110HL00"
+     ]
+    },
+    {
+     "code": "5F110HL27",
+     "label": "・・電極、配線形成後の処理*",
+     "parents": [
+      "5F110HL21",
+      "5F110HL00"
+     ]
+    },
+    {
+     "code": "5F110HL30",
+     "label": "・その他*",
+     "parents": [
+      "5F110HL00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "HM",
+   "code": "5F110HM00",
+   "label": "ソ-ス、ドレイン4",
+   "codes": [
+    {
+     "code": "5F110HM01",
+     "label": "・形状",
+     "parents": [
+      "5F110HM00"
+     ]
+    },
+    {
+     "code": "5F110HM02",
+     "label": "・・断面形状",
+     "parents": [
+      "5F110HM01",
+      "5F110HM00"
+     ]
+    },
+    {
+     "code": "5F110HM03",
+     "label": "・・・テ-パ状",
+     "parents": [
+      "5F110HM02",
+      "5F110HM01",
+      "5F110HM00"
+     ]
+    },
+    {
+     "code": "5F110HM04",
+     "label": "・・平面形状",
+     "parents": [
+      "5F110HM01",
+      "5F110HM00"
+     ]
+    },
+    {
+     "code": "5F110HM05",
+     "label": "・・他の構成要素との相対的な大きさが規定",
+     "parents": [
+      "5F110HM01",
+      "5F110HM00"
+     ]
+    },
+    {
+     "code": "5F110HM07",
+     "label": "・チャネル領域と結晶構造が異なるもの",
+     "parents": [
+      "5F110HM00"
+     ]
+    },
+    {
+     "code": "5F110HM11",
+     "label": "・配置",
+     "parents": [
+      "5F110HM00"
+     ]
+    },
+    {
+     "code": "5F110HM12",
+     "label": "・・非対称",
+     "parents": [
+      "5F110HM11",
+      "5F110HM00"
+     ]
+    },
+    {
+     "code": "5F110HM13",
+     "label": "・・ゲ-トに対する配置",
+     "parents": [
+      "5F110HM11",
+      "5F110HM00"
+     ]
+    },
+    {
+     "code": "5F110HM14",
+     "label": "・・・オフセット",
+     "parents": [
+      "5F110HM13",
+      "5F110HM11",
+      "5F110HM00"
+     ]
+    },
+    {
+     "code": "5F110HM15",
+     "label": "・・・・LDD",
+     "parents": [
+      "5F110HM14",
+      "5F110HM13",
+      "5F110HM11",
+      "5F110HM00"
+     ]
+    },
+    {
+     "code": "5F110HM17",
+     "label": "・ソ-ス、ドレイン配線との接続部に工夫",
+     "parents": [
+      "5F110HM00"
+     ]
+    },
+    {
+     "code": "5F110HM18",
+     "label": "・画素電極との接続部に工夫",
+     "parents": [
+      "5F110HM00"
+     ]
+    },
+    {
+     "code": "5F110HM19",
+     "label": "・ソ-ス、ドレイン配線に工夫",
+     "parents": [
+      "5F110HM00"
+     ]
+    },
+    {
+     "code": "5F110HM20",
+     "label": "・その他*",
+     "parents": [
+      "5F110HM00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "NN",
+   "code": "5F110NN00",
+   "label": "その他の構成要素",
+   "codes": [
+    {
+     "code": "5F110NN01",
+     "label": "・保護膜",
+     "parents": [
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN02",
+     "label": "・・層間絶縁膜",
+     "parents": [
+      "5F110NN01",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN03",
+     "label": "・・・複数層",
+     "parents": [
+      "5F110NN02",
+      "5F110NN01",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN04",
+     "label": "・・・膜厚が規定",
+     "parents": [
+      "5F110NN02",
+      "5F110NN01",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN05",
+     "label": "・・・層間絶縁以外の機能*",
+     "parents": [
+      "5F110NN02",
+      "5F110NN01",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN06",
+     "label": "・・・配線間の絶縁に工夫",
+     "parents": [
+      "5F110NN02",
+      "5F110NN01",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN12",
+     "label": "・・島状のチャネル保護膜",
+     "parents": [
+      "5F110NN01",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN13",
+     "label": "・・・複数層",
+     "parents": [
+      "5F110NN12",
+      "5F110NN01",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN14",
+     "label": "・・・膜厚が規定",
+     "parents": [
+      "5F110NN12",
+      "5F110NN01",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN15",
+     "label": "・・・保護以外の機能*",
+     "parents": [
+      "5F110NN12",
+      "5F110NN01",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN16",
+     "label": "・・・・エッチングストッパ",
+     "parents": [
+      "5F110NN15",
+      "5F110NN12",
+      "5F110NN01",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN22",
+     "label": "・・材料*",
+     "parents": [
+      "5F110NN01",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN23",
+     "label": "・・・SiO",
+     "parents": [
+      "5F110NN22",
+      "5F110NN01",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN24",
+     "label": "・・・SiN",
+     "parents": [
+      "5F110NN22",
+      "5F110NN01",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN25",
+     "label": "・・・PSG",
+     "parents": [
+      "5F110NN22",
+      "5F110NN01",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN26",
+     "label": "・・・BSG",
+     "parents": [
+      "5F110NN22",
+      "5F110NN01",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN27",
+     "label": "・・・有機物*",
+     "parents": [
+      "5F110NN22",
+      "5F110NN01",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN28",
+     "label": "・・・材料の特性が規定",
+     "parents": [
+      "5F110NN22",
+      "5F110NN01",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN32",
+     "label": "・・製法*",
+     "parents": [
+      "5F110NN01",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN33",
+     "label": "・・・堆積*",
+     "parents": [
+      "5F110NN32",
+      "5F110NN01",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN34",
+     "label": "・・・・スパッタ",
+     "parents": [
+      "5F110NN33",
+      "5F110NN32",
+      "5F110NN01",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN35",
+     "label": "・・・・CVD",
+     "parents": [
+      "5F110NN33",
+      "5F110NN32",
+      "5F110NN01",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN36",
+     "label": "・・・・スピンオン塗布",
+     "parents": [
+      "5F110NN33",
+      "5F110NN32",
+      "5F110NN01",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN37",
+     "label": "・・・酸化",
+     "parents": [
+      "5F110NN32",
+      "5F110NN01",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN38",
+     "label": "・・・・陽極酸化",
+     "parents": [
+      "5F110NN37",
+      "5F110NN32",
+      "5F110NN01",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN39",
+     "label": "・・・前処理*",
+     "parents": [
+      "5F110NN32",
+      "5F110NN01",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN40",
+     "label": "・・・後処理*",
+     "parents": [
+      "5F110NN32",
+      "5F110NN01",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN41",
+     "label": "・遮光膜",
+     "parents": [
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN42",
+     "label": "・・複数層",
+     "parents": [
+      "5F110NN41",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN43",
+     "label": "・・遮光以外の機能*",
+     "parents": [
+      "5F110NN41",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN44",
+     "label": "・・・電極、配線の機能を有するもの",
+     "parents": [
+      "5F110NN43",
+      "5F110NN41",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN45",
+     "label": "・・材料*",
+     "parents": [
+      "5F110NN41",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN46",
+     "label": "・・・金属*",
+     "parents": [
+      "5F110NN45",
+      "5F110NN41",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN47",
+     "label": "・・・・Al",
+     "parents": [
+      "5F110NN46",
+      "5F110NN45",
+      "5F110NN41",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN48",
+     "label": "・・・半導体*",
+     "parents": [
+      "5F110NN45",
+      "5F110NN41",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN49",
+     "label": "・・・有機物*",
+     "parents": [
+      "5F110NN45",
+      "5F110NN41",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN50",
+     "label": "・・・材料の特性が規定",
+     "parents": [
+      "5F110NN45",
+      "5F110NN41",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN52",
+     "label": "・・製法*",
+     "parents": [
+      "5F110NN41",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN53",
+     "label": "・・・蒸着",
+     "parents": [
+      "5F110NN52",
+      "5F110NN41",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN54",
+     "label": "・・・スパッタ",
+     "parents": [
+      "5F110NN52",
+      "5F110NN41",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN55",
+     "label": "・・・CVD",
+     "parents": [
+      "5F110NN52",
+      "5F110NN41",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN57",
+     "label": "・・・前処理*",
+     "parents": [
+      "5F110NN52",
+      "5F110NN41",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN58",
+     "label": "・・・後処理*",
+     "parents": [
+      "5F110NN52",
+      "5F110NN41",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN61",
+     "label": "・素子分離領域",
+     "parents": [
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN62",
+     "label": "・・絶縁領域",
+     "parents": [
+      "5F110NN61",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN63",
+     "label": "・・電気的シ-ルド",
+     "parents": [
+      "5F110NN61",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN65",
+     "label": "・・形成方法*",
+     "parents": [
+      "5F110NN61",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN66",
+     "label": "・・・LOCOS",
+     "parents": [
+      "5F110NN65",
+      "5F110NN61",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN71",
+     "label": "・他の素子との融合*",
+     "parents": [
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN72",
+     "label": "・・容量素子",
+     "parents": [
+      "5F110NN71",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN73",
+     "label": "・・・補助容量",
+     "parents": [
+      "5F110NN72",
+      "5F110NN71",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN74",
+     "label": "・・MOSFET",
+     "parents": [
+      "5F110NN71",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN75",
+     "label": "・・・ゲ-ト電極を共有しているもの",
+     "parents": [
+      "5F110NN74",
+      "5F110NN71",
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN77",
+     "label": "・TFTの配置に工夫",
+     "parents": [
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN78",
+     "label": "・特性が異なる複数のTFTを有するもの",
+     "parents": [
+      "5F110NN00"
+     ]
+    },
+    {
+     "code": "5F110NN80",
+     "label": "・その他*",
+     "parents": [
+      "5F110NN00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "PP",
+   "code": "5F110PP00",
+   "label": "再結晶化",
+   "codes": [
+    {
+     "code": "5F110PP01",
+     "label": "・加熱手段*",
+     "parents": [
+      "5F110PP00"
+     ]
+    },
+    {
+     "code": "5F110PP02",
+     "label": "・・ランプ",
+     "parents": [
+      "5F110PP01",
+      "5F110PP00"
+     ]
+    },
+    {
+     "code": "5F110PP03",
+     "label": "・・レ-ザ*",
+     "parents": [
+      "5F110PP01",
+      "5F110PP00"
+     ]
+    },
+    {
+     "code": "5F110PP04",
+     "label": "・・・波長が規定",
+     "parents": [
+      "5F110PP03",
+      "5F110PP01",
+      "5F110PP00"
+     ]
+    },
+    {
+     "code": "5F110PP05",
+     "label": "・・・走査方法",
+     "parents": [
+      "5F110PP03",
+      "5F110PP01",
+      "5F110PP00"
+     ]
+    },
+    {
+     "code": "5F110PP06",
+     "label": "・・・ビ-ム形状に工夫",
+     "parents": [
+      "5F110PP03",
+      "5F110PP01",
+      "5F110PP00"
+     ]
+    },
+    {
+     "code": "5F110PP07",
+     "label": "・・・複数ビ-ム",
+     "parents": [
+      "5F110PP03",
+      "5F110PP01",
+      "5F110PP00"
+     ]
+    },
+    {
+     "code": "5F110PP08",
+     "label": "・・電子ビ-ム",
+     "parents": [
+      "5F110PP01",
+      "5F110PP00"
+     ]
+    },
+    {
+     "code": "5F110PP10",
+     "label": "・アニ-ル温度が規定",
+     "parents": [
+      "5F110PP00"
+     ]
+    },
+    {
+     "code": "5F110PP11",
+     "label": "・反射防止膜を用いるもの",
+     "parents": [
+      "5F110PP00"
+     ]
+    },
+    {
+     "code": "5F110PP13",
+     "label": "・導入ガス*",
+     "parents": [
+      "5F110PP00"
+     ]
+    },
+    {
+     "code": "5F110PP15",
+     "label": "・チャネル領域のみ再結晶化",
+     "parents": [
+      "5F110PP00"
+     ]
+    },
+    {
+     "code": "5F110PP16",
+     "label": "・ソ-ス、ドレインのみ再結晶化",
+     "parents": [
+      "5F110PP00"
+     ]
+    },
+    {
+     "code": "5F110PP21",
+     "label": "・成長方向",
+     "parents": [
+      "5F110PP00"
+     ]
+    },
+    {
+     "code": "5F110PP22",
+     "label": "・・基板に対し垂直",
+     "parents": [
+      "5F110PP21",
+      "5F110PP00"
+     ]
+    },
+    {
+     "code": "5F110PP23",
+     "label": "・・基板に対し平行",
+     "parents": [
+      "5F110PP21",
+      "5F110PP00"
+     ]
+    },
+    {
+     "code": "5F110PP24",
+     "label": "・・・チャネル長方向に対し平行",
+     "parents": [
+      "5F110PP23",
+      "5F110PP21",
+      "5F110PP00"
+     ]
+    },
+    {
+     "code": "5F110PP26",
+     "label": "・他技術との同時処理",
+     "parents": [
+      "5F110PP00"
+     ]
+    },
+    {
+     "code": "5F110PP27",
+     "label": "・・不純物の活性化と同時",
+     "parents": [
+      "5F110PP26",
+      "5F110PP00"
+     ]
+    },
+    {
+     "code": "5F110PP29",
+     "label": "・多段階加熱",
+     "parents": [
+      "5F110PP00"
+     ]
+    },
+    {
+     "code": "5F110PP31",
+     "label": "・前処理*",
+     "parents": [
+      "5F110PP00"
+     ]
+    },
+    {
+     "code": "5F110PP32",
+     "label": "・・ド-プ",
+     "parents": [
+      "5F110PP31",
+      "5F110PP00"
+     ]
+    },
+    {
+     "code": "5F110PP33",
+     "label": "・・・非晶質化のためのもの",
+     "parents": [
+      "5F110PP32",
+      "5F110PP31",
+      "5F110PP00"
+     ]
+    },
+    {
+     "code": "5F110PP34",
+     "label": "・・・触媒となるもの",
+     "parents": [
+      "5F110PP32",
+      "5F110PP31",
+      "5F110PP00"
+     ]
+    },
+    {
+     "code": "5F110PP35",
+     "label": "・・脱水素",
+     "parents": [
+      "5F110PP31",
+      "5F110PP00"
+     ]
+    },
+    {
+     "code": "5F110PP36",
+     "label": "・・種の形成",
+     "parents": [
+      "5F110PP31",
+      "5F110PP00"
+     ]
+    },
+    {
+     "code": "5F110PP38",
+     "label": "・後処理*",
+     "parents": [
+      "5F110PP00"
+     ]
+    },
+    {
+     "code": "5F110PP40",
+     "label": "・その他*",
+     "parents": [
+      "5F110PP00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "QQ",
+   "code": "5F110QQ00",
+   "label": "製造工程一般",
+   "codes": [
+    {
+     "code": "5F110QQ01",
+     "label": "・パタ-ニングに工夫",
+     "parents": [
+      "5F110QQ00"
+     ]
+    },
+    {
+     "code": "5F110QQ02",
+     "label": "・・エッチングマスクに工夫",
+     "parents": [
+      "5F110QQ01",
+      "5F110QQ00"
+     ]
+    },
+    {
+     "code": "5F110QQ03",
+     "label": "・・エッチング方法に工夫",
+     "parents": [
+      "5F110QQ01",
+      "5F110QQ00"
+     ]
+    },
+    {
+     "code": "5F110QQ04",
+     "label": "・・・ドライエッチング",
+     "parents": [
+      "5F110QQ03",
+      "5F110QQ01",
+      "5F110QQ00"
+     ]
+    },
+    {
+     "code": "5F110QQ05",
+     "label": "・・・ウェットエッチング",
+     "parents": [
+      "5F110QQ03",
+      "5F110QQ01",
+      "5F110QQ00"
+     ]
+    },
+    {
+     "code": "5F110QQ06",
+     "label": "・・印刷によるもの",
+     "parents": [
+      "5F110QQ01",
+      "5F110QQ00"
+     ]
+    },
+    {
+     "code": "5F110QQ08",
+     "label": "・同時形成",
+     "parents": [
+      "5F110QQ00"
+     ]
+    },
+    {
+     "code": "5F110QQ09",
+     "label": "・連続処理",
+     "parents": [
+      "5F110QQ00"
+     ]
+    },
+    {
+     "code": "5F110QQ10",
+     "label": "・工程の順序に工夫",
+     "parents": [
+      "5F110QQ00"
+     ]
+    },
+    {
+     "code": "5F110QQ11",
+     "label": "・セルフアライン",
+     "parents": [
+      "5F110QQ00"
+     ]
+    },
+    {
+     "code": "5F110QQ12",
+     "label": "・・裏面からの露光",
+     "parents": [
+      "5F110QQ11",
+      "5F110QQ00"
+     ]
+    },
+    {
+     "code": "5F110QQ14",
+     "label": "・リフトオフ",
+     "parents": [
+      "5F110QQ00"
+     ]
+    },
+    {
+     "code": "5F110QQ16",
+     "label": "・貼り合わせ",
+     "parents": [
+      "5F110QQ00"
+     ]
+    },
+    {
+     "code": "5F110QQ17",
+     "label": "・・素子形成前に貼り合わせ",
+     "parents": [
+      "5F110QQ16",
+      "5F110QQ00"
+     ]
+    },
+    {
+     "code": "5F110QQ19",
+     "label": "・平坦化",
+     "parents": [
+      "5F110QQ00"
+     ]
+    },
+    {
+     "code": "5F110QQ21",
+     "label": "・ダングリングボンドの終端化",
+     "parents": [
+      "5F110QQ00"
+     ]
+    },
+    {
+     "code": "5F110QQ22",
+     "label": "・・拡散",
+     "parents": [
+      "5F110QQ21",
+      "5F110QQ00"
+     ]
+    },
+    {
+     "code": "5F110QQ23",
+     "label": "・・・固相拡散",
+     "parents": [
+      "5F110QQ22",
+      "5F110QQ21",
+      "5F110QQ00"
+     ]
+    },
+    {
+     "code": "5F110QQ24",
+     "label": "・・・気相拡散",
+     "parents": [
+      "5F110QQ22",
+      "5F110QQ21",
+      "5F110QQ00"
+     ]
+    },
+    {
+     "code": "5F110QQ25",
+     "label": "・・・・プラズマ雰囲気中",
+     "parents": [
+      "5F110QQ24",
+      "5F110QQ22",
+      "5F110QQ21",
+      "5F110QQ00"
+     ]
+    },
+    {
+     "code": "5F110QQ26",
+     "label": "・・イオン注入",
+     "parents": [
+      "5F110QQ21",
+      "5F110QQ00"
+     ]
+    },
+    {
+     "code": "5F110QQ28",
+     "label": "・ゲッタリング",
+     "parents": [
+      "5F110QQ00"
+     ]
+    },
+    {
+     "code": "5F110QQ30",
+     "label": "・その他*",
+     "parents": [
+      "5F110QQ00"
+     ]
+    }
+   ]
+  }
+ ]
+}

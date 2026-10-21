@@ -1,0 +1,7 @@
+# 部品の振り分け規則: 文書の IPC・FI のどれかがこの前方一致に当たれば、その部品を使う（複数可）。
+# どれにも当たらない文書は全部品を使う（fallback: all）。2026-10-20、技術オントロジー試作。
+fallback: all
+routes:
+  inorganic: [C01B, C01F, C01G, C04B, B01J, B01D, C01D, C01C, C10L, C02F]
+  battery: [H01M, H02J7, H01G11]
+  semicon: [H01L, H10B, H10D, H10P, H10K, C23C16, C30B]

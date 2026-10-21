@@ -1,0 +1,100 @@
+# 部品「battery」（電池）。2026-10-20 作成。
+# 元にしたもの: config/modules/battery.draft.tree（Fターム 5H050・5H029・5H028・5H021・5H011・5H043・5H030・5H031 の観点から自動作成）、
+#   datasets/battery600/_work/ontology_build/candidates_dev.csv（開発用 300 件で上層＋無機材料の部品で拾えない語）。
+# 上層（config/modules/upper.yaml。inorg-1.0 から移したもの）は電池の語を多く持つ（内部抵抗・セパレータ・LiPF6 など）。
+#   そうした語は、上層の概念の子として細かい概念を置く（細分化）。上層と同じ表記は、上層の概念の子孫にだけ置ける。
+#   中身が上層と変わらない概念（リチウム塩・炭酸エステル・三元系正極・ケイ素系負極・導電助剤）は作らない。
+# 書き方: 最上段は親の ID（上層の概念か上位型）。ID: 表示名 | 別名, 別名（字下げ 2 文字で 1 段下）
+
+P_rate
+  BAT_P_internal_resistance: 内部抵抗 | 抵抗上昇, 抵抗増加, 直流抵抗, 界面抵抗
+  BAT_P_low_temp: 低温特性 | 低温環境, 低温時
+  BAT_P_fast_charge: 急速充電 | レート特性, 高レート, 入出力特性
+P_side_reaction
+  BAT_P_self_discharge: 自己放電
+  BAT_P_li_deposition: リチウム析出 | デンドライト, リチウムデンドライト
+  BAT_P_electrolyte_decomp: 電解液の分解 | 電解液の劣化, 電解液分解
+  BAT_P_gas: ガス発生 | ガスの発生, 発生ガス, ガス膨れ
+P_cycle
+  BAT_P_storage: 保存特性 | 高温保存, 保存性
+  BAT_P_capacity_fade: 容量劣化 | 容量低下, 容量維持率, 容量保持率
+P_capacity
+  BAT_P_energy_density: エネルギー密度 | 高エネルギー密度, 体積エネルギー密度, 重量エネルギー密度
+P_electrochem
+  BAT_P_overcharge: 過充電 | 過放電
+P_structural_stability
+  BAT_P_swelling: 膨張 | 体積膨張, 膨張収縮, 体積変化, 膨れ
+  BAT_P_heat_shrink: 熱収縮 | 熱収縮率, 寸法安定性
+P_safety
+  BAT_P_thermal_runaway: 熱暴走 | 発火, 発煙, 破裂, 熱連鎖
+P_env_safety
+  BAT_P_short: 内部短絡 | 短絡, ショート
+  BAT_P_temp_rise: 温度上昇 | 発熱, 異常発熱
+  BAT_P_internal_pressure: 内圧上昇 | 内圧, 内部圧力
+  BAT_P_leak: 漏液 | 液漏れ, 耐漏液性
+  BAT_P_shutdown: シャットダウン | シャットダウン機能, シャットダウン温度, メルトダウン, メルトダウン温度
+P_mechanical
+  BAT_P_vibration: 振動 | 耐振性, 衝撃
+  BAT_P_wettability: 濡れ性 | 含浸性, 保液性
+P_handling
+  BAT_P_assembly: 組立性 | 組み立て, 組付け, 作業性
+P_size_weight
+  BAT_P_space: 省スペース | デッドスペース, 小型化, 薄型化
+P_thermal_property
+  BAT_P_cooling_perf: 冷却性能 | 放熱性, 冷却効率, 温度ムラ, 温度ばらつき
+P_functional_property
+  BAT_P_air_perm: 透気度 | 透気性, 通気性, 透気抵抗度
+
+M_cell_component
+  BAT_M_electrode_plate: 正極板 | 負極板, 極板, 電極板, 正極シート, 負極シート, 電極シート
+  BAT_M_mixture_layer: 合剤層 | 正極合剤層, 負極合剤層, 活物質層, 正極活物質層, 負極活物質層, 電極合材, 合材層
+  BAT_M_separator: セパレータ | セパレーター, 隔離膜
+M_polymer
+  BAT_M_polyolefin: ポリオレフィン微多孔膜 | ポリオレフィン, ポリエチレン, ポリプロピレン, 微多孔膜, 微多孔質膜
+M_coating
+  BAT_M_heat_resistant_layer: 耐熱層 | 多孔質層, 耐熱多孔質層, 無機粒子層, 塗工層, コート層
+  BAT_M_sei: SEI | SEI被膜, 固体電解質界面
+M_alumina
+  BAT_M_inorganic_particle: 無機粒子 | 無機フィラー, セラミック粒子, ベーマイト
+M_liquid_electrolyte
+  BAT_M_el_additive: 電解液添加剤 | ビニレンカーボネート, フルオロエチレンカーボネート, 被膜形成剤
+
+M
+  BAT_M_cell_structure: 電池の構造
+    BAT_M_electrode_assembly: 電極体 | 電極組立体, 電極アセンブリ, 発電要素, 電極群
+      BAT_M_wound: 巻回電極体 | 巻回体, 電極巻回体, 巻回型, 捲回, 巻回
+      BAT_M_stacked: 積層電極体 | 積層型, スタック, 積層構造体
+    BAT_M_bipolar: バイポーラ電極 | 双極型電極, 双極型電池
+    BAT_M_nonwoven: 不織布 | 織布
+  BAT_M_case_mid: 外装・封口
+    BAT_M_case: 外装体 | 外装ケース, 電池ケース, 電槽, 外装缶, 電池缶, ケース本体, 筐体
+    BAT_M_laminate: ラミネートフィルム | ラミネート外装体, ラミネートシート, 外装フィルム
+    BAT_M_sealing_plate: 封口板 | 封口体, 蓋体, 蓋板
+    BAT_M_gasket: ガスケット | パッキン, シール材, Oリング
+    BAT_M_vent: ガス排出弁 | 安全弁, 排出弁, 破裂弁, 排気弁, 開裂弁
+    BAT_M_heat_seal: 熱溶着 | 熱融着, ヒートシール, 溶着部, 熱溶着部
+  BAT_M_terminal_mid: 端子・接続
+    BAT_M_tab: タブ | 正極タブ, 負極タブ, 電極タブ, 集電タブ
+    BAT_M_lead: 電極リード | リード端子, 正極リード, 負極リード, リード部材
+    BAT_M_terminal: 電極端子 | 正極端子, 負極端子, 外部端子, 端子部材
+    BAT_M_busbar: バスバー | 接続部材, 導電部材
+    BAT_M_current_foil: 集電箔 | 銅箔, アルミニウム箔, 金属箔, 集電部
+    BAT_M_welding: 溶接 | レーザ溶接, 超音波溶接, 抵抗溶接, 溶接部
+  BAT_M_module_mid: 組電池・冷却
+    BAT_M_module: 組電池 | 蓄電モジュール, 電池スタック
+    BAT_M_cooling: 冷却構造 | 冷媒, 冷却板, 冷却器, 冷却流路, 放熱板, ヒートシンク, ファン, 送風
+    BAT_M_spacer: スペーサ | スペーサー, 緩衝材
+    BAT_M_insulating_member: 絶縁部材 | 絶縁シート, 絶縁フィルム, 絶縁テープ, 絶縁カバー
+    BAT_M_restraint: 拘束部材 | 拘束, エンドプレート, 押圧, 加圧部材
+  BAT_M_management_mid: 充放電の管理
+    BAT_M_soc: 充電状態 | SOC, 充電率, 残存容量, 満充電
+    BAT_M_soh: 劣化状態 | SOH, 劣化度, 寿命推定, 劣化推定
+    BAT_M_charge_control: 充電制御 | 充電電流, 充電電圧, 定電流, 定電圧, 充電器, 充電装置
+    BAT_M_voltage_detect: 電圧検出 | 電圧センサ, 電圧測定, セル電圧
+    BAT_M_temp_detect: 温度検出 | 温度センサ, サーミスタ, 温度測定
+    BAT_M_balancing: 均等化 | セルバランス, バランス回路, 均等化回路
+    BAT_M_bms: 電池管理装置 | 電池監視, 監視装置, バッテリマネジメント, BMS
+    BAT_M_formation: 化成 | 化成処理, 初期充電, エージング
+
+U_vehicle
+  BAT_U_forklift: フォークリフト | 産業車両, 作業車両

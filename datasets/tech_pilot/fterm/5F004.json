@@ -1,0 +1,1760 @@
+{
+ "theme": "5F004",
+ "theme_label": "半導体のドライエッチング",
+ "retrieved": "2026-10-20",
+ "source": "Summaria-MCP(Model Context Protocol)",
+ "jppm_release_date": "2026-06-26",
+ "aspects": [
+  {
+   "aspect": "AA",
+   "code": "5F004AA00",
+   "label": "目的",
+   "codes": [
+    {
+     "code": "5F004AA01",
+     "label": "・均一性の向上",
+     "parents": [
+      "5F004AA00"
+     ]
+    },
+    {
+     "code": "5F004AA02",
+     "label": "・選択性の向上",
+     "parents": [
+      "5F004AA00"
+     ]
+    },
+    {
+     "code": "5F004AA03",
+     "label": "・・エッチング速度の変更",
+     "parents": [
+      "5F004AA02",
+      "5F004AA00"
+     ]
+    },
+    {
+     "code": "5F004AA04",
+     "label": "・・エッチングマスクの改良",
+     "parents": [
+      "5F004AA02",
+      "5F004AA00"
+     ]
+    },
+    {
+     "code": "5F004AA05",
+     "label": "・・エッチング条件の改良",
+     "parents": [
+      "5F004AA02",
+      "5F004AA00"
+     ]
+    },
+    {
+     "code": "5F004AA06",
+     "label": "・ダメージの軽減化",
+     "parents": [
+      "5F004AA00"
+     ]
+    },
+    {
+     "code": "5F004AA07",
+     "label": "・ダメージの回復",
+     "parents": [
+      "5F004AA00"
+     ]
+    },
+    {
+     "code": "5F004AA08",
+     "label": "・表面変質化の防止",
+     "parents": [
+      "5F004AA00"
+     ]
+    },
+    {
+     "code": "5F004AA09",
+     "label": "・パターン整形,残渣の除去",
+     "parents": [
+      "5F004AA00"
+     ]
+    },
+    {
+     "code": "5F004AA11",
+     "label": "・平坦化,段切れの防止",
+     "parents": [
+      "5F004AA00"
+     ]
+    },
+    {
+     "code": "5F004AA12",
+     "label": "・・コンタクトホールのテーパ化",
+     "parents": [
+      "5F004AA11",
+      "5F004AA00"
+     ]
+    },
+    {
+     "code": "5F004AA13",
+     "label": "・清浄化",
+     "parents": [
+      "5F004AA00"
+     ]
+    },
+    {
+     "code": "5F004AA14",
+     "label": "・・基板の清浄化",
+     "parents": [
+      "5F004AA13",
+      "5F004AA00"
+     ]
+    },
+    {
+     "code": "5F004AA15",
+     "label": "・・装置内壁の清浄化",
+     "parents": [
+      "5F004AA13",
+      "5F004AA00"
+     ]
+    },
+    {
+     "code": "5F004AA16",
+     "label": "・その他",
+     "parents": [
+      "5F004AA00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "BA",
+   "code": "5F004BA00",
+   "label": "装置の基本構成",
+   "codes": [
+    {
+     "code": "5F004BA01",
+     "label": "・バレル型,円筒型",
+     "parents": [
+      "5F004BA00"
+     ]
+    },
+    {
+     "code": "5F004BA02",
+     "label": "・・エッチングトンネル",
+     "parents": [
+      "5F004BA01",
+      "5F004BA00"
+     ]
+    },
+    {
+     "code": "5F004BA03",
+     "label": "・プラズマ発生室隔離",
+     "parents": [
+      "5F004BA00"
+     ]
+    },
+    {
+     "code": "5F004BA04",
+     "label": "・平行平板型",
+     "parents": [
+      "5F004BA00"
+     ]
+    },
+    {
+     "code": "5F004BA05",
+     "label": "・・第三電極,トライオード型",
+     "parents": [
+      "5F004BA04",
+      "5F004BA00"
+     ]
+    },
+    {
+     "code": "5F004BA06",
+     "label": "・・電極形状",
+     "parents": [
+      "5F004BA04",
+      "5F004BA00"
+     ]
+    },
+    {
+     "code": "5F004BA07",
+     "label": "・・電極間距離",
+     "parents": [
+      "5F004BA04",
+      "5F004BA00"
+     ]
+    },
+    {
+     "code": "5F004BA08",
+     "label": "・・マグネトロンRIE",
+     "parents": [
+      "5F004BA04",
+      "5F004BA00"
+     ]
+    },
+    {
+     "code": "5F004BA09",
+     "label": "・・2電源式",
+     "parents": [
+      "5F004BA04",
+      "5F004BA00"
+     ]
+    },
+    {
+     "code": "5F004BA11",
+     "label": "・イオンビーム型,イオンシャワー型",
+     "parents": [
+      "5F004BA00"
+     ]
+    },
+    {
+     "code": "5F004BA12",
+     "label": "・・カウフマン型",
+     "parents": [
+      "5F004BA11",
+      "5F004BA00"
+     ]
+    },
+    {
+     "code": "5F004BA13",
+     "label": "・・マグネトロン型",
+     "parents": [
+      "5F004BA11",
+      "5F004BA00"
+     ]
+    },
+    {
+     "code": "5F004BA14",
+     "label": "・・ECR型",
+     "parents": [
+      "5F004BA11",
+      "5F004BA00"
+     ]
+    },
+    {
+     "code": "5F004BA15",
+     "label": "・・・石英管型",
+     "parents": [
+      "5F004BA14",
+      "5F004BA11",
+      "5F004BA00"
+     ]
+    },
+    {
+     "code": "5F004BA16",
+     "label": "・・・導入窓型",
+     "parents": [
+      "5F004BA14",
+      "5F004BA11",
+      "5F004BA00"
+     ]
+    },
+    {
+     "code": "5F004BA17",
+     "label": "・・ビーム走査型",
+     "parents": [
+      "5F004BA11",
+      "5F004BA00"
+     ]
+    },
+    {
+     "code": "5F004BA18",
+     "label": "・ヘキソード型",
+     "parents": [
+      "5F004BA00"
+     ]
+    },
+    {
+     "code": "5F004BA19",
+     "label": "・気相処理型",
+     "parents": [
+      "5F004BA00"
+     ]
+    },
+    {
+     "code": "5F004BA20",
+     "label": "・その他",
+     "parents": [
+      "5F004BA00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "BB",
+   "code": "5F004BB00",
+   "label": "発生室,反応室,処理室等の内部構成",
+   "codes": [
+    {
+     "code": "5F004BB01",
+     "label": "・電子ビーム照射",
+     "parents": [
+      "5F004BB00"
+     ]
+    },
+    {
+     "code": "5F004BB02",
+     "label": "・光照射",
+     "parents": [
+      "5F004BB00"
+     ]
+    },
+    {
+     "code": "5F004BB03",
+     "label": "・・レーザ",
+     "parents": [
+      "5F004BB02",
+      "5F004BB00"
+     ]
+    },
+    {
+     "code": "5F004BB04",
+     "label": "・・・エキレマレーザ",
+     "parents": [
+      "5F004BB03",
+      "5F004BB02",
+      "5F004BB00"
+     ]
+    },
+    {
+     "code": "5F004BB05",
+     "label": "・・ランプ",
+     "parents": [
+      "5F004BB02",
+      "5F004BB00"
+     ]
+    },
+    {
+     "code": "5F004BB07",
+     "label": "・磁界構成",
+     "parents": [
+      "5F004BB00"
+     ]
+    },
+    {
+     "code": "5F004BB08",
+     "label": "・・可動型",
+     "parents": [
+      "5F004BB07",
+      "5F004BB00"
+     ]
+    },
+    {
+     "code": "5F004BB11",
+     "label": "・印加電力周波数",
+     "parents": [
+      "5F004BB00"
+     ]
+    },
+    {
+     "code": "5F004BB12",
+     "label": "・・直流",
+     "parents": [
+      "5F004BB11",
+      "5F004BB00"
+     ]
+    },
+    {
+     "code": "5F004BB13",
+     "label": "・・RF",
+     "parents": [
+      "5F004BB11",
+      "5F004BB00"
+     ]
+    },
+    {
+     "code": "5F004BB14",
+     "label": "・・マイクロ波",
+     "parents": [
+      "5F004BB11",
+      "5F004BB00"
+     ]
+    },
+    {
+     "code": "5F004BB15",
+     "label": "・ウエハの保持",
+     "parents": [
+      "5F004BB00"
+     ]
+    },
+    {
+     "code": "5F004BB16",
+     "label": "・・縦型",
+     "parents": [
+      "5F004BB15",
+      "5F004BB00"
+     ]
+    },
+    {
+     "code": "5F004BB17",
+     "label": "・・処理面を下に向けた保持",
+     "parents": [
+      "5F004BB15",
+      "5F004BB00"
+     ]
+    },
+    {
+     "code": "5F004BB18",
+     "label": "・・枚葉型",
+     "parents": [
+      "5F004BB15",
+      "5F004BB00"
+     ]
+    },
+    {
+     "code": "5F004BB19",
+     "label": "・・バッチ型",
+     "parents": [
+      "5F004BB15",
+      "5F004BB00"
+     ]
+    },
+    {
+     "code": "5F004BB20",
+     "label": "・・ウエハの固定",
+     "parents": [
+      "5F004BB15",
+      "5F004BB00"
+     ]
+    },
+    {
+     "code": "5F004BB21",
+     "label": "・・・機械的固定",
+     "parents": [
+      "5F004BB20",
+      "5F004BB15",
+      "5F004BB00"
+     ]
+    },
+    {
+     "code": "5F004BB22",
+     "label": "・・・電気的固定",
+     "parents": [
+      "5F004BB20",
+      "5F004BB15",
+      "5F004BB00"
+     ]
+    },
+    {
+     "code": "5F004BB23",
+     "label": "・・ウエハ周囲のカバー",
+     "parents": [
+      "5F004BB15",
+      "5F004BB00"
+     ]
+    },
+    {
+     "code": "5F004BB24",
+     "label": "・・運動型",
+     "parents": [
+      "5F004BB15",
+      "5F004BB00"
+     ]
+    },
+    {
+     "code": "5F004BB25",
+     "label": "・ウエハの冷却",
+     "parents": [
+      "5F004BB00"
+     ]
+    },
+    {
+     "code": "5F004BB26",
+     "label": "・ウエハの加熱",
+     "parents": [
+      "5F004BB00"
+     ]
+    },
+    {
+     "code": "5F004BB27",
+     "label": "・・ランプアニール",
+     "parents": [
+      "5F004BB26",
+      "5F004BB00"
+     ]
+    },
+    {
+     "code": "5F004BB28",
+     "label": "・ガスの流れ方",
+     "parents": [
+      "5F004BB00"
+     ]
+    },
+    {
+     "code": "5F004BB29",
+     "label": "・内壁,試料台の材質",
+     "parents": [
+      "5F004BB00"
+     ]
+    },
+    {
+     "code": "5F004BB30",
+     "label": "・・樹脂等によるコーティング",
+     "parents": [
+      "5F004BB29",
+      "5F004BB00"
+     ]
+    },
+    {
+     "code": "5F004BB31",
+     "label": "・光反射板",
+     "parents": [
+      "5F004BB00"
+     ]
+    },
+    {
+     "code": "5F004BB32",
+     "label": "・その他",
+     "parents": [
+      "5F004BB00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "BC",
+   "code": "5F004BC00",
+   "label": "装置の細部",
+   "codes": [
+    {
+     "code": "5F004BC01",
+     "label": "・真空密閉方法",
+     "parents": [
+      "5F004BC00"
+     ]
+    },
+    {
+     "code": "5F004BC02",
+     "label": "・真空ポンプ,ガストラップ",
+     "parents": [
+      "5F004BC00"
+     ]
+    },
+    {
+     "code": "5F004BC03",
+     "label": "・ガス管,バルブ,流量制御",
+     "parents": [
+      "5F004BC00"
+     ]
+    },
+    {
+     "code": "5F004BC04",
+     "label": "・ガス等の再利用",
+     "parents": [
+      "5F004BC00"
+     ]
+    },
+    {
+     "code": "5F004BC05",
+     "label": "・予備真空室",
+     "parents": [
+      "5F004BC00"
+     ]
+    },
+    {
+     "code": "5F004BC06",
+     "label": "・ウエハの搬送",
+     "parents": [
+      "5F004BC00"
+     ]
+    },
+    {
+     "code": "5F004BC07",
+     "label": "・オゾン発生装置",
+     "parents": [
+      "5F004BC00"
+     ]
+    },
+    {
+     "code": "5F004BC08",
+     "label": "・その他",
+     "parents": [
+      "5F004BC00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "BD",
+   "code": "5F004BD00",
+   "label": "装置の用途指定",
+   "codes": [
+    {
+     "code": "5F004BD01",
+     "label": "・アッシング装置",
+     "parents": [
+      "5F004BD00"
+     ]
+    },
+    {
+     "code": "5F004BD02",
+     "label": "・Al用エッチング装置",
+     "parents": [
+      "5F004BD00"
+     ]
+    },
+    {
+     "code": "5F004BD03",
+     "label": "・低温ドライエッチング装置",
+     "parents": [
+      "5F004BD00"
+     ]
+    },
+    {
+     "code": "5F004BD04",
+     "label": "・CVD装置",
+     "parents": [
+      "5F004BD00"
+     ]
+    },
+    {
+     "code": "5F004BD05",
+     "label": "・スパッタリング装置",
+     "parents": [
+      "5F004BD00"
+     ]
+    },
+    {
+     "code": "5F004BD06",
+     "label": "・イオン注入装置",
+     "parents": [
+      "5F004BD00"
+     ]
+    },
+    {
+     "code": "5F004BD07",
+     "label": "・その他",
+     "parents": [
+      "5F004BD00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "CA",
+   "code": "5F004CA00",
+   "label": "装置の操作,制御方法",
+   "codes": [
+    {
+     "code": "5F004CA01",
+     "label": "・ガスの切替",
+     "parents": [
+      "5F004CA00"
+     ]
+    },
+    {
+     "code": "5F004CA02",
+     "label": "・ガス圧力,流量",
+     "parents": [
+      "5F004CA00"
+     ]
+    },
+    {
+     "code": "5F004CA03",
+     "label": "・印加電力,電圧",
+     "parents": [
+      "5F004CA00"
+     ]
+    },
+    {
+     "code": "5F004CA04",
+     "label": "・基板温度",
+     "parents": [
+      "5F004CA00"
+     ]
+    },
+    {
+     "code": "5F004CA05",
+     "label": "・電極,試料台等の移動",
+     "parents": [
+      "5F004CA00"
+     ]
+    },
+    {
+     "code": "5F004CA06",
+     "label": "・自己バイアス",
+     "parents": [
+      "5F004CA00"
+     ]
+    },
+    {
+     "code": "5F004CA07",
+     "label": "・起動時の処理",
+     "parents": [
+      "5F004CA00"
+     ]
+    },
+    {
+     "code": "5F004CA08",
+     "label": "・条件の設定手法",
+     "parents": [
+      "5F004CA00"
+     ]
+    },
+    {
+     "code": "5F004CA09",
+     "label": "・その他",
+     "parents": [
+      "5F004CA00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "CB",
+   "code": "5F004CB00",
+   "label": "モニタリング",
+   "codes": [
+    {
+     "code": "5F004CB01",
+     "label": "・モニター方法",
+     "parents": [
+      "5F004CB00"
+     ]
+    },
+    {
+     "code": "5F004CB02",
+     "label": "・・分光分析法",
+     "parents": [
+      "5F004CB01",
+      "5F004CB00"
+     ]
+    },
+    {
+     "code": "5F004CB03",
+     "label": "・・ガス分析法",
+     "parents": [
+      "5F004CB01",
+      "5F004CB00"
+     ]
+    },
+    {
+     "code": "5F004CB04",
+     "label": "・・・質量分析法",
+     "parents": [
+      "5F004CB03",
+      "5F004CB01",
+      "5F004CB00"
+     ]
+    },
+    {
+     "code": "5F004CB05",
+     "label": "・・電気的方法",
+     "parents": [
+      "5F004CB01",
+      "5F004CB00"
+     ]
+    },
+    {
+     "code": "5F004CB06",
+     "label": "・・・プローブ",
+     "parents": [
+      "5F004CB05",
+      "5F004CB01",
+      "5F004CB00"
+     ]
+    },
+    {
+     "code": "5F004CB07",
+     "label": "・・・放電インピーダンス",
+     "parents": [
+      "5F004CB05",
+      "5F004CB01",
+      "5F004CB00"
+     ]
+    },
+    {
+     "code": "5F004CB08",
+     "label": "・・・抵抗値",
+     "parents": [
+      "5F004CB05",
+      "5F004CB01",
+      "5F004CB00"
+     ]
+    },
+    {
+     "code": "5F004CB09",
+     "label": "・・光学的方法",
+     "parents": [
+      "5F004CB01",
+      "5F004CB00"
+     ]
+    },
+    {
+     "code": "5F004CB10",
+     "label": "・・・レーザ干渉法",
+     "parents": [
+      "5F004CB09",
+      "5F004CB01",
+      "5F004CB00"
+     ]
+    },
+    {
+     "code": "5F004CB11",
+     "label": "・・時間制御法",
+     "parents": [
+      "5F004CB01",
+      "5F004CB00"
+     ]
+    },
+    {
+     "code": "5F004CB12",
+     "label": "・・温度測定法",
+     "parents": [
+      "5F004CB01",
+      "5F004CB00"
+     ]
+    },
+    {
+     "code": "5F004CB13",
+     "label": "・・モニター用パターン",
+     "parents": [
+      "5F004CB01",
+      "5F004CB00"
+     ]
+    },
+    {
+     "code": "5F004CB14",
+     "label": "・モニター専用領域の採用",
+     "parents": [
+      "5F004CB00"
+     ]
+    },
+    {
+     "code": "5F004CB15",
+     "label": "・終点の判断方法",
+     "parents": [
+      "5F004CB00"
+     ]
+    },
+    {
+     "code": "5F004CB16",
+     "label": "・・検知波形の処理",
+     "parents": [
+      "5F004CB15",
+      "5F004CB00"
+     ]
+    },
+    {
+     "code": "5F004CB17",
+     "label": "・・・ノイズ成分の除去",
+     "parents": [
+      "5F004CB16",
+      "5F004CB15",
+      "5F004CB00"
+     ]
+    },
+    {
+     "code": "5F004CB18",
+     "label": "・・オーバーエッチング時間",
+     "parents": [
+      "5F004CB15",
+      "5F004CB00"
+     ]
+    },
+    {
+     "code": "5F004CB20",
+     "label": "・その他",
+     "parents": [
+      "5F004CB00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "DA",
+   "code": "5F004DA00",
+   "label": "処理に用いるガス",
+   "codes": [
+    {
+     "code": "5F004DA01",
+     "label": "・CF4",
+     "parents": [
+      "5F004DA00"
+     ]
+    },
+    {
+     "code": "5F004DA02",
+     "label": "・C2F6",
+     "parents": [
+      "5F004DA00"
+     ]
+    },
+    {
+     "code": "5F004DA03",
+     "label": "・C3F8",
+     "parents": [
+      "5F004DA00"
+     ]
+    },
+    {
+     "code": "5F004DA04",
+     "label": "・Cl2",
+     "parents": [
+      "5F004DA00"
+     ]
+    },
+    {
+     "code": "5F004DA05",
+     "label": "・CCl4",
+     "parents": [
+      "5F004DA00"
+     ]
+    },
+    {
+     "code": "5F004DA06",
+     "label": "・CCl2F2",
+     "parents": [
+      "5F004DA00"
+     ]
+    },
+    {
+     "code": "5F004DA07",
+     "label": "・CClF3",
+     "parents": [
+      "5F004DA00"
+     ]
+    },
+    {
+     "code": "5F004DA08",
+     "label": "・C2Cl2F4",
+     "parents": [
+      "5F004DA00"
+     ]
+    },
+    {
+     "code": "5F004DA09",
+     "label": "・C2Cl3F3",
+     "parents": [
+      "5F004DA00"
+     ]
+    },
+    {
+     "code": "5F004DA10",
+     "label": "・CBrF3",
+     "parents": [
+      "5F004DA00"
+     ]
+    },
+    {
+     "code": "5F004DA11",
+     "label": "・BCl3",
+     "parents": [
+      "5F004DA00"
+     ]
+    },
+    {
+     "code": "5F004DA12",
+     "label": "・PCl3",
+     "parents": [
+      "5F004DA00"
+     ]
+    },
+    {
+     "code": "5F004DA13",
+     "label": "・SiCl4",
+     "parents": [
+      "5F004DA00"
+     ]
+    },
+    {
+     "code": "5F004DA14",
+     "label": "・CHCl3",
+     "parents": [
+      "5F004DA00"
+     ]
+    },
+    {
+     "code": "5F004DA15",
+     "label": "・CH2F2",
+     "parents": [
+      "5F004DA00"
+     ]
+    },
+    {
+     "code": "5F004DA16",
+     "label": "・CHF3",
+     "parents": [
+      "5F004DA00"
+     ]
+    },
+    {
+     "code": "5F004DA17",
+     "label": "・NF3",
+     "parents": [
+      "5F004DA00"
+     ]
+    },
+    {
+     "code": "5F004DA18",
+     "label": "・SF6",
+     "parents": [
+      "5F004DA00"
+     ]
+    },
+    {
+     "code": "5F004DA19",
+     "label": "・XeF2",
+     "parents": [
+      "5F004DA00"
+     ]
+    },
+    {
+     "code": "5F004DA20",
+     "label": "・HF",
+     "parents": [
+      "5F004DA00"
+     ]
+    },
+    {
+     "code": "5F004DA21",
+     "label": "・Air",
+     "parents": [
+      "5F004DA00"
+     ]
+    },
+    {
+     "code": "5F004DA22",
+     "label": "・He",
+     "parents": [
+      "5F004DA00"
+     ]
+    },
+    {
+     "code": "5F004DA23",
+     "label": "・Ar",
+     "parents": [
+      "5F004DA00"
+     ]
+    },
+    {
+     "code": "5F004DA24",
+     "label": "・H2",
+     "parents": [
+      "5F004DA00"
+     ]
+    },
+    {
+     "code": "5F004DA25",
+     "label": "・N2",
+     "parents": [
+      "5F004DA00"
+     ]
+    },
+    {
+     "code": "5F004DA26",
+     "label": "・O2",
+     "parents": [
+      "5F004DA00"
+     ]
+    },
+    {
+     "code": "5F004DA27",
+     "label": "・O3",
+     "parents": [
+      "5F004DA00"
+     ]
+    },
+    {
+     "code": "5F004DA28",
+     "label": "・NO2",
+     "parents": [
+      "5F004DA00"
+     ]
+    },
+    {
+     "code": "5F004DA29",
+     "label": "・HCl",
+     "parents": [
+      "5F004DA00"
+     ]
+    },
+    {
+     "code": "5F004DA30",
+     "label": "・混合量の変化",
+     "parents": [
+      "5F004DA00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "DB",
+   "code": "5F004DB00",
+   "label": "被エッチング物",
+   "codes": [
+    {
+     "code": "5F004DB01",
+     "label": "・Si",
+     "parents": [
+      "5F004DB00"
+     ]
+    },
+    {
+     "code": "5F004DB02",
+     "label": "・・多結晶Si",
+     "parents": [
+      "5F004DB01",
+      "5F004DB00"
+     ]
+    },
+    {
+     "code": "5F004DB03",
+     "label": "・SiO2",
+     "parents": [
+      "5F004DB00"
+     ]
+    },
+    {
+     "code": "5F004DB04",
+     "label": "・・PSG",
+     "parents": [
+      "5F004DB03",
+      "5F004DB00"
+     ]
+    },
+    {
+     "code": "5F004DB05",
+     "label": "・・BSG",
+     "parents": [
+      "5F004DB03",
+      "5F004DB00"
+     ]
+    },
+    {
+     "code": "5F004DB06",
+     "label": "・・BPSG",
+     "parents": [
+      "5F004DB03",
+      "5F004DB00"
+     ]
+    },
+    {
+     "code": "5F004DB07",
+     "label": "・Si3N4",
+     "parents": [
+      "5F004DB00"
+     ]
+    },
+    {
+     "code": "5F004DB08",
+     "label": "・金属",
+     "parents": [
+      "5F004DB00"
+     ]
+    },
+    {
+     "code": "5F004DB09",
+     "label": "・・Al",
+     "parents": [
+      "5F004DB08",
+      "5F004DB00"
+     ]
+    },
+    {
+     "code": "5F004DB10",
+     "label": "・・W",
+     "parents": [
+      "5F004DB08",
+      "5F004DB00"
+     ]
+    },
+    {
+     "code": "5F004DB12",
+     "label": "・金属化合物",
+     "parents": [
+      "5F004DB00"
+     ]
+    },
+    {
+     "code": "5F004DB13",
+     "label": "・・金属酸化物",
+     "parents": [
+      "5F004DB12",
+      "5F004DB00"
+     ]
+    },
+    {
+     "code": "5F004DB14",
+     "label": "・・・Al2O3",
+     "parents": [
+      "5F004DB13",
+      "5F004DB12",
+      "5F004DB00"
+     ]
+    },
+    {
+     "code": "5F004DB15",
+     "label": "・・金属シリサイド",
+     "parents": [
+      "5F004DB12",
+      "5F004DB00"
+     ]
+    },
+    {
+     "code": "5F004DB16",
+     "label": "・・・Alシリサイド,Al-Si",
+     "parents": [
+      "5F004DB15",
+      "5F004DB12",
+      "5F004DB00"
+     ]
+    },
+    {
+     "code": "5F004DB17",
+     "label": "・・・Wシリサイド",
+     "parents": [
+      "5F004DB15",
+      "5F004DB12",
+      "5F004DB00"
+     ]
+    },
+    {
+     "code": "5F004DB18",
+     "label": "・・・Moシリサイド",
+     "parents": [
+      "5F004DB15",
+      "5F004DB12",
+      "5F004DB00"
+     ]
+    },
+    {
+     "code": "5F004DB19",
+     "label": "・化合物半導体",
+     "parents": [
+      "5F004DB00"
+     ]
+    },
+    {
+     "code": "5F004DB20",
+     "label": "・・GaAs",
+     "parents": [
+      "5F004DB19",
+      "5F004DB00"
+     ]
+    },
+    {
+     "code": "5F004DB21",
+     "label": "・・GaAlAs",
+     "parents": [
+      "5F004DB19",
+      "5F004DB00"
+     ]
+    },
+    {
+     "code": "5F004DB22",
+     "label": "・・InP",
+     "parents": [
+      "5F004DB19",
+      "5F004DB00"
+     ]
+    },
+    {
+     "code": "5F004DB23",
+     "label": "・高分子材料",
+     "parents": [
+      "5F004DB00"
+     ]
+    },
+    {
+     "code": "5F004DB24",
+     "label": "・・シリコーン樹脂",
+     "parents": [
+      "5F004DB23",
+      "5F004DB00"
+     ]
+    },
+    {
+     "code": "5F004DB25",
+     "label": "・・ポリイミド樹脂",
+     "parents": [
+      "5F004DB23",
+      "5F004DB00"
+     ]
+    },
+    {
+     "code": "5F004DB26",
+     "label": "・・フォトレジスト",
+     "parents": [
+      "5F004DB23",
+      "5F004DB00"
+     ]
+    },
+    {
+     "code": "5F004DB27",
+     "label": "・・電子ビーム露光用レジスト",
+     "parents": [
+      "5F004DB23",
+      "5F004DB00"
+     ]
+    },
+    {
+     "code": "5F004DB28",
+     "label": "・不純物添加材料",
+     "parents": [
+      "5F004DB00"
+     ]
+    },
+    {
+     "code": "5F004DB29",
+     "label": "・磁性材料",
+     "parents": [
+      "5F004DB00"
+     ]
+    },
+    {
+     "code": "5F004DB30",
+     "label": "・アモルファス",
+     "parents": [
+      "5F004DB00"
+     ]
+    },
+    {
+     "code": "5F004DB31",
+     "label": "・透明導電膜",
+     "parents": [
+      "5F004DB00"
+     ]
+    },
+    {
+     "code": "5F004DB32",
+     "label": "・面方位",
+     "parents": [
+      "5F004DB00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "EA",
+   "code": "5F004EA00",
+   "label": "パターン形成手法",
+   "codes": [
+    {
+     "code": "5F004EA01",
+     "label": "・マスク構成",
+     "parents": [
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA02",
+     "label": "・・多層レジストマスク",
+     "parents": [
+      "5F004EA01",
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA03",
+     "label": "・・レジスト以外のエッチングマスク",
+     "parents": [
+      "5F004EA01",
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA04",
+     "label": "・・・酸化,変質,重合膜",
+     "parents": [
+      "5F004EA03",
+      "5F004EA01",
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA05",
+     "label": "・・・金属膜",
+     "parents": [
+      "5F004EA03",
+      "5F004EA01",
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA06",
+     "label": "・・・SiO2膜",
+     "parents": [
+      "5F004EA03",
+      "5F004EA01",
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA07",
+     "label": "・・・Si3N4膜",
+     "parents": [
+      "5F004EA03",
+      "5F004EA01",
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA08",
+     "label": "・・矩形外マスク",
+     "parents": [
+      "5F004EA01",
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA09",
+     "label": "・アンダーエッチング,サイドエッチング",
+     "parents": [
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA10",
+     "label": "・ウェットエッチング",
+     "parents": [
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA11",
+     "label": "・サイドウォール",
+     "parents": [
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA12",
+     "label": "・・残留形成",
+     "parents": [
+      "5F004EA11",
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA13",
+     "label": "・・側壁保護膜の形成",
+     "parents": [
+      "5F004EA11",
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA14",
+     "label": "・・変質形成",
+     "parents": [
+      "5F004EA11",
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA15",
+     "label": "・反転エッチング",
+     "parents": [
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA16",
+     "label": "・抜きパターン",
+     "parents": [
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA17",
+     "label": "・リフトオフ",
+     "parents": [
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA18",
+     "label": "・・絶縁膜パターン",
+     "parents": [
+      "5F004EA17",
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA19",
+     "label": "・斜めイオン入射,蒸着",
+     "parents": [
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA20",
+     "label": "・ペリフェラルエッチング",
+     "parents": [
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA21",
+     "label": "・ダミー",
+     "parents": [
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA22",
+     "label": "・反射防止膜",
+     "parents": [
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA23",
+     "label": "・エッチングストッパー",
+     "parents": [
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA24",
+     "label": "・フロー工程",
+     "parents": [
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA25",
+     "label": "・・熱軟化",
+     "parents": [
+      "5F004EA24",
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA26",
+     "label": "・・液体塗布",
+     "parents": [
+      "5F004EA24",
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA27",
+     "label": "・エッチバック",
+     "parents": [
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA28",
+     "label": "・多段階エッチング",
+     "parents": [
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA29",
+     "label": "・・等方性エッチング+異方性エッチング",
+     "parents": [
+      "5F004EA28",
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA30",
+     "label": "・低温ドライエッチング",
+     "parents": [
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA31",
+     "label": "・バイアススパッタ",
+     "parents": [
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA32",
+     "label": "・異なる領域を同時にエッチング",
+     "parents": [
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA33",
+     "label": "・位置合わせ",
+     "parents": [
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA34",
+     "label": "・気相エッチング",
+     "parents": [
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA35",
+     "label": "・・ホット分子",
+     "parents": [
+      "5F004EA34",
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA36",
+     "label": "・・Dry-OX法",
+     "parents": [
+      "5F004EA34",
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA37",
+     "label": "・エッチング形状の制御",
+     "parents": [
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA38",
+     "label": "・マスクレスエッチング",
+     "parents": [
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA39",
+     "label": "・・FIB",
+     "parents": [
+      "5F004EA38",
+      "5F004EA00"
+     ]
+    },
+    {
+     "code": "5F004EA40",
+     "label": "・その他",
+     "parents": [
+      "5F004EA00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "EB",
+   "code": "5F004EB00",
+   "label": "エッチング対象部の機能",
+   "codes": [
+    {
+     "code": "5F004EB01",
+     "label": "・コンタクトホール",
+     "parents": [
+      "5F004EB00"
+     ]
+    },
+    {
+     "code": "5F004EB02",
+     "label": "・電極,配線",
+     "parents": [
+      "5F004EB00"
+     ]
+    },
+    {
+     "code": "5F004EB03",
+     "label": "・層間絶縁膜",
+     "parents": [
+      "5F004EB00"
+     ]
+    },
+    {
+     "code": "5F004EB04",
+     "label": "・分離溝",
+     "parents": [
+      "5F004EB00"
+     ]
+    },
+    {
+     "code": "5F004EB05",
+     "label": "・溝型キャパシタ",
+     "parents": [
+      "5F004EB00"
+     ]
+    },
+    {
+     "code": "5F004EB06",
+     "label": "・ブレーズド格子",
+     "parents": [
+      "5F004EB00"
+     ]
+    },
+    {
+     "code": "5F004EB07",
+     "label": "・露光用マスク",
+     "parents": [
+      "5F004EB00"
+     ]
+    },
+    {
+     "code": "5F004EB08",
+     "label": "・その他",
+     "parents": [
+      "5F004EB00"
+     ]
+    }
+   ]
+  },
+  {
+   "aspect": "FA",
+   "code": "5F004FA00",
+   "label": "エッチング工程前後の処理",
+   "codes": [
+    {
+     "code": "5F004FA01",
+     "label": "・加熱処理",
+     "parents": [
+      "5F004FA00"
+     ]
+    },
+    {
+     "code": "5F004FA02",
+     "label": "・イオン注入",
+     "parents": [
+      "5F004FA00"
+     ]
+    },
+    {
+     "code": "5F004FA03",
+     "label": "・不純物ドープ",
+     "parents": [
+      "5F004FA00"
+     ]
+    },
+    {
+     "code": "5F004FA04",
+     "label": "・電子ビーム照射",
+     "parents": [
+      "5F004FA00"
+     ]
+    },
+    {
+     "code": "5F004FA05",
+     "label": "・レーザ照射",
+     "parents": [
+      "5F004FA00"
+     ]
+    },
+    {
+     "code": "5F004FA06",
+     "label": "・機械的ダメージ",
+     "parents": [
+      "5F004FA00"
+     ]
+    },
+    {
+     "code": "5F004FA07",
+     "label": "・ライトエッチング",
+     "parents": [
+      "5F004FA00"
+     ]
+    },
+    {
+     "code": "5F004FA08",
+     "label": "・その他",
+     "parents": [
+      "5F004FA00"
+     ]
+    }
+   ]
+  }
+ ]
+}

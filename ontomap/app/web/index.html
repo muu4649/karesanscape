@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KareSanScape</title>
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <button class="brand" id="goHome" type="button" title="マップ一覧へ"><img src="logo_mark.png" alt="" class="logo"><span>KareSanScape</span></button>
+  <div class="crumb" id="crumb"></div>
+  <div class="top-actions" id="topActions"></div>
+</header>
+
+<nav class="side" id="sideNav" aria-label="メニュー">
+  <button class="side-toggle" id="sideToggle" type="button" aria-label="メニューを畳む・広げる">≡</button>
+  <div class="side-group"><div class="side-head">マップ</div>
+    <a href="#/" data-nav="home" title="マップ一覧"><span class="ic">▦</span><span class="tx">マップ一覧</span></a>
+    <a href="#/new" data-nav="new" title="新しいマップ"><span class="ic">＋</span><span class="tx">新しいマップ</span></a></div>
+  <div class="side-group"><div class="side-head">辞書</div>
+    <a href="#/common" data-nav="common" title="共通辞書一覧"><span class="ic">≣</span><span class="tx">共通辞書一覧</span></a>
+    <a href="#/common-new" data-nav="common-new" title="新しい共通辞書"><span class="ic">＋</span><span class="tx">新しい共通辞書</span></a></div>
+</nav>
+<!-- 一覧 -->
+<main id="viewHome" class="view">
+  <section class="home">
+    <div class="home-head">
+      <div>
+        <h1>マップ</h1>
+        <p class="lead">特許データを取り込み、技術のまとまりや類似する技術を地図にできます。近さは 2 通りで測ります。文章の内容が似ているか（意味の類似性）と、課題・解決手段・用途の関係構造が似ているか（技術関係の類似性）です。</p>
+      </div>
+      <button class="btn primary" id="newMap" type="button">新しいマップを作成</button>
+    </div>
+    <div id="projectList" class="project-list"></div>
+  </section>
+</main>
+
+<!-- 取り込み -->
+<main id="viewImport" class="view" hidden>
+  <section class="import">
+    <h1>新しいマップを作る</h1>
+    <ol class="steps"><li id="st1" class="on">ファイルを選ぶ</li><li id="st2">列を対応づける</li><li id="st3">計算する</li></ol>
+    <div id="dropZone" class="drop" tabindex="0">
+      <p><strong>CSV または Excel のファイル</strong>をここに置くか、押して選んでください。</p>
+      <p class="hint">1 行が 1 件の特許です。名称と、要約・課題・解決手段・用途のどれかの列が要ります。</p>
+      <input type="file" id="fileInput" accept=".csv,.tsv,.txt,.xlsx,.xlsm" hidden>
+    </div>
+    <div id="mapping" hidden>
+      <div class="field-row"><label for="mapName">マップの名前</label><input id="mapName" type="text" placeholder="例: MOF 国内特許 2011〜2025"></div>
+      <h2>列の対応</h2>
+      <p class="hint" id="fileInfo"></p>
+      <div id="mapFields" class="map-fields"></div>
+      <h2>共通辞書</h2>
+      <p class="hint">課題・解決手段・用途の語の辞書です。関係の近さの計算に使います。</p>
+      <div class="field-row"><select id="ontoSelect"></select>
+        <label class="btn ghost small">YAML を追加<input type="file" id="ontoFile" accept=".yaml,.yml" hidden></label></div>
+      <h2>先頭 5 行</h2>
+      <div class="table-wrap"><table id="previewTable"></table></div>
+      <div class="actions"><button class="btn" id="cancelImport" type="button">やめる</button><button class="btn primary" id="startBuild" type="button">地図を作る</button></div>
+      <p class="error" id="importError" role="alert"></p>
+    </div>
+    <div id="progress" hidden>
+      <h2 id="progTitle">地図を作っています</h2>
+      <div class="bar"><span id="progBar"></span></div>
+      <p id="progMsg" class="hint"></p>
+      <p class="error" id="progError" role="alert"></p>
+    </div>
+  </section>
+</main>
+
+<!-- 地図 -->
+<main id="viewMap" class="view map-view" hidden>
+  <aside class="panel left" id="leftPanel" aria-label="検索・絞り込み・表示">
+    <details class="pgroup" open><summary>検索</summary>
+      <input id="q" type="search" placeholder="名称・要約・出願人・分類で探す">
+      <div class="count" id="hitCount"></div>
+    </details>
+    <details class="pgroup" open><summary>絞り込み</summary>
+      <div class="two"><input id="yFrom" type="number" placeholder="出願年 から"><input id="yTo" type="number" placeholder="まで"></div>
+      <input id="ipcQ" type="text" placeholder="IPC・FI（前方一致 例: B01D53）">
+      <select id="usageSel"><option value="">用途（すべて）</option></select>
+      <input id="appQ" type="text" list="appList" placeholder="出願人">
+      <datalist id="appList"></datalist>
+      <select id="moduleSel" hidden><option value="">分野別辞書（すべて）</option></select>
+      <button class="btn ghost small" id="clearFilter" type="button">条件を消す</button>
+    </details>
+    <details class="pgroup" open><summary>色分け</summary>
+      <select id="colorBy"><option value="">なし</option><option value="usage">用途</option><option value="applicant">出願人</option><option value="module" id="colorModule" hidden>分野</option></select>
+      <div id="colorPick" class="chips"></div>
+      <p class="hint">3 つまで選べます。</p>
+    </details>
+    <details class="pgroup"><summary>表示</summary>
+      <label class="chk"><input type="checkbox" id="showContour" checked> 等高線</label>
+      <label class="chk"><input type="checkbox" id="showLabels" checked> クラスター名</label>
+      <label class="chk"><input type="checkbox" id="showBridges"> 異用途の類似ペア</label>
+      <label class="chk"><input type="checkbox" id="showOverlay"> グループの分布範囲と出願年による移動軌跡</label>
+    </details>
+    <details class="pgroup results" open><summary>該当する文書</summary>
+      <ol id="hitList" class="hit-list"></ol>
+    </details>
+  </aside>
+  <section class="stage" aria-label="地図">
+    <div class="maptool" id="mapTool">
+      <button class="tbtn" id="tLeft" type="button" title="左の欄を開閉" aria-label="左の欄を開閉">☰</button>
+      <div class="mt-name"><b id="mtName"></b><span id="mtCount" class="hint"></span></div>
+      <div class="seg" id="methodSeg" role="radiogroup" aria-label="近さの測り方"></div>
+      <span class="mt-gap"></span>
+      <button class="btn small" id="tBridges" type="button">異用途の類似技術</button>
+      <button class="btn small" id="tDict" type="button">辞書を改善</button>
+      <button class="tbtn" id="tInfo" type="button" title="マップの情報" aria-label="マップの情報">ⓘ</button>
+      <button class="tbtn" id="tRight" type="button" title="右の欄を開閉" aria-label="右の欄を開閉">◨</button>
+    </div>
+    <div class="mapnote" id="mapNote" hidden></div>
+    <div class="mapbox">
+      <svg id="map" role="img" aria-label="文書の二次元地図"></svg>
+      <div class="legend" id="legend"></div>
+      <div class="zoom"><button id="zIn" type="button" aria-label="拡大">＋</button><button id="zOut" type="button" aria-label="縮小">−</button><button id="zFit" type="button" aria-label="全体表示">全体</button></div>
+      <div id="tip" class="tip" role="tooltip" hidden></div>
+      <div id="infoPop" class="pop" hidden></div>
+    </div>
+  </section>
+  <aside class="panel right" id="side" aria-live="polite"></aside>
+</main>
+<!-- 辞書を改善（共通辞書＋このマップの追加語） -->
+<main id="viewOnto" class="view" hidden>
+  <section class="onto">
+    <div class="home-head">
+      <div>
+        <h1>辞書を改善</h1>
+        <p class="lead">技術関係の類似性は、2 段の辞書で測ります。<b>共通辞書</b>は分野で共有する辞書で、ここでは変えません。<b>このマップの追加語</b>は、このマップだけの追加分です。共通辞書で拾えない語を候補から選び、新しい概念か、既存の概念の別名として足します。足した語は「変更を反映して再計算」で地図に反映されます。</p>
+      </div>
+    </div>
+    <div class="onto-grid">
+      <div class="box" id="ontoLayers"></div>
+      <div class="box" id="ontoCoverage"></div>
+      <div class="box" id="ontoRebuild"></div>
+    </div>
+    <h2>候補の語 <span class="hint" id="candInfo"></span></h2>
+    <div class="tabs" id="candTabs" role="tablist"></div>
+    <div class="table-wrap cand-wrap"><table id="candTable" class="cand"></table></div>
+    <h2>このマップの追加語（下書き）</h2>
+    <div id="adopted"></div>
+  </section>
+</main>
+<!-- 新しい共通辞書（ステップ） -->
+<main id="viewCommonNew" class="view" hidden>
+  <section class="import" id="wizBox"></section>
+</main>
+<!-- 共通辞書を改善 -->
+<main id="viewCommon" class="view" hidden>
+  <section class="onto" id="commonBox"></section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

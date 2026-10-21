@@ -1,0 +1,68 @@
+# 実験設定（事前登録する値）。実験前に固定し、変更したら manifest に残る。
+run_name: sample_v1
+seed: 42
+ontology: config/ontology_v0_1.yaml
+
+corpus:
+  generator: sample            # sample = 見本文書を生成 / csv = 既存の documents.csv を使う
+  documents_csv: null          # generator: csv のときのパス
+  target_chars: [90, 110]
+  train_fraction: 0.3          # 重み調整に使う文書群の割合（文書単位で分ける）
+
+layers: [gold, dict]           # llm は extract --layer llm を実行したときだけ追加
+
+baselines:
+  B1: {ngram_range: [2, 3]}
+  B2: {model: cl-nagoya/ruri-v3-30m, prefix: "", batch_size: 32, device: cpu}
+  B3: {vector_size: 100, window: 5, min_count: 1, epochs: 100, tokenizer: janome}
+
+concept_similarity:            # P1
+  aggregation: best_match_average
+
+relation_similarity:           # P2 / A1 / A2
+  weights: {subject: 1.0, predicate: 1.0, object: 1.0}   # 加重幾何平均の重み
+  epsilon: 0.01                # 平滑化の下限
+  min_endpoint_sim: 0.3        # 始点・終点のどちらも概念が近くなければ 0（形だけの一致に点を与えない）
+  role_mismatch: 0.3           # 同じ概念でも役割が違えば掛ける係数
+  negation_mismatch: 0.2
+  speculation_mismatch: 0.8
+  missing_penalty: 0.7         # オントロジーに無い概念（欠損）を含む比較に掛ける係数
+  aggregation: assignment      # assignment = 最適対応付け / best_match = 最大類似度集約
+  predicate_weights:
+    suppresses: 1.0
+    prevents: 1.0
+    causes: 1.0
+    degrades: 1.0
+    performs: 0.8
+    leads_to: 0.7
+    occurs_in: 0.6
+    applied_to: 0.5
+  shuffle_seed: 7              # A2（始点・終点の入替）の乱数種
+
+hybrid:                        # P3 = α P1 + β P2 + γ B2
+  alpha: 0.3
+  beta: 0.5
+  gamma: 0.2
+  normalization: rank          # rank = 順位を 0〜1 に / minmax
+  embedding_method: B2
+  tune_step: 0.1
+
+reduce:
+  mds: {n_init: 4, max_iter: 300, init: classical_mds}
+  umap: {n_neighbors: 15, min_dist: 0.1}
+
+evaluation:
+  k_values: [5, 10, 20]
+  bootstrap: 1000
+  relevant_score: 3            # Recall@10 で「関連」とみなす点数
+  sample_pairs: {similar: 100, confusing: 100, random: 100}
+
+benchmark:
+  repeats: 5
+  warmup: 1
+  threads: 4
+
+llm:
+  model: claude-opus-5-5
+  effort: medium
+  max_concurrency: 4

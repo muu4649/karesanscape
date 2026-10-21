@@ -1,0 +1,156 @@
+# オントロジー v0.1
+# 上位型は「対象／課題／手段／作用／効果」の 5 つ。上位型だけを共有する概念どうしの類似度は 0 とする
+# （課題→手段→効果という形の一致だけでは得点を与えないため）。
+version: "0.1"
+
+top_types:
+  - {id: T, label: 対象}
+  - {id: P, label: 課題}
+  - {id: M, label: 手段}
+  - {id: A, label: 作用}
+  - {id: E, label: 効果}
+
+# 述語。group が同じなら近い（0.7）、polarity が逆なら 0。
+predicates:
+  - {id: suppresses, label: 抑制する, group: reduce, polarity: -1}
+  - {id: prevents, label: 防止する, group: reduce, polarity: -1}
+  - {id: causes, label: 引き起こす, group: induce, polarity: 1}
+  - {id: degrades, label: 劣化させる, group: induce, polarity: 1}
+  - {id: performs, label: 作用を生む, group: realize, polarity: 0}
+  - {id: leads_to, label: 効果をもたらす, group: result, polarity: 0}
+  - {id: occurs_in, label: 生じる場所, group: locate, polarity: 0}
+  - {id: applied_to, label: 適用先, group: locate, polarity: 0}
+
+# 中間概念（上位型の直下）。parents は複数可。
+concepts:
+  # ---- 課題 ----
+  - {id: P_thermal, label: 熱的課題, parents: [P]}
+  - {id: P_degradation, label: 劣化課題, parents: [P]}
+  - {id: P_accuracy, label: 精度課題, parents: [P]}
+  - {id: P_safety, label: 安全課題, parents: [P]}
+  - {id: P_contamination, label: 汚染課題, parents: [P]}
+  - {id: P_temp_rise, label: 温度上昇, aliases: [昇温, 過度な発熱], parents: [P_thermal]}
+  - {id: P_thermal_runaway, label: 熱暴走, aliases: [熱連鎖, 類焼], parents: [P_thermal, P_safety]}
+  - {id: P_temp_uneven, label: 温度ムラ, aliases: [温度ばらつき, 温度分布の偏り], parents: [P_thermal]}
+  - {id: P_thermal_drift, label: 熱ドリフト, aliases: [温度ドリフト, 温度による特性変動], parents: [P_thermal, P_accuracy]}
+  - {id: P_condensation, label: 結露, aliases: [水滴の発生, 露付き], parents: [P_contamination]}
+  - {id: P_capacity_fade, label: 容量劣化, aliases: [容量低下, 充電容量の減少], parents: [P_degradation]}
+  - {id: P_corrosion, label: 腐食, aliases: [錆, 発錆], parents: [P_degradation]}
+  - {id: P_wear, label: 摩耗, aliases: [磨耗, すり減り], parents: [P_degradation]}
+  - {id: P_peeling, label: 剥離, aliases: [膜剥がれ, 密着不良], parents: [P_degradation]}
+  - {id: P_fouling, label: 汚れの付着, aliases: [汚損, 付着汚れ], parents: [P_contamination]}
+  - {id: P_fogging, label: 曇り, aliases: [くもり, 視界不良], parents: [P_contamination]}
+  - {id: P_vibration, label: 振動, aliases: [揺れ, 残留振動], parents: [P_accuracy]}
+  - {id: P_position_error, label: 位置ずれ, aliases: [位置誤差, 位置決め誤差], parents: [P_accuracy]}
+  - {id: P_grasp_failure, label: 把持ミス, aliases: [把持失敗, 取り落とし], parents: [P_accuracy]}
+  - {id: P_collision, label: 衝突, aliases: [接触事故, ぶつかり], parents: [P_safety]}
+  - {id: P_noise, label: ノイズ, aliases: [雑音, 暗電流ノイズ], parents: [P_accuracy]}
+  - {id: P_stray_light, label: 迷光, aliases: [フレア, ゴースト光], parents: [P_accuracy]}
+
+  # ---- 手段 ----
+  - {id: M_cooling, label: 冷却手段, parents: [M]}
+  - {id: M_heat_conduction, label: 伝熱手段, parents: [M]}
+  - {id: M_thermal_barrier, label: 熱遮断手段, parents: [M]}
+  - {id: M_heating, label: 加熱手段, parents: [M]}
+  - {id: M_control, label: 制御手段, parents: [M]}
+  - {id: M_sensing, label: 検出手段, parents: [M]}
+  - {id: M_coating, label: 被覆手段, parents: [M]}
+  - {id: M_surface_mod, label: 表面改質手段, parents: [M]}
+  - {id: M_electrochem, label: 電気化学的手段, parents: [M]}
+  - {id: M_optical_filter, label: 光学フィルタ手段, parents: [M]}
+  - {id: M_moisture, label: 湿度管理手段, parents: [M]}
+  - {id: M_cooling_channel, label: 冷却流路, aliases: [冷媒流路, 冷却通路], parents: [M_cooling]}
+  - {id: M_coolant_circulation, label: 冷却液の循環, aliases: [液冷循環, 冷却水の循環], parents: [M_cooling]}
+  - {id: M_fan, label: 冷却ファン, aliases: [送風ファン, 送風機], parents: [M_cooling]}
+  - {id: M_peltier, label: ペルチェ素子, aliases: [熱電素子, 電子冷却素子], parents: [M_cooling]}
+  - {id: M_thermal_sheet, label: 伝熱シート, aliases: [熱伝導シート, 熱拡散シート], parents: [M_heat_conduction]}
+  - {id: M_heat_sink, label: 放熱板, aliases: [ヒートシンク, 放熱フィン], parents: [M_heat_conduction]}
+  - {id: M_insulator, label: 断熱材, aliases: [断熱層, 遮熱材], parents: [M_thermal_barrier]}
+  - {id: M_heater, label: ヒータ, aliases: [加熱ヒータ, 電熱線], parents: [M_heating]}
+  - {id: M_temp_feedback, label: 温度監視制御, aliases: [温度フィードバック制御, 温度に応じた出力制御], parents: [M_control]}
+  - {id: M_vibration_control, label: 制振制御, aliases: [振動抑制制御, 制振フィルタ], parents: [M_control]}
+  - {id: M_learned_model, label: 学習済みモデル, aliases: [機械学習モデル, 学習モデル], parents: [M_control]}
+  - {id: M_temp_compensation, label: 温度補正演算, aliases: [温度補償処理, 温度補正処理], parents: [M_control]}
+  - {id: M_force_sensor, label: 力覚センサ, aliases: [力センサ, 触覚センサ], parents: [M_sensing]}
+  - {id: M_vision_sensor, label: 視覚センサ, aliases: [カメラ, 画像センサ], parents: [M_sensing]}
+  - {id: M_anticorrosion_coating, label: 防食皮膜, aliases: [防錆被膜, 耐食コーティング], parents: [M_coating]}
+  - {id: M_hard_plating, label: 硬質めっき, aliases: [硬質クロムめっき, 硬質被膜], parents: [M_coating]}
+  - {id: M_dlc, label: ダイヤモンドライクカーボン膜, aliases: [DLC膜, 硬質炭素膜], parents: [M_coating]}
+  - {id: M_ar_coating, label: 反射防止膜, aliases: [ARコート, 低反射コーティング], parents: [M_coating]}
+  - {id: M_antifog, label: 防曇コート, aliases: [防曇膜, 曇り止め被膜], parents: [M_coating]}
+  - {id: M_primer, label: プライマー層, aliases: [下地層, 密着層], parents: [M_coating]}
+  - {id: M_water_repellent, label: 撥水処理, aliases: [撥水コート, はっ水処理], parents: [M_surface_mod]}
+  - {id: M_plasma, label: プラズマ処理, aliases: [プラズマ照射, 大気圧プラズマ], parents: [M_surface_mod]}
+  - {id: M_sacrificial_anode, label: 犠牲陽極, aliases: [流電陽極, 亜鉛陽極], parents: [M_electrochem]}
+  - {id: M_bandpass_filter, label: 狭帯域フィルタ, aliases: [バンドパスフィルタ, 波長選択フィルタ], parents: [M_optical_filter]}
+  - {id: M_dehumidifier, label: 除湿機構, aliases: [除湿ユニット, 乾燥剤], parents: [M_moisture]}
+
+  # ---- 作用 ----
+  - {id: A_heat_flow, label: 熱流制御, parents: [A]}
+  - {id: A_isolation, label: 遮断作用, parents: [A]}
+  - {id: A_surface_energy, label: 表面エネルギー制御, parents: [A]}
+  - {id: A_detection, label: 検出作用, parents: [A]}
+  - {id: A_compensation, label: 補償作用, parents: [A]}
+  - {id: A_mechanical, label: 機械的作用, parents: [A]}
+  - {id: A_optical, label: 光学的作用, parents: [A]}
+  - {id: A_heat_transfer, label: 熱移動の促進, aliases: [熱の移動促進, 熱の持ち去り], parents: [A_heat_flow]}
+  - {id: A_heat_dissipation, label: 放熱, aliases: [熱の放散, 熱の逃がし], parents: [A_heat_flow]}
+  - {id: A_heat_spread, label: 熱の均一化, aliases: [熱拡散, 熱の平準化], parents: [A_heat_flow]}
+  - {id: A_temp_regulation, label: 温度の調整, aliases: [温度管理, 温度の一定化], parents: [A_heat_flow, A_compensation]}
+  - {id: A_heat_supply, label: 加温, aliases: [熱の供給, 昇温による乾燥], parents: [A_heat_flow]}
+  - {id: A_heat_block, label: 熱伝播の遮断, aliases: [熱の伝わりの遮断, 延焼の遮断], parents: [A_isolation]}
+  - {id: A_barrier, label: 腐食因子の遮断, aliases: [水分と酸素の遮断, バリア作用], parents: [A_isolation]}
+  - {id: A_moisture_removal, label: 水分の除去, aliases: [湿気の除去, 吸湿], parents: [A_isolation]}
+  - {id: A_galvanic, label: 犠牲防食作用, aliases: [電気防食作用, 優先的な溶解], parents: [A_compensation]}
+  - {id: A_hardening, label: 表面の硬化, aliases: [表面硬度の向上, 硬さの付与], parents: [A_mechanical]}
+  - {id: A_low_friction, label: 摩擦の低減, aliases: [低摩擦化, 摺動抵抗の低下], parents: [A_mechanical]}
+  - {id: A_adhesion, label: 密着力の向上, aliases: [界面密着の強化, 接着性の改善], parents: [A_mechanical]}
+  - {id: A_low_surface_energy, label: 表面エネルギーの低下, aliases: [撥液性の付与, 濡れにくさの付与], parents: [A_surface_energy]}
+  - {id: A_hydrophilic, label: 親水化, aliases: [親水性の付与, 水膜化], parents: [A_surface_energy]}
+  - {id: A_force_detect, label: 接触力の検出, aliases: [外力の検知, 反力の計測], parents: [A_detection]}
+  - {id: A_obstacle_detect, label: 障害物の検出, aliases: [障害物の認識, 周囲物体の検知], parents: [A_detection]}
+  - {id: A_early_detection, label: 異常の早期検知, aliases: [異常兆候の検知, 早期異常検出], parents: [A_detection]}
+  - {id: A_disturbance_comp, label: 外乱の補償, aliases: [外乱補償, 外乱の打ち消し], parents: [A_compensation]}
+  - {id: A_trajectory_correction, label: 軌道の補正, aliases: [軌道修正, 経路の補正], parents: [A_compensation]}
+  - {id: A_temp_dependency_comp, label: 温度依存性の補償, aliases: [温度特性の補正, 温度影響の打ち消し], parents: [A_compensation]}
+  - {id: A_noise_removal, label: ノイズの除去, aliases: [雑音除去, ノイズ成分の分離], parents: [A_compensation]}
+  - {id: A_light_rejection, label: 不要光の除去, aliases: [外乱光の除去, 背景光の遮断], parents: [A_optical, A_isolation]}
+  - {id: A_reflection_control, label: 表面反射の低減, aliases: [反射率の低下, 反射光の抑え込み], parents: [A_optical]}
+
+  # ---- 効果 ----
+  - {id: E_reliability, label: 信頼性向上, parents: [E]}
+  - {id: E_accuracy, label: 精度向上, parents: [E]}
+  - {id: E_productivity, label: 生産性向上, parents: [E]}
+  - {id: E_quality, label: 品質向上, parents: [E]}
+  - {id: E_long_life, label: 長寿命化, aliases: [寿命の延長, 使用期間の延長], parents: [E_reliability]}
+  - {id: E_durability, label: 耐久性の向上, aliases: [耐久性能の改善, 耐用年数の延長], parents: [E_reliability]}
+  - {id: E_safety, label: 安全性の向上, aliases: [安全性の確保, 事故リスクの低下], parents: [E_reliability]}
+  - {id: E_output_stable, label: 出力の安定化, aliases: [性能の安定, 安定した出力], parents: [E_reliability]}
+  - {id: E_uniform_temp, label: 均一な温度分布, aliases: [温度の均一性, 一様な温度], parents: [E_quality]}
+  - {id: E_appearance, label: 外観の維持, aliases: [美観の保持, 見た目の維持], parents: [E_quality]}
+  - {id: E_maintenance, label: 保守負担の軽量化, aliases: [清掃頻度の削減, 保守作業の省力化], parents: [E_productivity]}
+  - {id: E_positioning_accuracy, label: 位置決め精度の向上, aliases: [高精度な位置決め, 位置精度の改善], parents: [E_accuracy]}
+  - {id: E_measure_accuracy, label: 測定精度の向上, aliases: [計測精度の改善, 高精度な計測], parents: [E_accuracy]}
+  - {id: E_image_quality, label: 画質の向上, aliases: [鮮明な画像, 画像品位の改善], parents: [E_quality]}
+  - {id: E_cycle_time, label: タクトタイムの短縮, aliases: [作業時間の短縮, サイクルタイムの短縮], parents: [E_productivity]}
+
+  # ---- 対象 ----
+  - {id: T_energy, label: 蓄電デバイス, parents: [T]}
+  - {id: T_member, label: 部材, parents: [T]}
+  - {id: T_machine, label: 機械装置, parents: [T]}
+  - {id: T_optical_device, label: 光学デバイス, parents: [T]}
+  - {id: T_cell, label: 電池セル, aliases: [単電池, 二次電池セル], parents: [T_energy]}
+  - {id: T_module, label: 電池モジュール, aliases: [組電池, バッテリーモジュール], parents: [T_energy]}
+  - {id: T_pack, label: 電池パック, aliases: [バッテリーパック, 蓄電パック], parents: [T_energy]}
+  - {id: T_metal_substrate, label: 金属基材, aliases: [鋼板, 金属板], parents: [T_member]}
+  - {id: T_pipe, label: 配管, aliases: [管路, 金属管], parents: [T_member]}
+  - {id: T_mold, label: 金型, aliases: [成形型, プレス型], parents: [T_member]}
+  - {id: T_resin_member, label: 樹脂部材, aliases: [樹脂成形品, プラスチック部品], parents: [T_member]}
+  - {id: T_robot_arm, label: ロボットアーム, aliases: [多関節アーム, マニピュレータ], parents: [T_machine]}
+  - {id: T_motor, label: 駆動モータ, aliases: [サーボモータ, 関節モータ], parents: [T_machine]}
+  - {id: T_agv, label: 無人搬送車, aliases: [搬送ロボット, 自律走行台車], parents: [T_machine]}
+  - {id: T_gripper, label: ロボットハンド, aliases: [把持機構, グリッパ], parents: [T_machine]}
+  - {id: T_image_sensor, label: イメージセンサ, aliases: [撮像素子, 固体撮像素子], parents: [T_optical_device]}
+  - {id: T_lens, label: 光学レンズ, aliases: [レンズ, 対物レンズ], parents: [T_optical_device]}
+  - {id: T_lidar, label: 光測距装置, aliases: [LiDAR, レーザ測距装置], parents: [T_optical_device]}
+  - {id: T_photodetector, label: 受光素子, aliases: [フォトダイオード, 光検出器], parents: [T_optical_device]}
