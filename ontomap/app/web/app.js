@@ -458,7 +458,8 @@ function toMap(cx, cy) {
   const ox = (r.width - s) / 2, oy = (r.height - s) / 2;
   return [S.vb.x + (cx - ox) / s * S.vb.w, S.vb.y + (cy - oy) / s * S.vb.h];
 }
-svg.addEventListener("pointerdown", e => { drag = {x: e.clientX, y: e.clientY, vb: {...S.vb}, moved: false}; svg.setPointerCapture(e.pointerId); });
+// 押した点は pointerdown で覚える（setPointerCapture のあと、pointerup の target は svg 全体になり、どの点か分からなくなるため）
+svg.addEventListener("pointerdown", e => { drag = {x: e.clientX, y: e.clientY, vb: {...S.vb}, moved: false, i: e.target.dataset ? e.target.dataset.i : undefined}; svg.setPointerCapture(e.pointerId); });
 svg.addEventListener("pointermove", e => {
   if (drag) {
     const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
@@ -476,9 +477,8 @@ svg.addEventListener("pointermove", e => {
 });
 svg.addEventListener("pointerup", e => {
   svg.classList.remove("drag");
-  const moved = drag && drag.moved; drag = null;
+  const moved = drag && drag.moved, i = drag ? drag.i : undefined; drag = null;
   if (moved) { rescale(); return; }
-  const i = e.target.dataset && e.target.dataset.i;
   if (i != null) select(+i, false); else { S.sel = null; S.nbSel = null; if (S.rmode === "compare") S.rmode = "bridges"; renderNeighborsLines(); renderSel(); renderSide(); }
 });
 svg.addEventListener("pointerleave", () => { $("#tip").hidden = true; });
