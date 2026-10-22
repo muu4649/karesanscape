@@ -45,7 +45,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
         window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 1360, height: 900),
                           styleMask: [.titled, .closable, .miniaturizable, .resizable],
                           backing: .buffered, defer: false)
-        window.title = appName
+        window.title = appName + "（ベータ版）"
         window.minSize = NSSize(width: 960, height: 640)
         window.contentView = webView
         window.setFrameAutosaveName("ontomap-main")
@@ -290,7 +290,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, WKNavigationDelegate, 
     @objc func showAbout() {
         let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""
         let alert = NSAlert()
-        alert.messageText = "\(appName) \(version)"
+        alert.messageText = "\(appName) \(version)（ベータ版）"
         alert.informativeText = """
         特許分析者向けの分類辞書構築アプリ。資料を登録し、MCP 接続した LLM の辞書案をレビューして、確定版の辞書とチャット用プロンプトを作ります。
         保存先: \(dataDirectory.path)
