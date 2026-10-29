@@ -176,6 +176,12 @@ def bridges(pid: str, limit: int = 60) -> list:
     return engine.bridges_detail(pid, limit)
 
 
+@app.get("/api/projects/{pid}/stats")
+def stats(pid: str) -> dict:
+    """統計分析: 文書ごとの出願年・出願人・用途・IPC と、辞書で拾った課題・解決手段・用途の概念。"""
+    return engine.stats(pid)
+
+
 # ---------- 共通層（辞書）を育てる ----------
 from . import common  # noqa: E402
 

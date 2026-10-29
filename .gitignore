@@ -10,6 +10,7 @@ datasets/**/raw/
 datasets/**/_work/
 datasets/**/documents_sections*.csv
 datasets/**/sampling_frame.csv
+datasets/**/documents_app.csv
 # 作業メモ・報告書・いただいた設計書
 _drafts/
 *.docx

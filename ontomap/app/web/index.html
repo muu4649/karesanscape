@@ -108,6 +108,7 @@
       <div class="mt-name"><b id="mtName"></b><span id="mtCount" class="hint"></span></div>
       <div class="seg" id="methodSeg" role="radiogroup" aria-label="近さの測り方"></div>
       <span class="mt-gap"></span>
+      <button class="btn small" id="tStats" type="button">統計</button>
       <button class="btn small" id="tBridges" type="button">異用途の類似技術</button>
       <button class="btn small" id="tDict" type="button">辞書を改善</button>
       <button class="tbtn" id="tInfo" type="button" title="マップの情報" aria-label="マップの情報">ⓘ</button>
@@ -123,6 +124,20 @@
     </div>
   </section>
   <aside class="panel right" id="side" aria-live="polite"></aside>
+</main>
+<!-- 統計（取り込んだ特許の集計。辞書の概念も数える） -->
+<main id="viewStats" class="view" hidden>
+  <section class="stats">
+    <div class="st-head">
+      <div><h1 id="stTitle">統計</h1><p class="lead" id="stLead"></p></div>
+      <div class="st-actions"><button class="btn small" id="stToMap" type="button">地図で見る</button></div>
+    </div>
+    <div class="st-filter" id="stFilter"></div>
+    <div class="st-kpis" id="stKpis"></div>
+    <div class="st-grid" id="stGrid"></div>
+  </section>
+  <aside class="st-drawer" id="stDrawer" aria-live="polite" hidden></aside>
+  <div id="stTip" class="tip st-tip" role="tooltip" hidden></div>
 </main>
 <!-- 辞書を改善（共通辞書＋このマップの追加語） -->
 <main id="viewOnto" class="view" hidden>

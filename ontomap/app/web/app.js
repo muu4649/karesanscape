@@ -42,7 +42,7 @@ const S = {
 
 // ---------- 画面の切り替え ----------
 function show(view) {
-  for (const v of ["viewHome", "viewImport", "viewMap", "viewOnto", "viewCommon", "viewCommonNew"]) $("#" + v).hidden = v !== view;
+  for (const v of ["viewHome", "viewImport", "viewMap", "viewStats", "viewOnto", "viewCommon", "viewCommonNew"]) $("#" + v).hidden = v !== view;
   // 左のメニュー: 今の画面に印を付け、地図を見ているときは畳む
   const h = location.hash || "#/";
   const cur = h === "#/" ? "home" : h === "#/new" ? "new" : h === "#/common-new" ? "common-new" : h.startsWith("#/common") ? "common" : "";
@@ -52,6 +52,7 @@ function show(view) {
 function route() {
   const h = location.hash || "#/";
   if (h.startsWith("#/map/")) { const [id, qs] = h.slice(6).split("?"); openMap(id, new URLSearchParams(qs || "")); }
+  else if (h.startsWith("#/stats/")) openStats(h.slice(8).split("?")[0]);
   else if (h.startsWith("#/onto/")) openOnto(h.slice(7).split("?")[0]);
   else if (h === "#/common") openCommonList();
   else if (h === "#/common-new") openWizard();
@@ -203,6 +204,7 @@ async function openMap(pid, params) {
   $("#topActions").innerHTML = "";
   $("#mtName").textContent = S.map.name;
   $("#tDict").onclick = () => { location.hash = "#/onto/" + pid; };
+  $("#tStats").onclick = () => { location.hash = "#/stats/" + pid; };
   $("#tLeft").onclick = () => setPanel("left", $("#viewMap").classList.contains("left-closed"));
   $("#tRight").onclick = () => setPanel("right", $("#viewMap").classList.contains("right-closed"));
   $("#tBridges").onclick = () => { S.rmode = S.rmode === "doc" ? "bridges" : "doc"; if (S.rmode === "bridges") setPanel("right", true); renderSide(); };
@@ -1115,6 +1117,206 @@ function renderWizard() {
       } catch (e) { $("#wErr2").textContent = e.message; }
     };
   }
+}
+
+// ---------- 統計（取り込んだ特許の集計と、共通辞書の概念の集計） ----------
+// 集計は画面側で行う（絞り込みにすぐ追従させるため）。サーバーは文書ごとの属性と概念だけを返す（/api/projects/<id>/stats）。
+const ST = {pid: null, data: null, f: {usage: "", y0: "", y1: "", app: ""}, gen: false, growRole: "solution", sets: {}};
+const ST_ROLE = [["problem", "課題"], ["solution", "解決手段"], ["use", "用途"]];
+const ST_SEQ = ["#eef4fc", "#cde2fb", "#9ec5f4", "#6da7ec", "#3987e5", "#2a78d6", "#1c5cab", "#104281"];  // 一色の濃淡（件数の多さ）
+
+async function openStats(pid) {
+  show("viewStats");
+  $("#stDrawer").hidden = true;
+  if (ST.pid !== pid || !ST.data) {
+    $("#stGrid").innerHTML = `<p class="hint">集計しています…</p>`;
+    $("#stKpis").innerHTML = ""; $("#stFilter").innerHTML = "";
+    try { ST.data = await api(`/api/projects/${pid}/stats`); } catch (e) { $("#stGrid").innerHTML = `<p class="error">${esc(e.message)}</p>`; return; }
+    ST.pid = pid; ST.f = {usage: "", y0: "", y1: "", app: ""};
+  }
+  const D = ST.data;
+  $("#crumb").textContent = D.name + " · 統計";
+  $("#topActions").innerHTML = "";
+  $("#stLead").textContent = `${D.name}。出願年・出願人・用途・分類と、共通辞書（${D.ontology || "—"}）で拾った課題・解決手段・用途の概念を数えます。棒やマスを押すと、該当する特許を右に出します。`;
+  $("#stToMap").onclick = () => { location.hash = "#/map/" + pid; };
+  renderStFilter();
+  renderStats();
+}
+
+// 画面の幅が変わったら描き直す（年の棒グラフは画面の幅で描くため）
+window.addEventListener("resize", () => { if (!$("#viewStats").hidden && ST.data) { clearTimeout(ST.rt); ST.rt = setTimeout(renderStats, 200); } });
+function stDocs() {
+  const f = ST.f, y0 = +f.y0 || -Infinity, y1 = +f.y1 || Infinity, app = norm(f.app);
+  return ST.data.docs.filter(d => (!f.usage || d.usage.includes(f.usage)) && (d.year == null ? !(f.y0 || f.y1) : d.year >= y0 && d.year <= y1)
+    && (!app || d.applicants.some(a => norm(a).includes(app))));
+}
+const stLabel = c => (ST.data.concepts[c] || {}).label || c;
+const stGeneric = c => !!(ST.data.concepts[c] || {}).generic;
+function stCount(docs, key) {  // 1 件に複数付く属性（出願人・用途・IPC・概念）を、文書の数で数える
+  const m = new Map();
+  for (const d of docs) for (const v of new Set(d[key] || [])) { if (!m.has(v)) m.set(v, []); m.get(v).push(d.id); }
+  return [...m.entries()].map(([k, ids]) => ({k, ids, n: ids.length})).sort((a, b) => b.n - a.n || String(a.k).localeCompare(String(b.k), "ja"));
+}
+
+function renderStFilter() {
+  const D = ST.data, f = ST.f;
+  const usages = stCount(D.docs, "usage");
+  const years = D.docs.map(d => d.year).filter(y => y != null);
+  $("#stFilter").innerHTML = `
+    <label>用途<select id="stUsage"><option value="">すべて</option>${usages.map(u => `<option value="${esc(u.k)}" ${u.k === f.usage ? "selected" : ""}>${esc(u.k)}（${u.n}）</option>`).join("")}</select></label>
+    <label>出願年<input id="stY0" type="number" placeholder="${years.length ? Math.min(...years) : ""}" value="${esc(f.y0)}"> 〜 <input id="stY1" type="number" placeholder="${years.length ? Math.max(...years) : ""}" value="${esc(f.y1)}"></label>
+    <label>出願人<input id="stApp" type="text" list="stAppList" placeholder="名前の一部" value="${esc(f.app)}"></label>
+    <datalist id="stAppList">${stCount(D.docs, "applicants").slice(0, 200).map(a => `<option value="${esc(a.k)}">`).join("")}</datalist>
+    <label class="chk"><input type="checkbox" id="stGen" ${ST.gen ? "checked" : ""}> 一般的な概念も数える</label>
+    <button class="btn ghost small" id="stClear" type="button">条件を消す</button>`;
+  const upd = () => { ST.f = {usage: $("#stUsage").value, y0: $("#stY0").value, y1: $("#stY1").value, app: $("#stApp").value}; ST.gen = $("#stGen").checked; renderStats(); };
+  for (const id of ["#stUsage", "#stY0", "#stY1", "#stApp", "#stGen"]) $(id).onchange = upd;
+  $("#stApp").oninput = () => { clearTimeout(ST.t); ST.t = setTimeout(upd, 250); };
+  $("#stClear").onclick = () => { ST.f = {usage: "", y0: "", y1: "", app: ""}; ST.gen = false; renderStFilter(); renderStats(); };
+}
+
+// 部品: 横棒のランキング（左が基線。値と割合を棒の右に）
+function stBars(rows, total, opt = {}) {
+  if (!rows.length) return `<p class="hint">該当なし</p>`;
+  const max = Math.max(...rows.map(r => r.n));
+  return `<ol class="st-bars">${rows.map(r => {
+    const key = stSet(r.ids, opt.title ? opt.title(r) : r.label);
+    const pct = total ? Math.round(r.n / total * 1000) / 10 : 0;
+    return `<li data-set="${key}" data-tip="${esc(`${r.label}：${r.n} 件（${pct}%）`)}" class="${r.muted ? "muted" : ""}">
+      <span class="lb" title="${esc(r.label)}">${esc(r.label)}</span>
+      <span class="bw"><span class="b" style="width:${(r.n / max * 100).toFixed(1)}%"></span></span>
+      <span class="v">${r.n}<small> ${pct}%</small></span></li>`;
+  }).join("")}</ol>`;
+}
+function stSet(ids, title) { const k = "s" + Object.keys(ST.sets).length; ST.sets[k] = {ids, title}; return k; }
+
+// 部品: 年ごとの縦棒（上端だけ角を丸め、基線は四角のまま）
+function stYears(docs) {
+  const ys = docs.map(d => d.year).filter(y => y != null);
+  if (!ys.length) return `<p class="hint">出願年の列がありません</p>`;
+  const y0 = Math.min(...ys), y1 = Math.max(...ys), by = new Map();
+  for (const d of docs) if (d.year != null) { if (!by.has(d.year)) by.set(d.year, []); by.get(d.year).push(d.id); }
+  const n = y1 - y0 + 1, W = Math.max(560, ($("#stGrid").clientWidth || 920) - 40), H = 230, L = 36, B = 26, T = 14, bw = Math.min(46, (W - L) / n * 0.68);
+  const max = Math.max(...[...by.values()].map(v => v.length)), step = niceStep(max);
+  const top = Math.ceil(max / step) * step, sx = i => L + (i + 0.5) * (W - L) / n, sy = v => H - B - (H - B - T) * v / top;
+  let g = "";
+  for (let v = 0; v <= top; v += step) g += `<line x1="${L}" x2="${W}" y1="${sy(v)}" y2="${sy(v)}" class="grid"/><text x="${L - 6}" y="${sy(v) + 4}" class="ax" text-anchor="end">${v}</text>`;
+  for (let i = 0; i < n; i++) {
+    const y = y0 + i, ids = by.get(y) || [], x = sx(i) - bw / 2, h = sy(0) - sy(ids.length), r = Math.min(4, h / 2, bw / 2);
+    if (ids.length) {
+      const key = stSet(ids, `${y} 年に出願された特許`);
+      g += `<path data-set="${key}" data-tip="${y} 年：${ids.length} 件" class="bar" d="M${x},${sy(0)} V${sy(ids.length) + r} Q${x},${sy(ids.length)} ${x + r},${sy(ids.length)} H${x + bw - r} Q${x + bw},${sy(ids.length)} ${x + bw},${sy(ids.length) + r} V${sy(0)} Z"/>`;
+    }
+    if (n <= 16 || i % Math.ceil(n / 16) === 0 || i === n - 1) g += `<text x="${sx(i)}" y="${H - 8}" class="ax" text-anchor="middle">${y}</text>`;
+  }
+  return `<svg class="st-years" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="出願年ごとの件数">${g}<line x1="${L}" x2="${W}" y1="${sy(0)}" y2="${sy(0)}" class="base"/></svg>`;
+}
+function niceStep(max) { const raw = max / 4, p = Math.pow(10, Math.floor(Math.log10(Math.max(1, raw)))); return [1, 2, 5, 10].map(m => m * p).find(s => s >= raw) || p * 10; }
+
+// 部品: 行×列の濃淡表（2 つの属性を両方持つ文書の数）
+function stHeat(docs, rowKey, colKey, rows, cols, rowLab, colLab, titleOf) {
+  if (!rows.length || !cols.length) return `<p class="hint">該当なし</p>`;
+  const cell = new Map();
+  for (const d of docs) for (const r of new Set(d[rowKey])) if (rows.includes(r)) for (const c of new Set(d[colKey])) if (cols.includes(c)) { const k = r + "\u0001" + c; if (!cell.has(k)) cell.set(k, []); cell.get(k).push(d.id); }
+  const max = Math.max(1, ...[...cell.values()].map(v => v.length));
+  const head = `<tr><th></th>${cols.map(c => `<th class="ch" title="${esc(colLab(c))}"><span>${esc(colLab(c))}</span></th>`).join("")}</tr>`;
+  const body = rows.map(r => `<tr><th class="rh" title="${esc(rowLab(r))}">${esc(rowLab(r))}</th>${cols.map(c => {
+    const ids = cell.get(r + "\u0001" + c) || [];
+    if (!ids.length) return `<td class="z"></td>`;
+    const lv = Math.min(ST_SEQ.length - 1, Math.ceil(ids.length / max * (ST_SEQ.length - 1)));
+    const key = stSet(ids, titleOf(r, c));
+    return `<td data-set="${key}" data-tip="${esc(`${rowLab(r)} × ${colLab(c)}：${ids.length} 件`)}" style="background:${ST_SEQ[lv]};color:${lv >= 4 ? "#fff" : "var(--ink)"}">${ids.length}</td>`;
+  }).join("")}</tr>`).join("");
+  const lg = `<div class="st-scale"><span>少</span>${ST_SEQ.slice(1).map(c => `<i style="background:${c}"></i>`).join("")}<span>多（最大 ${max} 件）</span></div>`;
+  return `<div class="st-heat-wrap"><table class="st-heat">${head}${body}</table></div>${lg}`;
+}
+
+// 部品: 伸びている・減っている概念（直近 5 年の割合 − それより前の割合。ポイント差）
+function stGrowth(docs, role) {
+  const ys = docs.map(d => d.year).filter(y => y != null);
+  if (ys.length < 20) return `<p class="hint">出願年のある文書が少ないため、比べられません（20 件以上で表示）。</p>`;
+  const y1 = Math.max(...ys), cut = y1 - 4;
+  const rec = docs.filter(d => d.year != null && d.year >= cut), old = docs.filter(d => d.year != null && d.year < cut);
+  if (rec.length < 10 || old.length < 10) return `<p class="hint">直近 5 年（${cut}〜${y1}）とそれより前の、どちらかの件数が 10 件未満のため比べられません。</p>`;
+  const rows = stCount(docs.filter(d => d.year != null), role).filter(r => r.n >= 5 && (ST.gen || !stGeneric(r.k))).map(r => {
+    const s = new Set(r.ids), a = rec.filter(d => s.has(d.id)).length / rec.length, b = old.filter(d => s.has(d.id)).length / old.length;
+    return {k: r.k, ids: r.ids, d: (a - b) * 100, a: a * 100, b: b * 100};
+  });
+  const up = rows.filter(r => r.d > 0).sort((p, q) => q.d - p.d).slice(0, 8), dn = rows.filter(r => r.d < 0).sort((p, q) => p.d - q.d).slice(0, 5);
+  const list = [...up, ...dn.reverse()];
+  if (!list.length) return `<p class="hint">5 件以上の概念がありません。</p>`;
+  const m = Math.max(...list.map(r => Math.abs(r.d)));
+  return `<p class="st-sub">直近 5 年（${cut}〜${y1}、${rec.length} 件）とそれより前（${old.length} 件）で、その概念を含む文書の割合を比べた差です。</p>
+    <ol class="st-div">${list.map(r => {
+      const key = stSet(r.ids, `「${stLabel(r.k)}」を含む特許`);
+      const w = (Math.abs(r.d) / m * 50).toFixed(1);
+      return `<li data-set="${key}" data-tip="${esc(`${stLabel(r.k)}：直近 ${r.a.toFixed(1)}% ／ それより前 ${r.b.toFixed(1)}%`)}">
+        <span class="lb" title="${esc(stLabel(r.k))}">${esc(stLabel(r.k))}</span>
+        <span class="dw"><span class="mid"></span><span class="d ${r.d > 0 ? "up" : "dn"}" style="${r.d > 0 ? `left:50%;width:${w}%` : `right:50%;width:${w}%`}"></span></span>
+        <span class="v ${r.d > 0 ? "up" : "dn"}">${r.d > 0 ? "+" : "−"}${Math.abs(r.d).toFixed(1)} pt</span></li>`;
+    }).join("")}</ol>
+    <div class="st-legend"><span><i class="up"></i>直近で増えた</span><span><i class="dn"></i>直近で減った</span></div>`;
+}
+
+function renderStats() {
+  ST.sets = {};
+  const docs = stDocs(), n = docs.length, D = ST.data;
+  const okC = c => ST.gen || !stGeneric(c);
+  const apps = stCount(docs, "applicants");
+  const ys = docs.map(d => d.year).filter(y => y != null);
+  const withC = docs.filter(d => ST_ROLE.some(([k]) => d[k].length)).length;
+  $("#stKpis").innerHTML = [
+    ["特許", `${n}`, `件${n !== D.n ? `（全 ${D.n} 件中）` : ""}`],
+    ["出願人", `${apps.length}`, "者"],
+    ["出願年", ys.length ? `${Math.min(...ys)}〜${Math.max(...ys)}` : "—", ""],
+    ["辞書で概念を拾えた特許", n ? `${Math.round(withC / n * 100)}` : "—", `%（${withC} 件）`],
+  ].map(([k, v, u]) => `<div class="st-kpi"><div class="k">${k}</div><div class="v">${v}<small>${u}</small></div></div>`).join("");
+  if (!n) { $("#stGrid").innerHTML = `<p class="hint">条件に合う特許がありません。</p>`; return; }
+  const concept = role => stCount(docs, role).filter(r => okC(r.k)).slice(0, 12).map(r => ({...r, label: stLabel(r.k), muted: stGeneric(r.k)}));
+  const topApps = apps.slice(0, 10).map(r => r.k);
+  const topM = stCount(docs, "solution").filter(r => okC(r.k)).slice(0, 10).map(r => r.k);
+  const topP = stCount(docs, "problem").filter(r => okC(r.k)).slice(0, 10).map(r => r.k);
+  const card = (title, sub, body, cls = "") => `<section class="st-card ${cls}"><h2>${title}</h2>${sub ? `<p class="st-sub">${sub}</p>` : ""}${body}</section>`;
+  $("#stGrid").innerHTML = [
+    card("出願件数の推移", "出願年ごとの件数です。直近の 1〜2 年は、まだ公開されていない出願があるため少なく見えます。", stYears(docs), "wide"),
+    card("出願人ランキング", `上位 15 者（全 ${apps.length} 者）。共同出願は、それぞれの出願人に 1 件ずつ数えます。`, stBars(apps.slice(0, 15).map(r => ({...r, label: r.k})), n, {title: r => `${r.k} の特許`})),
+    card("用途の内訳", "IPC から判定した用途です。1 件に複数の用途が付くため、合計は件数を超えます。", stBars(stCount(docs, "usage").map(r => ({...r, label: r.k})), n, {title: r => `用途「${r.k}」の特許`})),
+    card("課題・解決手段・用途のランキング（共通辞書）", `技術関係に出た概念を、それを含む特許の数で並べました（各 12 位まで）。${ST.gen ? "灰色はどの特許にも出る一般的な概念（全体の 20% 超）です。" : "どの特許にも出る一般的な概念（全体の 20% 超）は除いています。"}`,
+      `<div class="st-three">${ST_ROLE.map(([k, lab]) => `<div><h3>${lab}</h3>${stBars(concept(k), n, {title: r => `${lab}「${r.label}」を含む特許`})}</div>`).join("")}</div>`, "wide"),
+    card("伸びている概念", "", `<div class="tabs st-tabs" role="tablist">${ST_ROLE.map(([k, lab]) => `<button type="button" role="tab" data-role="${k}" aria-selected="${ST.growRole === k}">${lab}</button>`).join("")}</div>${stGrowth(docs, ST.growRole)}`),
+    card("IPC（メイングループ）ランキング", "上位 15。1 件に複数の分類が付くため、合計は件数を超えます。", stBars(stCount(docs, "ipc").slice(0, 15).map(r => ({...r, label: r.k})), n, {title: r => `IPC ${r.k} の特許`})),
+    card("出願人 × 解決手段", "上位 10 者と、上位 10 の解決手段。マスの数字は、その出願人の特許のうち、その手段を含むものの件数です。", stHeat(docs, "applicants", "solution", topApps, topM, a => a, stLabel, (a, c) => `${a} ×「${stLabel(c)}」`), "wide"),
+    card("課題 × 解決手段", "上位 10 の課題と上位 10 の解決手段。マスの数字は、両方を含む特許の件数です。", stHeat(docs, "problem", "solution", topP, topM, stLabel, stLabel, (p, c) => `「${stLabel(p)}」×「${stLabel(c)}」`), "wide"),
+  ].join("");
+  $("#stGrid").querySelectorAll(".st-tabs button").forEach(b => b.onclick = () => { ST.growRole = b.dataset.role; renderStats(); });
+  bindStInteract();
+}
+
+function bindStInteract() {
+  const tip = $("#stTip");
+  $("#viewStats").querySelectorAll("[data-tip]").forEach(el => {
+    el.onmousemove = e => { tip.textContent = el.dataset.tip; tip.hidden = false; tip.style.left = Math.min(e.clientX + 14, window.innerWidth - 340) + "px"; tip.style.top = (e.clientY + 14) + "px"; };
+    el.onmouseleave = () => { tip.hidden = true; };
+  });
+  $("#viewStats").querySelectorAll("[data-set]").forEach(el => {
+    el.tabIndex = 0;
+    const open = () => stDrawer(ST.sets[el.dataset.set]);
+    el.onclick = open;
+    el.onkeydown = e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } };
+  });
+}
+
+function stDrawer(set) {
+  if (!set) return;
+  const byId = new Map(ST.data.docs.map(d => [d.id, d]));
+  const docs = set.ids.map(i => byId.get(i)).filter(Boolean).sort((a, b) => (b.year || 0) - (a.year || 0));
+  const dr = $("#stDrawer");
+  dr.hidden = false;
+  dr.innerHTML = `<div class="st-dh"><b>${esc(set.title)}</b><button class="tbtn" id="stClose" type="button" aria-label="閉じる">×</button></div>
+    <p class="hint">${docs.length} 件（出願年の新しい順）。名称を押すと、地図でその特許を選びます。</p>
+    <ol class="st-docs">${docs.map(d => `<li><a href="#/map/${esc(ST.pid)}?sel=${esc(d.id)}">${esc(d.title)}</a>
+      <div class="hint">${esc(d.applicants.slice(0, 2).join("、"))}${d.applicants.length > 2 ? " ほか" : ""} · ${d.year ?? "—"} · ${esc(d.pub)}</div></li>`).join("")}</ol>`;
+  $("#stClose").onclick = () => { dr.hidden = true; };
 }
 
 // すべての定義のあとで、今の URL の画面を開く

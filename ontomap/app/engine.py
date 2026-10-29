@@ -488,11 +488,35 @@ def run_project(pid: str) -> None:
             _status(pid, "error", 1.0, "計算に失敗しました", f"{type(e).__name__}: {e}")
 
 
+# 地図の「用途」（色分け・異用途の類似技術）に使う、IPC から用途への対応。
+# 実験の評価（patents/usage_eval.IPC_USAGE）の MOF 向けの用途に、食品・飲料・口腔ケアの用途を足したもの（2026-10-25、苦味マスキングのマップで追加）。
+# 医薬は化粧品（A61K8）を除く。1 件に複数の用途が付くことがある（例: 機能性飲料の A23L2 と A61K31）。
+APP_IPC_USAGE: list[tuple[str, str]] = [
+    (r"^B01D53", "ガス分離・ガス精製"),
+    (r"^B01D(69|71)", "分離膜"),
+    (r"^F17C", "ガス貯蔵"),
+    (r"^C01B3/", "水素の製造・貯蔵"),
+    (r"^B01J(2[1-9]|3[0-8])", "触媒"),
+    (r"^H01M", "電池・燃料電池"),
+    (r"^H01G", "キャパシタ"),
+    (r"^G01N", "測定・センサ"),
+    (r"^A61K(?!8/)|^A61P", "医薬"),
+    (r"^A61K8/|^A61Q", "口腔ケア・化粧品"),
+    (r"^A61L", "消臭・殺菌"),
+    (r"^C02F", "水処理"),
+    (r"^H01L|^H10", "電子デバイス"),
+    (r"^C12[CGH]", "酒類・ビール"),
+    (r"^A23F", "茶・コーヒー"),
+    (r"^A23L2/|^A23C", "清涼飲料・乳飲料"),
+    (r"^A23K", "飼料・ペットフード"),
+    (r"^A23[BDGJPV]|^A23L(?!2/)|^A21D", "食品（飲料以外）"),
+]
+
+
 def _run(pid: str) -> None:
     from ..landscape import cluster_labels
     from ..patents.data import DEFAULT_SECTIONS, load_patent_csv
     from ..patents.extract import build_section_layer
-    from ..patents.usage_eval import IPC_USAGE
     from ..reduce import align_to
     from ..similarity.graph_sim import RelationConfig, relation_similarity
     from ..similarity.hybrid import combine
@@ -571,7 +595,7 @@ def _run(pid: str) -> None:
     for r in recs:
         row = src.loc[r.doc_id]
         codes = [c.strip() for c in re.split(r"[;；,、]", row.get("ipc", "")) if c.strip()]
-        u_ipc = sorted({lab for pat, lab in IPC_USAGE for c in codes if re.search(pat, unicodedata.normalize("NFKC", c).replace(" ", ""))})
+        u_ipc = sorted({lab for pat, lab in APP_IPC_USAGE for c in codes if re.search(pat, unicodedata.normalize("NFKC", c).replace(" ", ""))})
         apps = [_short_applicant(a) for a in re.split(r"[;；\n]|、(?=\S)", row.get("applicants", "")) if a.strip()]
         docs.append({
             "id": r.doc_id,
@@ -1039,6 +1063,30 @@ def _compare_roles(ctx: dict, a: str, b: str, ra: dict, rb: dict, rows: list[dic
     if weak:
         sents.append(f"用途のうち {j(sorted(set(weak)))} は用途を述べた文に無く、周辺の段落から抽出したものです（要確認）。")
     return {"summary": "".join(sents), "shared": shared, "only_a": only_a, "only_b": only_b}
+
+
+_IPC_MAIN = re.compile(r"^([A-H]\d{2}[A-Z])\s*(\d+)")
+
+
+def stats(pid: str) -> dict:
+    """統計分析の画面に渡す、文書ごとの属性と辞書の概念（集計は画面側で行い、絞り込みに追従させる）。
+    概念は文書の技術関係（三つ組）に出たものを、役割（課題・解決手段・用途）ごとに持つ。"""
+    ctx = _ctx(pid)
+    mp, onto, gen = ctx["map"], ctx["onto"], ctx["generic"]
+    src = pd.read_csv(pdir(pid) / "source.csv", dtype=str, keep_default_na=False).set_index("doc_id")
+    docs, used = [], set()
+    for i, d in enumerate(mp["docs"]):
+        roles = _doc_roles(ctx, i)
+        rec = {k: sorted(roles[r]) for r, k in ROLE_KEYS}
+        for v in rec.values():
+            used.update(v)
+        codes = [unicodedata.normalize("NFKC", c).replace(" ", "") for c in re.split(r"[;；,、]", src.at[d["id"], "ipc"] if d["id"] in src.index and "ipc" in src.columns else "") if c.strip()]
+        mains = sorted({m.group(1) + m.group(2) for c in codes if (m := _IPC_MAIN.match(c))})
+        docs.append({"id": d["id"], "title": d["title"], "pub": d.get("pub", ""), "year": d.get("year"), "applicants": d.get("applicants", []),
+                     "usage": d.get("usage_ipc", []), "ipc": mains, **rec})
+    concepts = {c: {"label": onto.label(c), "top": onto.top_type(c), "generic": c in gen} for c in sorted(used)}
+    return {"id": pid, "name": mp.get("name", ""), "n": len(docs), "docs": docs, "concepts": concepts,
+            "ontology": mp.get("ontology_layers", {}).get("base_label", "")}
 
 
 def bridges_detail(pid: str, limit: int = 60) -> list[dict]:

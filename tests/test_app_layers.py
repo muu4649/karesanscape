@@ -261,3 +261,11 @@ def test_similarity_summary_rules():
     assert "根拠が不足" in r["summary"] and onto.label(m2) not in r["shared"]["solution"]  # 一般的な概念だけの一致は説明しない
     r = engine._compare_roles(ctx, "A", "B", roles([], [], []), roles([], [], []), [])
     assert r["summary"].startswith("技術関係の一致はありません")
+
+
+def test_stats_ipc_main_group():
+    """統計の IPC メイングループの切り出し（例: A23L2/56 → A23L2、空白入りも可）。"""
+    from ontomap.app.engine import _IPC_MAIN
+
+    got = [(m.group(1) + m.group(2)) if (m := _IPC_MAIN.match(c)) else None for c in ["A23L2/56", "A61K31/167", "C12C 5/02", "A23L", "xx"]]
+    assert got == ["A23L2", "A61K31", "C12C5", None, None]
