@@ -317,3 +317,64 @@ details.sec p{font-size:12.5px;margin:6px 0;white-space:pre-wrap;color:var(--ink
 .st-docs a:hover{text-decoration:underline}
 .st-tip{position:fixed}
 @media (max-width:1000px){.st-grid{grid-template-columns:1fr}.st-three{grid-template-columns:1fr}.st-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* 統計のタブ（全体・出願人比較・空白探索・外れ値） */
+.st-view-tabs{margin:0 0 10px}
+.st-view-tabs button{font-size:13.5px;padding:7px 14px}
+.st-inline{font-size:12.5px;color:var(--ink2);margin-left:8px}
+.st-inline select{border:1px solid var(--line);border-radius:6px;padding:2px 6px;background:var(--surface);font-size:12.5px}
+.st-notes{margin:0;padding-left:18px;font-size:12.5px;color:var(--ink2)}
+.st-notes li{margin:2px 0}
+/* 出願人比較 */
+.st-cmp-sel{display:flex;flex-wrap:wrap;gap:10px 20px;font-size:13px}
+.st-cmp-sel label{display:inline-flex;align-items:center;gap:7px}
+.st-cmp-sel i,.st-legend i{display:inline-block;width:12px;height:12px;border-radius:3px}
+.st-cmp-sel select{border:1px solid var(--line);border-radius:6px;padding:4px 8px;background:var(--surface);max-width:320px}
+.st-cmp-ov{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.st-cmp-card{border:1px solid var(--line);border-top:3px solid var(--c1);border-radius:var(--r);padding:10px 14px;font-size:13px;min-width:0}
+.st-cmp-card b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.st-cmp-card .v{font-size:24px;font-weight:700;line-height:1.3;cursor:pointer;display:inline-block;border-radius:5px;padding:0 4px;margin-left:-4px;font-variant-numeric:tabular-nums}
+.st-cmp-card .v:hover,.st-cmp-card .v:focus-visible{background:#F3F6F9}
+.st-cmp-card .v small{font-size:12.5px;font-weight:400;color:var(--ink2)}
+.st-ov li{cursor:default}
+.st-grp{list-style:none;margin:0;padding:0}
+.st-grp li{display:grid;grid-template-columns:minmax(80px,38%) 1fr;gap:8px;align-items:center;padding:4px 4px;border-bottom:1px solid var(--line2)}
+.st-grp .lb{font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.st-grp .gw{display:flex;flex-direction:column;gap:2px}
+.st-grp .g{display:grid;grid-template-columns:1fr 38px;align-items:center;gap:6px;cursor:pointer;border-radius:4px}
+.st-grp .g:hover,.st-grp .g:focus-visible{background:#F3F6F9}
+.st-grp .g .b{display:block;height:9px;border-radius:0 4px 4px 0;min-width:0}
+.st-grp .pv{font-size:11px;color:var(--ink2);font-variant-numeric:tabular-nums;text-align:right}
+.st-su h3{margin-top:12px}
+.st-su-row{display:grid;grid-template-columns:minmax(120px,22%) 1fr;gap:8px;align-items:start;margin:4px 0;font-size:12.5px}
+.st-su-row .k{color:var(--ink2);padding-top:2px;overflow-wrap:anywhere}
+.st-pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:1px 9px;margin:0 6px 5px 0;font-size:12.5px;cursor:pointer;background:var(--surface)}
+.st-pill:hover,.st-pill:focus-visible{background:#F3F6F9}
+.st-pill small{color:var(--muted);margin-left:5px;font-size:11px}
+.st-lines .ln{fill:none;stroke-width:2;stroke-linejoin:round}
+.st-lines .pt{cursor:pointer}
+.st-lines .pt:hover{r:5.5}
+/* 空白探索 */
+.st-heat th.rh small{color:var(--muted);font-size:11px}
+.st-heat td.z[data-tip]{cursor:default}
+.st-heat td.gap{background:var(--surface);outline:2px solid var(--c2);outline-offset:-2px;color:var(--c2);font-weight:700}
+.st-heat td.thin{outline:2px dashed var(--c2);outline-offset:-2px}
+.st-scale i.gapk{margin-left:16px;outline:2px solid var(--c2);outline-offset:-2px;background:var(--surface)}
+.st-scale i.think{margin-left:10px;outline:2px dashed var(--c2);outline-offset:-2px;background:var(--surface)}
+.st-gaps,.st-out{list-style:none;margin:0;padding:0}
+.st-gaps li{padding:6px 8px;border-radius:6px;cursor:pointer;border-bottom:1px solid var(--line2)}
+.st-gaps li:hover,.st-gaps li:focus-visible{background:#F3F6F9}
+.st-gaps .t,.st-out .t{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px}
+.st-gaps .v,.st-pairs .v{font-size:12px;color:var(--ink2);white-space:nowrap;font-variant-numeric:tabular-nums}
+/* 外れ値 */
+.st-out li{padding:7px 8px;border-bottom:1px solid var(--line2)}
+.st-out .t{justify-content:flex-start}
+.st-out .sb{flex:0 0 90px;height:10px;background:var(--line2);border-radius:4px;overflow:hidden}
+.st-out .sb .b{display:block;height:100%;background:var(--c1);border-radius:0 4px 4px 0}
+.st-out a{color:var(--brand);text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.st-out a:hover{text-decoration:underline}
+.st-pairs{list-style:none;margin:3px 0 0;padding:0}
+.st-pairs li{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;padding:2px 6px;border-radius:4px;cursor:pointer}
+.st-pairs li.hint{cursor:default}
+.st-pairs li:not(.hint):hover,.st-pairs li:focus-visible{background:#F3F6F9}
+.st-single .st-pill small{color:var(--ink);font-size:12px}

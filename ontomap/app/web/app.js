@@ -52,7 +52,7 @@ function show(view) {
 function route() {
   const h = location.hash || "#/";
   if (h.startsWith("#/map/")) { const [id, qs] = h.slice(6).split("?"); openMap(id, new URLSearchParams(qs || "")); }
-  else if (h.startsWith("#/stats/")) openStats(h.slice(8).split("?")[0]);
+  else if (h.startsWith("#/stats/")) { const [id, qs] = h.slice(8).split("?"); openStats(id, new URLSearchParams(qs || "")); }
   else if (h.startsWith("#/onto/")) openOnto(h.slice(7).split("?")[0]);
   else if (h === "#/common") openCommonList();
   else if (h === "#/common-new") openWizard();
@@ -1121,24 +1121,37 @@ function renderWizard() {
 
 // ---------- 統計（取り込んだ特許の集計と、共通辞書の概念の集計） ----------
 // 集計は画面側で行う（絞り込みにすぐ追従させるため）。サーバーは文書ごとの属性と概念だけを返す（/api/projects/<id>/stats）。
-const ST = {pid: null, data: null, f: {usage: "", y0: "", y1: "", app: ""}, gen: false, growRole: "solution", sets: {}};
+const ST = {pid: null, data: null, tab: "all", f: {usage: "", y0: "", y1: "", app: ""}, gen: false, growRole: "solution", sets: {},
+  cmp: {apps: []}, gap: {pair: "pm"}, out: {min: 5}};
 const ST_ROLE = [["problem", "課題"], ["solution", "解決手段"], ["use", "用途"]];
 const ST_SEQ = ["#eef4fc", "#cde2fb", "#9ec5f4", "#6da7ec", "#3987e5", "#2a78d6", "#1c5cab", "#104281"];  // 一色の濃淡（件数の多さ）
+const ST_SERIES = ["var(--c1)", "var(--c2)", "var(--c3)"];  // 出願人比較の系列色（最大 3 者）
+const ST_TABS = [["all", "全体"], ["compare", "出願人比較"], ["gaps", "空白探索"], ["outliers", "外れ値の特許"]];
+const ST_LEAD = {
+  all: ont => `出願年・出願人・用途・分類と、共通辞書（${ont}）で拾った課題・解決手段・用途の概念を数えます。棒やマスを押すと、該当する特許を右に出します。`,
+  compare: () => "選んだ 2〜3 者の特許を、課題・解決手段・用途の概念の割合で並べます。重なる領域と、その出願人だけの領域が分かります。",
+  gaps: () => "課題と解決手段（または解決手段と用途）の組み合わせで、出願が無い組・薄い組を探します。周りが混んでいるのに空いている組ほど上に出ます。",
+  outliers: () => "ふだん一緒に出ない概念どうしが結び付いた特許を、珍しさの順に並べます。新しい組み合わせの手がかりになる一方、辞書の拾い間違いも混ざります。",
+};
 
-async function openStats(pid) {
+async function openStats(pid, params = new URLSearchParams()) {
   show("viewStats");
   $("#stDrawer").hidden = true;
   if (ST.pid !== pid || !ST.data) {
     $("#stGrid").innerHTML = `<p class="hint">集計しています…</p>`;
-    $("#stKpis").innerHTML = ""; $("#stFilter").innerHTML = "";
+    $("#stKpis").innerHTML = ""; $("#stFilter").innerHTML = ""; $("#stTabs").innerHTML = "";
     try { ST.data = await api(`/api/projects/${pid}/stats`); } catch (e) { $("#stGrid").innerHTML = `<p class="error">${esc(e.message)}</p>`; return; }
-    ST.pid = pid; ST.f = {usage: "", y0: "", y1: "", app: ""};
+    ST.pid = pid; ST.f = {usage: "", y0: "", y1: "", app: ""}; ST.cmp = {apps: []};
   }
+  const t = params.get("tab");
+  ST.tab = ST_TABS.some(([k]) => k === t) ? t : "all";
   const D = ST.data;
   $("#crumb").textContent = D.name + " · 統計";
   $("#topActions").innerHTML = "";
-  $("#stLead").textContent = `${D.name}。出願年・出願人・用途・分類と、共通辞書（${D.ontology || "—"}）で拾った課題・解決手段・用途の概念を数えます。棒やマスを押すと、該当する特許を右に出します。`;
+  $("#stLead").textContent = `${D.name}。${ST_LEAD[ST.tab](D.ontology || "—")}`;
   $("#stToMap").onclick = () => { location.hash = "#/map/" + pid; };
+  $("#stTabs").innerHTML = ST_TABS.map(([k, lab]) => `<button type="button" role="tab" data-tab="${k}" aria-selected="${ST.tab === k}">${lab}</button>`).join("");
+  $("#stTabs").querySelectorAll("button").forEach(b => b.onclick = () => { location.hash = `#/stats/${pid}?tab=${b.dataset.tab}`; });
   renderStFilter();
   renderStats();
 }
@@ -1272,24 +1285,205 @@ function renderStats() {
     ["辞書で概念を拾えた特許", n ? `${Math.round(withC / n * 100)}` : "—", `%（${withC} 件）`],
   ].map(([k, v, u]) => `<div class="st-kpi"><div class="k">${k}</div><div class="v">${v}<small>${u}</small></div></div>`).join("");
   if (!n) { $("#stGrid").innerHTML = `<p class="hint">条件に合う特許がありません。</p>`; return; }
-  const concept = role => stCount(docs, role).filter(r => okC(r.k)).slice(0, 12).map(r => ({...r, label: stLabel(r.k), muted: stGeneric(r.k)}));
-  const topApps = apps.slice(0, 10).map(r => r.k);
-  const topM = stCount(docs, "solution").filter(r => okC(r.k)).slice(0, 10).map(r => r.k);
-  const topP = stCount(docs, "problem").filter(r => okC(r.k)).slice(0, 10).map(r => r.k);
-  const card = (title, sub, body, cls = "") => `<section class="st-card ${cls}"><h2>${title}</h2>${sub ? `<p class="st-sub">${sub}</p>` : ""}${body}</section>`;
-  $("#stGrid").innerHTML = [
-    card("出願件数の推移", "出願年ごとの件数です。直近の 1〜2 年は、まだ公開されていない出願があるため少なく見えます。", stYears(docs), "wide"),
-    card("出願人ランキング", `上位 15 者（全 ${apps.length} 者）。共同出願は、それぞれの出願人に 1 件ずつ数えます。`, stBars(apps.slice(0, 15).map(r => ({...r, label: r.k})), n, {title: r => `${r.k} の特許`})),
-    card("用途の内訳", "IPC から判定した用途です。1 件に複数の用途が付くため、合計は件数を超えます。", stBars(stCount(docs, "usage").map(r => ({...r, label: r.k})), n, {title: r => `用途「${r.k}」の特許`})),
-    card("課題・解決手段・用途のランキング（共通辞書）", `技術関係に出た概念を、それを含む特許の数で並べました（各 12 位まで）。${ST.gen ? "灰色はどの特許にも出る一般的な概念（全体の 20% 超）です。" : "どの特許にも出る一般的な概念（全体の 20% 超）は除いています。"}`,
-      `<div class="st-three">${ST_ROLE.map(([k, lab]) => `<div><h3>${lab}</h3>${stBars(concept(k), n, {title: r => `${lab}「${r.label}」を含む特許`})}</div>`).join("")}</div>`, "wide"),
-    card("伸びている概念", "", `<div class="tabs st-tabs" role="tablist">${ST_ROLE.map(([k, lab]) => `<button type="button" role="tab" data-role="${k}" aria-selected="${ST.growRole === k}">${lab}</button>`).join("")}</div>${stGrowth(docs, ST.growRole)}`),
-    card("IPC（メイングループ）ランキング", "上位 15。1 件に複数の分類が付くため、合計は件数を超えます。", stBars(stCount(docs, "ipc").slice(0, 15).map(r => ({...r, label: r.k})), n, {title: r => `IPC ${r.k} の特許`})),
-    card("出願人 × 解決手段", "上位 10 者と、上位 10 の解決手段。マスの数字は、その出願人の特許のうち、その手段を含むものの件数です。", stHeat(docs, "applicants", "solution", topApps, topM, a => a, stLabel, (a, c) => `${a} ×「${stLabel(c)}」`), "wide"),
-    card("課題 × 解決手段", "上位 10 の課題と上位 10 の解決手段。マスの数字は、両方を含む特許の件数です。", stHeat(docs, "problem", "solution", topP, topM, stLabel, stLabel, (p, c) => `「${stLabel(p)}」×「${stLabel(c)}」`), "wide"),
-  ].join("");
-  $("#stGrid").querySelectorAll(".st-tabs button").forEach(b => b.onclick = () => { ST.growRole = b.dataset.role; renderStats(); });
+  const grid = $("#stGrid");
+  grid.innerHTML = ST.tab === "compare" ? renderStCompare(docs) : ST.tab === "gaps" ? renderStGaps(docs) : ST.tab === "outliers" ? renderStOutliers(docs) : renderStAll(docs);
+  // 各タブの中の切り替え（伸びている概念の役割・比べる出願人・空白の組み合わせ・外れ値の下限）
+  grid.querySelectorAll(".st-tabs button[data-role]").forEach(b => b.onclick = () => { ST.growRole = b.dataset.role; renderStats(); });
+  grid.querySelectorAll(".st-tabs button[data-gap]").forEach(b => b.onclick = () => { ST.gap.pair = b.dataset.gap; renderStats(); });
+  grid.querySelectorAll("select[data-cmp]").forEach(s => s.onchange = () => { const a = [...ST.cmp.apps]; a[+s.dataset.cmp] = s.value; ST.cmp.apps = a; renderStats(); });
+  const om = grid.querySelector("#stOutMin");
+  if (om) om.onchange = () => { ST.out.min = +om.value; renderStats(); };
   bindStInteract();
+}
+const stCard = (title, sub, body, cls = "") => `<section class="st-card ${cls}"><h2>${title}</h2>${sub ? `<p class="st-sub">${sub}</p>` : ""}${body}</section>`;
+const stOk = c => ST.gen || !stGeneric(c);
+const stDocLine = d => `${esc(d.applicants.slice(0, 2).join("、"))}${d.applicants.length > 2 ? " ほか" : ""} · ${d.year ?? "—"} · ${esc(d.pub)}`;
+
+// タブ「全体」: ランキングと推移
+function renderStAll(docs) {
+  const n = docs.length, apps = stCount(docs, "applicants");
+  const concept = role => stCount(docs, role).filter(r => stOk(r.k)).slice(0, 12).map(r => ({...r, label: stLabel(r.k), muted: stGeneric(r.k)}));
+  const topApps = apps.slice(0, 10).map(r => r.k);
+  const topM = stCount(docs, "solution").filter(r => stOk(r.k)).slice(0, 10).map(r => r.k);
+  const topP = stCount(docs, "problem").filter(r => stOk(r.k)).slice(0, 10).map(r => r.k);
+  return [
+    stCard("出願件数の推移", "出願年ごとの件数です。直近の 1〜2 年は、まだ公開されていない出願があるため少なく見えます。", stYears(docs), "wide"),
+    stCard("出願人ランキング", `上位 15 者（全 ${apps.length} 者）。共同出願は、それぞれの出願人に 1 件ずつ数えます。`, stBars(apps.slice(0, 15).map(r => ({...r, label: r.k})), n, {title: r => `${r.k} の特許`})),
+    stCard("用途の内訳", "IPC から判定した用途です。1 件に複数の用途が付くため、合計は件数を超えます。", stBars(stCount(docs, "usage").map(r => ({...r, label: r.k})), n, {title: r => `用途「${r.k}」の特許`})),
+    stCard("課題・解決手段・用途のランキング（共通辞書）", `技術関係に出た概念を、それを含む特許の数で並べました（各 12 位まで）。${ST.gen ? "灰色はどの特許にも出る一般的な概念（全体の 20% 超）です。" : "どの特許にも出る一般的な概念（全体の 20% 超）は除いています。"}`,
+      `<div class="st-three">${ST_ROLE.map(([k, lab]) => `<div><h3>${lab}</h3>${stBars(concept(k), n, {title: r => `${lab}「${r.label}」を含む特許`})}</div>`).join("")}</div>`, "wide"),
+    stCard("伸びている概念", "", `<div class="tabs st-tabs" role="tablist">${ST_ROLE.map(([k, lab]) => `<button type="button" role="tab" data-role="${k}" aria-selected="${ST.growRole === k}">${lab}</button>`).join("")}</div>${stGrowth(docs, ST.growRole)}`),
+    stCard("IPC（メイングループ）ランキング", "上位 15。1 件に複数の分類が付くため、合計は件数を超えます。", stBars(stCount(docs, "ipc").slice(0, 15).map(r => ({...r, label: r.k})), n, {title: r => `IPC ${r.k} の特許`})),
+    stCard("出願人 × 解決手段", "上位 10 者と、上位 10 の解決手段。マスの数字は、その出願人の特許のうち、その手段を含むものの件数です。", stHeat(docs, "applicants", "solution", topApps, topM, a => a, stLabel, (a, c) => `${a} ×「${stLabel(c)}」`), "wide"),
+    stCard("課題 × 解決手段", "上位 10 の課題と上位 10 の解決手段。マスの数字は、両方を含む特許の件数です。", stHeat(docs, "problem", "solution", topP, topM, stLabel, stLabel, (p, c) => `「${stLabel(p)}」×「${stLabel(c)}」`), "wide"),
+  ].join("");
+}
+
+// ---------- タブ「出願人比較」: 2〜3 者の概念の割合を並べる ----------
+function renderStCompare(docs) {
+  const apps = stCount(docs, "applicants");
+  if (apps.length < 2) return stCard("出願人比較", "", `<p class="hint">条件に合う特許の出願人が 2 者未満のため、比べられません。</p>`, "wide");
+  const names = new Set(apps.map(a => a.k));
+  let sel = [...new Set(ST.cmp.apps.filter(a => a && names.has(a)))];
+  for (const a of apps) { if (sel.length >= 2) break; if (!sel.includes(a.k)) sel.push(a.k); }  // 選ばれていなければ上位 2 者
+  ST.cmp.apps = sel;
+  const sets = sel.map(a => docs.filter(d => d.applicants.includes(a)));
+  const pick = `<div class="st-cmp-sel">${[0, 1, 2].map(i => `<label><i style="background:${ST_SERIES[i]}"></i><select data-cmp="${i}">${i === 2 ? `<option value="" ${sel[2] ? "" : "selected"}>（3 者目なし）</option>` : ""}${apps.map(a => `<option value="${esc(a.k)}" ${sel[i] === a.k ? "selected" : ""}>${esc(a.k)}（${a.n}）</option>`).join("")}</select></label>`).join("")}</div>`;
+  // 概要
+  const ov = `<div class="st-cmp-ov" style="grid-template-columns:repeat(${sel.length},minmax(0,1fr))">${sel.map((a, i) => {
+    const S = sets[i], ys = S.map(d => d.year).filter(y => y != null), us = stCount(S, "usage").slice(0, 2), ms = stCount(S, "solution").filter(r => stOk(r.k)).slice(0, 3);
+    const key = stSet(S.map(d => d.id), `${a} の特許`);
+    return `<div class="st-cmp-card" style="border-top-color:${ST_SERIES[i]}"><b>${esc(a)}</b><div class="v" data-set="${key}" data-tip="${esc(`${a}：${S.length} 件`)}">${S.length}<small> 件</small></div>
+      <div class="hint">出願年 ${ys.length ? `${Math.min(...ys)}〜${Math.max(...ys)}` : "—"}</div>
+      <div class="hint">用途: ${us.map(u => esc(u.k)).join("、") || "—"}</div>
+      <div class="hint">主な手段: ${ms.map(m => esc(stLabel(m.k))).join("、") || "—"}</div></div>`;
+  }).join("")}</div>`;
+  // 概念の重なり（各役割の概念の割合を並べたベクトルのコサイン類似度）
+  const vec = S => { const m = new Map(); for (const d of S) for (const [k] of ST_ROLE) for (const c of new Set(d[k])) if (stOk(c)) m.set(k + c, (m.get(k + c) || 0) + 1 / S.length); return m; };
+  const cos = (a, b) => { let dot = 0, na = 0, nb = 0; for (const [k, v] of a) { na += v * v; if (b.has(k)) dot += v * b.get(k); } for (const v of b.values()) nb += v * v; return na && nb ? dot / Math.sqrt(na * nb) : 0; };
+  const vs = sets.map(vec), pairs = [];
+  for (let i = 0; i < sel.length; i++) for (let j = i + 1; j < sel.length; j++) pairs.push({a: sel[i], b: sel[j], v: cos(vs[i], vs[j])});
+  const overlap = `<ol class="st-bars st-ov">${pairs.map(p => `<li><span class="lb">${esc(p.a)} と ${esc(p.b)}</span><span class="bw"><span class="b" style="width:${(p.v * 100).toFixed(1)}%"></span></span><span class="v">${(p.v * 100).toFixed(0)}<small>%</small></span></li>`).join("")}</ol>`;
+  // 役割ごとの割合比較（選んだ出願人のどこかで割合が高い概念の上位 10）
+  const roleCmp = ST_ROLE.map(([k, lab]) => {
+    const share = sets.map(S => new Map(stCount(S, k).filter(r => stOk(r.k)).map(r => [r.k, r])));
+    const all = new Set(); share.forEach(m => m.forEach((_, c) => all.add(c)));
+    const rows = [...all].map(c => ({c, s: share.map((m, i) => (m.get(c)?.n || 0) / sets[i].length), ids: share.map(m => m.get(c)?.ids || [])}));
+    rows.forEach(r => { r.max = Math.max(...r.s); });
+    const top = rows.sort((a, b) => b.max - a.max).slice(0, 10), M = Math.max(0.01, ...top.map(r => r.max));
+    if (!top.length) return `<div><h3>${lab}</h3><p class="hint">該当なし</p></div>`;
+    return `<div><h3>${lab}</h3><ol class="st-grp">${top.map(r => `<li><span class="lb" title="${esc(stLabel(r.c))}">${esc(stLabel(r.c))}</span><span class="gw">${r.s.map((v, i) => {
+      const key = stSet(r.ids[i], `${sel[i]} の${lab}「${stLabel(r.c)}」を含む特許`);
+      return `<span class="g" data-set="${key}" data-tip="${esc(`${sel[i]}：「${stLabel(r.c)}」${(v * 100).toFixed(0)}%（${r.ids[i].length} 件）`)}"><span class="b" style="width:${(v / M * 100).toFixed(1)}%;background:${ST_SERIES[i]}"></span><span class="pv">${v ? (v * 100).toFixed(0) + "%" : ""}</span></span>`;
+    }).join("")}</span></li>`).join("")}</ol></div>`;
+  }).join("");
+  // 重なりと独自領域（2 件以上ある概念を「持つ」とみなす）
+  const su = ST_ROLE.map(([k, lab]) => {
+    const cnt = sets.map(S => new Map(stCount(S, k).filter(r => stOk(r.k)).map(r => [r.k, r])));
+    const has = (m, c) => (m.get(c)?.n || 0) >= 2;
+    const all = new Set(); cnt.forEach(m => m.forEach((_, c) => all.add(c)));
+    const pill = (c, ids, title, style) => `<span class="st-pill" data-set="${stSet(ids, title)}" data-tip="${esc(`${stLabel(c)}：${ids.length} 件`)}" style="${style}">${esc(stLabel(c))}<small>${ids.length}</small></span>`;
+    const lim = (xs, f) => xs.slice(0, 8).map(f).join("") + (xs.length > 8 ? `<span class="hint">ほか ${xs.length - 8}</span>` : "");
+    const shared = [...all].filter(c => cnt.every(m => has(m, c))).sort((a, b) => cnt.reduce((s, m) => s + m.get(b).n, 0) - cnt.reduce((s, m) => s + m.get(a).n, 0));
+    const rowsHtml = [`<div class="st-su-row"><span class="k">共通</span><span>${shared.length ? lim(shared, c => pill(c, cnt.flatMap(m => m.get(c).ids), `${lab}「${stLabel(c)}」を含む特許（${sel.join("・")}）`, "")) : `<span class="hint">なし</span>`}</span></div>`];
+    sel.forEach((a, i) => {
+      const only = [...all].filter(c => has(cnt[i], c) && cnt.every((m, j) => j === i || !m.get(c))).sort((x, y) => cnt[i].get(y).n - cnt[i].get(x).n);
+      rowsHtml.push(`<div class="st-su-row"><span class="k" style="color:${ST_SERIES[i]}">${esc(a)} だけ</span><span>${only.length ? lim(only, c => pill(c, cnt[i].get(c).ids, `${a} の${lab}「${stLabel(c)}」を含む特許`, `border-color:${ST_SERIES[i]}`)) : `<span class="hint">なし</span>`}</span></div>`);
+    });
+    return `<div class="st-su"><h3>${lab}</h3>${rowsHtml.join("")}</div>`;
+  }).join("");
+  return [
+    stCard("比べる出願人", "2 者または 3 者を選びます。候補は、今の条件に合う特許の出願人です。", pick, "wide"),
+    stCard("概要", "", ov, "wide"),
+    stCard("概念の重なり", "課題・解決手段・用途の概念の割合を並べ、向きの近さ（コサイン類似度）で測りました。100% なら同じ構成、0% なら共通の概念がありません。", overlap),
+    stCard("出願件数の推移", "出願年ごとの件数です。直近の 1〜2 年は、未公開の出願があるため少なく見えます。", stLines(sets, sel)),
+    stCard("課題・解決手段・用途の割合", "それぞれの出願人の特許のうち、その概念を含むものの割合です。選んだ出願人のどこかで割合が高い概念の上位 10 を並べました。", `<div class="st-three">${roleCmp}</div>`, "wide"),
+    stCard("重なりと独自領域", "2 件以上ある概念を「持つ」とみなします。「共通」は選んだ全員が持つ概念、「〜だけ」はその出願人だけが持ち、ほかの出願人には 1 件も無い概念です。", su, "wide"),
+  ].join("");
+}
+
+// 部品: 出願人ごとの年推移（折れ線。点を押すとその年のその出願人の特許）
+function stLines(sets, names) {
+  const all = sets.flat(), ys = all.map(d => d.year).filter(y => y != null);
+  if (!ys.length) return `<p class="hint">出願年の列がありません</p>`;
+  const y0 = Math.min(...ys), y1 = Math.max(...ys), n = y1 - y0 + 1;
+  const W = Math.max(400, Math.floor((($("#stGrid").clientWidth || 920) - 14) / 2) - 40), H = 210, L = 36, R = 18, B = 26, T = 14;
+  const series = sets.map(S => { const by = new Map(); for (const d of S) if (d.year != null) { if (!by.has(d.year)) by.set(d.year, []); by.get(d.year).push(d.id); } return by; });
+  const max = Math.max(1, ...series.flatMap(by => [...by.values()].map(v => v.length))), step = niceStep(max), top = Math.ceil(max / step) * step;
+  const sx = i => L + (n === 1 ? (W - L - R) / 2 : 8 + i * (W - L - R - 16) / (n - 1)), sy = v => H - B - (H - B - T) * v / top;
+  let g = "";
+  for (let v = 0; v <= top; v += step) g += `<line x1="${L}" x2="${W}" y1="${sy(v)}" y2="${sy(v)}" class="grid"/><text x="${L - 6}" y="${sy(v) + 4}" class="ax" text-anchor="end">${v}</text>`;
+  for (let i = 0; i < n; i++) if (n <= 12 || i % Math.ceil(n / 12) === 0 || i === n - 1) g += `<text x="${sx(i)}" y="${H - 8}" class="ax" text-anchor="middle">${y0 + i}</text>`;
+  series.forEach((by, s) => {
+    const pts = []; for (let i = 0; i < n; i++) pts.push([sx(i), sy((by.get(y0 + i) || []).length)]);
+    g += `<path class="ln" style="stroke:${ST_SERIES[s]}" d="M${pts.map(p => p.join(",")).join(" L")}"/>`;
+    for (let i = 0; i < n; i++) { const ids = by.get(y0 + i) || []; if (!ids.length) continue;
+      g += `<circle class="pt" style="fill:${ST_SERIES[s]}" cx="${pts[i][0]}" cy="${pts[i][1]}" r="4" data-set="${stSet(ids, `${names[s]} が ${y0 + i} 年に出願した特許`)}" data-tip="${esc(`${names[s]} ${y0 + i} 年：${ids.length} 件`)}"/>`; }
+  });
+  const lg = `<div class="st-legend">${names.map((a, i) => `<span><i style="background:${ST_SERIES[i]}"></i>${esc(a)}</span>`).join("")}</div>`;
+  return `<svg class="st-years st-lines" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="出願人ごとの出願年の件数">${g}<line x1="${L}" x2="${W}" y1="${sy(0)}" y2="${sy(0)}" class="base"/></svg>${lg}`;
+}
+
+// ---------- タブ「空白探索」: 期待より出願の無い・薄い組 ----------
+// 期待件数 = 行の件数 × 列の件数 ÷ 全件数（2 つの概念が独立に現れるなら出るはずの件数）
+const ST_GAP = {pm: ["problem", "solution", "課題", "解決手段"], mu: ["solution", "use", "解決手段", "用途（辞書）"], mi: ["solution", "usage", "解決手段", "用途（IPC）"]};
+function renderStGaps(docs) {
+  const N = docs.length, [rk, ck, rl, cl] = ST_GAP[ST.gap.pair];
+  const labOf = key => key === "usage" ? (x => x) : stLabel, labR = labOf(rk), labC = labOf(ck);
+  const side = key => stCount(docs, key).filter(r => (key === "usage" || stOk(r.k)) && r.n >= 5).slice(0, 15);
+  const rows = side(rk), cols = side(ck);
+  const tabs = `<div class="tabs st-tabs" role="tablist">${Object.entries(ST_GAP).map(([k, v]) => `<button type="button" role="tab" data-gap="${k}" aria-selected="${ST.gap.pair === k}">${v[2]} × ${v[3]}</button>`).join("")}</div>`;
+  if (rows.length < 2 || cols.length < 2) return stCard("空白探索", "", `${tabs}<p class="hint">5 件以上ある${rl}または${cl}が 2 つ未満のため、組み合わせを作れません。</p>`, "wide");
+  const cell = new Map();
+  for (const d of docs) for (const r of new Set(d[rk])) for (const c of new Set(d[ck])) { const k = r + "\u0001" + c; if (!cell.has(k)) cell.set(k, []); cell.get(k).push(d.id); }
+  const cells = [];
+  for (const r of rows) for (const c of cols) { const ids = cell.get(r.k + "\u0001" + c.k) || [], exp = r.n * c.n / N; cells.push({r, c, ids, exp}); }
+  const gaps = cells.filter(x => !x.ids.length && x.exp >= 1).sort((a, b) => b.exp - a.exp);
+  const thin = cells.filter(x => x.ids.length && x.ids.length <= 2 && x.ids.length < x.exp / 4).sort((a, b) => b.exp - a.exp);
+  const gapKey = new Set(gaps.map(x => x.r.k + "\u0001" + x.c.k)), thinKey = new Set(thin.map(x => x.r.k + "\u0001" + x.c.k));
+  const max = Math.max(1, ...cells.map(x => x.ids.length));
+  // 濃淡表（空白と薄い組に印）
+  const head = `<tr><th></th>${cols.map(c => `<th class="ch" title="${esc(labC(c.k))}"><span>${esc(labC(c.k))}</span></th>`).join("")}</tr>`;
+  const body = rows.map(r => `<tr><th class="rh" title="${esc(labR(r.k))}">${esc(labR(r.k))}<small> ${r.n}</small></th>${cols.map(c => {
+    const x = cells.find(y => y.r === r && y.c === c), k = r.k + "\u0001" + c.k, tip = `${labR(r.k)} × ${labC(c.k)}：実績 ${x.ids.length} 件／期待 ${x.exp.toFixed(1)} 件`;
+    if (!x.ids.length) return gapKey.has(k) ? `<td class="gap" data-set="${stSet(stUnion(docs, rk, r.k, ck, c.k), `「${labR(r.k)}」または「${labC(c.k)}」を含む特許（空白の周り）`)}" data-tip="${esc(tip)}">0</td>` : `<td class="z" data-tip="${esc(tip)}"></td>`;
+    const lv = Math.min(ST_SEQ.length - 1, Math.ceil(x.ids.length / max * (ST_SEQ.length - 1)));
+    return `<td class="${thinKey.has(k) ? "thin" : ""}" data-set="${stSet(x.ids, `「${labR(r.k)}」×「${labC(c.k)}」の特許`)}" data-tip="${esc(tip)}" style="background:${ST_SEQ[lv]};color:${lv >= 4 ? "#fff" : "var(--ink)"}">${x.ids.length}</td>`;
+  }).join("")}</tr>`).join("");
+  const heat = `<div class="st-heat-wrap"><table class="st-heat">${head}${body}</table></div>
+    <div class="st-scale"><span>少</span>${ST_SEQ.slice(1).map(c => `<i style="background:${c}"></i>`).join("")}<span>多（最大 ${max} 件）</span><i class="gapk"></i><span>空白（期待 1 件以上で実績 0）</span><i class="think"></i><span>薄い（1〜2 件で期待の 1/4 未満）</span></div>`;
+  const who = ids => { const m = stCount(ids.map(i => ST.data.docs.find(d => d.id === i)).filter(Boolean), "applicants").slice(0, 2); return m.map(a => `${a.k}（${a.n}）`).join("、") || "—"; };
+  const item = (x, union) => { const ids = union ? stUnion(docs, rk, x.r.k, ck, x.c.k) : x.ids;
+    return `<li data-set="${stSet(ids, union ? `「${labR(x.r.k)}」または「${labC(x.c.k)}」を含む特許（空白の周り）` : `「${labR(x.r.k)}」×「${labC(x.c.k)}」の特許`)}" data-tip="${esc(`期待 ${x.exp.toFixed(1)} 件／実績 ${x.ids.length} 件`)}">
+      <div class="t"><span><b>${esc(labR(x.r.k))}</b> × <b>${esc(labC(x.c.k))}</b></span><span class="v">期待 ${x.exp.toFixed(1)} 件 → 実績 ${x.ids.length}</span></div>
+      <div class="hint">「${esc(labR(x.r.k))}」は ${x.r.n} 件、「${esc(labC(x.c.k))}」は ${x.c.n} 件。周りの主な出願人: ${esc(who(ids))}</div></li>`; };
+  return [
+    stCard("組み合わせ", "行と列に取る役割を選びます。行・列ともに 5 件以上ある概念の上位 15 です。", tabs, "wide"),
+    stCard(`${rl} × ${cl}`, "マスの数字は両方を含む特許の件数。橙の枠が空白、点線の枠が薄い組です。期待件数は、2 つの概念が独立に現れるなら出るはずの件数（行の件数 × 列の件数 ÷ 全件数）で、マスに重ねると見えます。", heat, "wide"),
+    stCard("空白の候補", `期待件数が大きいのに実績 0 の組を、期待の大きい順に並べました（${gaps.length} 組）。押すと、周りの特許（行か列のどちらかを含む特許）を右に出します。`, gaps.length ? `<ol class="st-gaps">${gaps.slice(0, 12).map(x => item(x, true)).join("")}</ol>` : `<p class="hint">期待 1 件以上で実績 0 の組はありません。</p>`),
+    stCard("薄い組", `実績が 1〜2 件で、期待の 1/4 に届かない組です（${thin.length} 組）。押すと、その少数の特許を右に出します。`, thin.length ? `<ol class="st-gaps">${thin.slice(0, 8).map(x => item(x, false)).join("")}</ol>` : `<p class="hint">該当なし</p>`),
+    stCard("読み方の注意", "", `<ul class="st-notes"><li>空白は「書かれていない」であって「できない」ではありません。技術的に成り立たない組、法規制で選べない組、言い換えが辞書に無いだけの組が混ざります。</li><li>母集団の集め方（検索式・用途の層ごとの件数）が、そのまま期待件数に影響します。層の件数を変えると空白も変わります。</li><li>空白の候補は、周りの特許を読んで「なぜ無いか」を確かめてから使ってください。</li></ul>`, "wide"),
+  ].join("");
+}
+function stUnion(docs, rk, r, ck, c) { return docs.filter(d => d[rk].includes(r) || d[ck].includes(c)).map(d => d.id); }
+
+// ---------- タブ「外れ値の特許」: ふだん一緒に出ない概念が結び付いた特許 ----------
+// 珍しさ = log(期待件数 ÷ 実際の件数)。期待件数は空白探索と同じ（2 つの概念が独立なら出るはずの件数）。
+function renderStOutliers(docs) {
+  const N = docs.length, min = ST.out.min;
+  const cnt = Object.fromEntries(ST_ROLE.map(([k]) => [k, new Map(stCount(docs, k).map(r => [r.k, r]))]));
+  const kinds = [["problem", "solution", "課題", "解決手段"], ["solution", "use", "解決手段", "用途"]];
+  const okc = (k, c) => stOk(c) && cnt[k].get(c).n >= min;
+  const support = new Map();
+  for (const d of docs) for (const [ak, bk] of kinds) for (const a of new Set(d[ak])) if (okc(ak, a)) for (const b of new Set(d[bk])) if (okc(bk, b)) { const key = ak + "\u0001" + a + "\u0001" + b; if (!support.has(key)) support.set(key, []); support.get(key).push(d.id); }
+  const LN2 = Math.log(2);
+  const scored = docs.map(d => {
+    const ps = [];
+    for (const [ak, bk, al, bl] of kinds) for (const a of new Set(d[ak])) if (okc(ak, a)) for (const b of new Set(d[bk])) if (okc(bk, b)) {
+      const ids = support.get(ak + "\u0001" + a + "\u0001" + b), exp = cnt[ak].get(a).n * cnt[bk].get(b).n / N, s = Math.log(exp / ids.length);
+      if (s >= LN2) ps.push({a, b, al, bl, ids, exp, s});
+    }
+    ps.sort((p, q) => q.s - p.s);
+    return {d, ps, score: ps.length ? ps[0].s : 0};
+  }).filter(x => x.ps.length).sort((a, b) => b.score - a.score || b.ps.length - a.ps.length);
+  const top = scored.slice(0, 30), M = top.length ? top[0].score : 1;
+  const ctl = `<label class="st-inline">概念の下限 <select id="stOutMin">${[3, 5, 10].map(v => `<option value="${v}" ${v === min ? "selected" : ""}>${v} 件以上</option>`).join("")}</select></label>`;
+  const list = top.length ? `<ol class="st-out">${top.map(x => `<li>
+      <div class="t"><span class="sb" data-tip="${esc(`珍しさ ${x.score.toFixed(2)}（期待は実際の ${Math.exp(x.score).toFixed(1)} 倍）`)}"><span class="b" style="width:${(x.score / M * 100).toFixed(1)}%"></span></span>
+        <a href="#/map/${esc(ST.pid)}?sel=${esc(x.d.id)}">${esc(x.d.title)}</a></div>
+      <div class="hint">${stDocLine(x.d)}</div>
+      <ul class="st-pairs">${x.ps.slice(0, 2).map(p => `<li data-set="${stSet(p.ids, `${p.al}「${stLabel(p.a)}」× ${p.bl}「${stLabel(p.b)}」の特許`)}" data-tip="${esc(`期待 ${p.exp.toFixed(1)} 件／実際 ${p.ids.length} 件`)}">${p.al}「${esc(stLabel(p.a))}」× ${p.bl}「${esc(stLabel(p.b))}」<span class="v">ほかに ${p.ids.length - 1} 件（期待 ${p.exp.toFixed(1)} 件）</span></li>`).join("")}${x.ps.length > 2 ? `<li class="hint">ほか ${x.ps.length - 2} 組</li>` : ""}</ul></li>`).join("")}</ol>`
+    : `<p class="hint">期待が実際の 2 倍以上になる組を持つ特許はありません。概念の下限を下げると増えます。</p>`;
+  // この母集団で 1 件だけの概念
+  const singles = [];
+  for (const [k, lab] of ST_ROLE) for (const r of cnt[k].values()) if (r.n === 1 && stOk(r.k)) singles.push({k, lab, c: r.k, d: docs.find(d => d.id === r.ids[0])});
+  singles.sort((a, b) => (b.d.year || 0) - (a.d.year || 0));
+  const sg = singles.length ? `<ol class="st-out st-single">${singles.slice(0, 20).map(x => `<li><div class="t"><span class="st-pill" style="cursor:default">${x.lab}<small>${esc(stLabel(x.c))}</small></span><a href="#/map/${esc(ST.pid)}?sel=${esc(x.d.id)}">${esc(x.d.title)}</a></div><div class="hint">${stDocLine(x.d)}</div></li>`).join("")}</ol>${singles.length > 20 ? `<p class="hint">ほか ${singles.length - 20} 件</p>` : ""}` : `<p class="hint">1 件だけの概念はありません。</p>`;
+  return [
+    stCard("珍しい組み合わせを持つ特許", `課題×解決手段、解決手段×用途の組ごとに、期待件数（2 つが独立なら出るはずの件数）と実際の件数を比べ、期待が実際の 2 倍以上の組を持つ特許を珍しさの順に並べました（${scored.length} 件中、上位 30）。棒が長いほど、ふだん結び付かない概念が結び付いています。組を押すと、同じ組を持つ特許を右に出します。 ${ctl}`, list, "wide"),
+    stCard("この母集団で 1 件だけの概念", `ほかのどの特許にも出ない概念と、それを持つ特許です（${singles.length} 件、出願年の新しい順）。新しい語の手がかりになります。`, sg),
+    stCard("読み方の注意", "", `<ul class="st-notes"><li>外れ値には、辞書の拾い間違い（別名が広すぎる、配合例の語を拾った）が多く混ざります。上位は原文で確かめ、間違いなら辞書を直してください。辞書の点検にも使えます。</li><li>期待件数は 2 つの概念が独立に現れると仮定した値です。片方がもう片方の前提になる組（例: 課題と、それ専用の手段）は、実際の件数が多くなり外れ値に出にくくなります。</li><li>件数の少ない概念は期待件数も小さく、外れ値に出にくくなります。下限を下げると増えますが、偶然の組も増えます。</li></ul>`),
+  ].join("");
 }
 
 function bindStInteract() {
